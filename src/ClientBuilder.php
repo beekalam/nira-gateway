@@ -5,17 +5,14 @@ namespace Beekalam\NiraGateway;
 
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 
 class ClientBuilder
 {
     private $user;
     private $pass;
     private $testing = false;
+    private $mock = null;
 
     /**
      * ClientBuilder constructor.
@@ -32,22 +29,15 @@ class ClientBuilder
 
     public function getClient()
     {
+        if ($this->testing == true) {
+            return $this->getTestingClient();
+        }
         return $client = new Client([
             'base_uri' => Constants::AVAILABILITY_URI,
             'timeout'  => Constants::GATEWAY_TIMEOUT
         ]);
     }
 
-    public function buildURL(array $queryParams)
-    {
-        $query = http_build_query(
-            array_merge($queryParams, [
-                'officeUser'     => $this->user,
-                'officePassword' => $this->pass
-            ])
-        );
-        return Constants::AVAILABILITY_URI . '?' . $query;
-    }
 
     /**
      * @return mixed
@@ -67,11 +57,32 @@ class ClientBuilder
         return $this;
     }
 
-    public function getTestingClient(MockHandler $mock): Client
+    public function getTestingClient(): Client
     {
-        $handlerStack = HandlerStack::create($mock);
+        $handlerStack = HandlerStack::create($this->mock);
         $client = new Client(['handler' => $handlerStack]);
         return $client;
+    }
+
+    /**
+     * @param null $mock
+     * @return ClientBuilder
+     */
+    public function setMock($mock)
+    {
+        $this->mock = $mock;
+        return $this;
+    }
+
+    public function buildURL(array $queryParams)
+    {
+        $query = http_build_query(
+            array_merge($queryParams, [
+                'officeUser'     => $this->user,
+                'officePassword' => $this->pass
+            ])
+        );
+        return Constants::AVAILABILITY_URI . '?' . $query;
     }
 
 }

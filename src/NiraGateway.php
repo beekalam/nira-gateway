@@ -22,8 +22,7 @@ class NiraGateway
             ->getClient()
             ->request('GET', $this->clientBuilder->buildURL($options));
 
-        die($response);
-        return $response;
+        return $response->getBody();
     }
 
 }
