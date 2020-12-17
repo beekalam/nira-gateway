@@ -18,7 +18,7 @@ class NiraGateway
     public function search($options)
     {
 
-        $response = $this->client
+        $response = $this->clientBuilder
             ->getClient()
             ->request('GET', $this->clientBuilder->buildURL($options));
 

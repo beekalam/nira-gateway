@@ -2,13 +2,11 @@
 
 namespace Beekalam\NiraGateway\Tests;
 
+use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\NiraGateway;
-use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Exception\RequestException;
+use PHPUnit\Framework\TestCase;
 
 class NiraGatewayTest extends TestCase
 {
@@ -34,6 +32,21 @@ class NiraGatewayTest extends TestCase
         ];
         $res = $ng->search($options);
         $this->assertNotNull($res);
+    }
+
+    /** @test */
+    function client_builder_should_return_mock_requests()
+    {
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], 'Hello, World'),
+            new Response(202, ['Content-Length' => 0]),
+        ]);
+        $client = new ClientBuilder('user', 'pass');
+        $client = $client->getTestingClient($mock);
+        $response = $client->request('GET', '/');
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('Hello, World', $response->getBody());
     }
 
 }

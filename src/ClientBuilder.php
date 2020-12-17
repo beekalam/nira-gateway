@@ -5,11 +5,17 @@ namespace Beekalam\NiraGateway;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 class ClientBuilder
 {
     private $user;
     private $pass;
+    private $testing = false;
 
     /**
      * ClientBuilder constructor.
@@ -41,6 +47,31 @@ class ClientBuilder
             ])
         );
         return Constants::AVAILABILITY_URI . '?' . $query;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTesting()
+    {
+        return $this->testing;
+    }
+
+    /**
+     * @param bool $testing
+     * @return ClientBuilder
+     */
+    public function setTesting(bool $testing): ClientBuilder
+    {
+        $this->testing = $testing;
+        return $this;
+    }
+
+    public function getTestingClient(MockHandler $mock): Client
+    {
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        return $client;
     }
 
 }
