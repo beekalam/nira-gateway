@@ -4,6 +4,11 @@ namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\NiraGateway;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\RequestException;
 
 class NiraGatewayTest extends TestCase
 {

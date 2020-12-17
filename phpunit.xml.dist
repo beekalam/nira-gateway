@@ -11,7 +11,7 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Beekalam Test Suite">
+        <testsuite name="app">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
