@@ -13,19 +13,22 @@ class NiraGateway
     private $testing = false;
     private $mock = null;
 
-    /**
-     * @var ClientBuilder
-     */
-    private ClientBuilder $clientBuilder;
-
     public function __construct($user, $pass)
     {
-        // $this->clientBuilder = $client;
         $this->user = $user;
         $this->pass = $pass;
     }
 
-    public function getClient()
+    public function search($options)
+    {
+        $response = $this->getClient()
+                         ->request('GET',
+                             $this->buildURL($options));
+
+        return $response->getBody();
+    }
+
+    private function getClient()
     {
         if ($this->testing == true) {
             return $this->getTestingClient();
@@ -36,20 +39,11 @@ class NiraGateway
         ]);
     }
 
-    public function getTestingClient(): Client
+    private function getTestingClient(): Client
     {
         $handlerStack = HandlerStack::create($this->mock);
         $client = new Client(['handler' => $handlerStack]);
         return $client;
-    }
-
-    public function search($options)
-    {
-        $response = $this->clientBuilder
-            ->getClient()
-            ->request('GET', $this->clientBuilder->buildURL($options));
-
-        return $response->getBody();
     }
 
     /**
@@ -62,18 +56,17 @@ class NiraGateway
 
     /**
      * @param bool $testing
-     * @return ClientBuilder
+     * @return NiraGateway
      */
-    public function setTesting(bool $testing): ClientBuilder
+    public function setTesting(bool $testing): NiraGateway
     {
         $this->testing = $testing;
         return $this;
     }
 
-
     /**
      * @param null $mock
-     * @return ClientBuilder
+     * @return NiraGateway
      */
     public function setMock($mock)
     {

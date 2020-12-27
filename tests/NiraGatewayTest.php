@@ -4,9 +4,7 @@ namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\NiraGateway;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
@@ -18,8 +16,6 @@ class NiraGatewayTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->client = new ClientBuilder('user', 'pass');
-        $this->client->setTesting(true);
     }
 
     private function is_json($string)
@@ -33,29 +29,6 @@ class NiraGatewayTest extends TestCase
         $this->assertTrue($this->is_json($string));
     }
 
-
-    // /** @test */
-    public function true_is_true()
-    {
-        $ng = new NiraGateway($this->client);
-        $this->assertNotNull($ng);
-    }
-
-    /** @test */
-    function client_builder_should_return_mock_requests()
-    {
-        $mock = new MockHandler([
-            new Response(200, ['X-Foo' => 'Bar'], 'Hello, World'),
-            new Response(202, ['Content-Length' => 0]),
-            new RequestException('Error Communicating with Server', new Request('GET', 'test'))
-        ]);
-        $response = $this->client->setMock($mock)
-                                 ->getClient()
-                                 ->request('GET', '/');
-
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('Hello, World', $response->getBody());
-    }
 
     private function getSearchResults()
     {
@@ -73,10 +46,13 @@ JSON;
     /** @test */
     public function can_search_flights()
     {
-        $this->client->setMock(new MockHandler([
+        $mock = new MockHandler([
             new Response(200, [], $this->getSearchResults()),
-        ]));
-        $ng = new NiraGateway($this->client);
+        ]);
+        $ng = new NiraGateway('user', 'pass');
+        $ng->setMock($mock)
+           ->setTesting(true);
+
         $options = [
             'airline'     => 'PA',
             'cbSource'    => 'ugt',
@@ -94,8 +70,12 @@ JSON;
     /** @test */
     function can_search_flights2()
     {
-        $client = new ClientBuilder('Thr055.ws', '4512');
-        $ng = new NiraGateway($client);
+        $mock = new MockHandler([
+            new Response(200, [], $this->getSearchResults()),
+        ]);
+        $ng = new NiraGateway('user', 'pass');
+        $ng->setTesting(true)
+           ->setMock($mock);
 
         $options = [
             'Airline'     => 'PA',
