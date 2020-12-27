@@ -10,8 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class NiraGatewayTest extends TestCase
 {
-    private $client;
-
 
     protected function setUp(): void
     {
@@ -43,6 +41,27 @@ class NiraGatewayTest extends TestCase
 JSON;
     }
 
+    private function getFareResults()
+    {
+        return <<<'JSON'
+{
+    "AdultTotalPrice": "1140000",
+    "InfantTotalPrice": "176000",
+    "EligibilityText": "",
+    "CRCNRules": "از 3 ساعت مانده به پرواز,50,P/از 24 ساعت مانده به پرواز تا 3 ساعت مانده به پرواز,40,P/از لحظه صدور تا 24 ساعت مانده به پرواز,30,P/",
+    "InfantFare": "100000",
+    "AdultTaxes": "I6:10000.0,EN_Desc:PASSENGER SAFETY OVERSIGHT SERVICE,FA_Desc:PASSENGER SAFETY OVERSIGHT SERVICE$KU:60000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداري$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهي$",
+    "ChildFare": "500000",
+    "AdultFare": "1000000",
+    "ChildTaxes": "I6:10000.0,EN_Desc:PASSENGER SAFETY OVERSIGHT SERVICE,FA_Desc:PASSENGER SAFETY OVERSIGHT SERVICE$KU:30000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداري$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهي$",
+    "InfantTaxes": "KU:6000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداري$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهي$",
+    "AdultComission": "0",
+    "ChildTotalPrice": "610000"
+}
+JSON;
+
+    }
+
     /** @test */
     public function can_search_flights()
     {
@@ -68,27 +87,27 @@ JSON;
     }
 
     /** @test */
-    function can_search_flights2()
+    function can_get_fare_results()
     {
         $mock = new MockHandler([
-            new Response(200, [], $this->getSearchResults()),
+            new Response(200, [], $this->getFareResults()),
         ]);
         $ng = new NiraGateway('user', 'pass');
         $ng->setTesting(true)
            ->setMock($mock);
 
         $options = [
-            'Airline'     => 'PA',
-            'cbSource'    => 'ugt',
-            'cbTarget'    => 'ttq',
-            'cbDay1'      => '3',
-            'cbMonth1'    => '10',
-            'cbAdultQty'  => '1',
-            'cbInfantQty' => '0',
+            'Airline'       => 'PA',
+            'Route'         => 'ugt',
+            'RBD'           => 'ttq',
+            'DepartureDate' => '3',
+            'FlightNo'      => '10',
         ];
 
         $res = $ng->search($options);
-        var_dump($res->getContents());
+        // die($res->getContents());
+        $this->assertISJson($res->getContents());
+        // var_dump($res->getContents());
     }
 
 

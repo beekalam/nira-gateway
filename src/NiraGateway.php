@@ -23,7 +23,15 @@ class NiraGateway
     {
         $response = $this->getClient()
                          ->request('GET',
-                             $this->buildURL($options));
+                             $this->buildURL(Constants::AVAILABILITY_URI, $options));
+
+        return $response->getBody();
+    }
+
+    public function getFlightFare($options)
+    {
+        $response = $this->getClient()
+                         ->request('GET', $this->buildURL(Constants::FARE_URI, $options));
 
         return $response->getBody();
     }
@@ -74,14 +82,18 @@ class NiraGateway
         return $this;
     }
 
-    public function buildURL(array $queryParams)
+    public function buildURL($baseURL, array $queryParams)
     {
-        $query = http_build_query(
+        return Constants::AVAILABILITY_URI . '?' . $this->buildQuery($queryParams);
+    }
+
+    public function buildQuery(array $queryParams)
+    {
+        return http_build_query(
             array_merge($queryParams, [
                 'officeUser' => $this->user,
                 'officePass' => $this->pass
             ])
         );
-        return Constants::AVAILABILITY_URI . '?' . $query;
     }
 }
