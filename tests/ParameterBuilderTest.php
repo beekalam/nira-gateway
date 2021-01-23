@@ -6,7 +6,7 @@ use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\ParameterBuilder;
 use PHPUnit\Framework\TestCase;
 
-class SearchBuilderTest extends TestCase
+class ParameterBuilderTest extends TestCase
 {
 
     protected function setUp(): void
