@@ -49,4 +49,42 @@ class SearchBuilderTest extends TestCase
         $sb->buildParams();
     }
 
+    /** @test */
+    function searchBuilder_should_throw_for_null_target()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new SearchParamsBuilder();
+        $sb->setAirline('PA')
+           ->setSource('ugt');
+        $sb->buildParams();
+    }
+
+    /** @test */
+    function searchBuilder_should_throw_for_empty_day()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new SearchParamsBuilder();
+        $sb->setAirline('PA')
+           ->setSource('ugt')
+           ->setTarget('ttq');
+
+        $sb->buildParams();
+    }
+
+    /** @test */
+    function searchBuilder_should_throw_for_null_month()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new SearchParamsBuilder();
+        $sb = new SearchParamsBuilder();
+        $sb->setAirline('PA')
+           ->setSource('ugt')
+           ->setTarget('ttq')
+           ->setDay('3');
+
+        $sb->buildParams();
+    }
 }

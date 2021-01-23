@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 
 namespace Beekalam\NiraGateway;
-use \InvalidArgumentException;
+
+use InvalidArgumentException;
 
 
 class SearchParamsBuilder
@@ -108,9 +109,24 @@ class SearchParamsBuilder
 
     public function buildParams(): array
     {
-        if(empty($this->source)){
-            // die('in here');
+        if (empty($this->source)) {
             throw new InvalidArgumentException("Source can not be empty");
+        }
+
+        if (empty($this->target)) {
+            throw new InvalidArgumentException("Target can not be empty");
+        }
+
+        if (empty($this->target)) {
+            throw new InvalidArgumentException("Day can not be empty");
+        }
+
+        if (empty($this->day)) {
+            throw new InvalidArgumentException("Day can not be empty");
+        }
+
+        if (empty($this->month)) {
+            throw new InvalidArgumentException("Month can not be empty");
         }
 
         return [
