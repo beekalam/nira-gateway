@@ -1,25 +1,28 @@
 <?php
+declare(strict_types=1);
 
 namespace Beekalam\NiraGateway;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use Psr\Http\Message\StreamInterface;
 
 class NiraGateway
 {
 
-    private $user;
-    private $pass;
-    private $testing = false;
-    private $mock = null;
+    private string $user;
+    private string $pass;
+    private bool $testing = false;
+    private ?MockHandler  $mock = null;
 
-    public function __construct($user, $pass)
+    public function __construct(string $user, string $pass)
     {
         $this->user = $user;
         $this->pass = $pass;
     }
 
-    public function search($options)
+    public function search(array $options): StreamInterface
     {
         $response = $this->getClient()
                          ->request('GET',
@@ -28,7 +31,7 @@ class NiraGateway
         return $response->getBody();
     }
 
-    public function getFlightFare($options)
+    public function getFlightFare(array $options): StreamInterface
     {
         $response = $this->getClient()
                          ->request('GET', $this->buildURL(Constants::FARE_URI, $options));
@@ -36,7 +39,7 @@ class NiraGateway
         return $response->getBody();
     }
 
-    private function getClient()
+    private function getClient():Client
     {
         if ($this->testing == true) {
             return $this->getTestingClient();
@@ -57,7 +60,7 @@ class NiraGateway
     /**
      * @return mixed
      */
-    public function getTesting()
+    public function getTesting():bool
     {
         return $this->testing;
     }
@@ -76,18 +79,18 @@ class NiraGateway
      * @param null $mock
      * @return NiraGateway
      */
-    public function setMock($mock)
+    public function setMock($mock): NiraGateway
     {
         $this->mock = $mock;
         return $this;
     }
 
-    public function buildURL($baseURL, array $queryParams)
+    public function buildURL(string $baseURL, array $queryParams):string
     {
         return Constants::AVAILABILITY_URI . '?' . $this->buildQuery($queryParams);
     }
 
-    public function buildQuery(array $queryParams)
+    public function buildQuery(array $queryParams):string
     {
         return http_build_query(
             array_merge($queryParams, [

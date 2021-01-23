@@ -27,7 +27,6 @@ class NiraGatewayTest extends TestCase
         $this->assertTrue($this->is_json($string));
     }
 
-
     private function getSearchResults()
     {
         return <<<JSON
@@ -105,9 +104,7 @@ JSON;
         ];
 
         $res = $ng->search($options);
-        // die($res->getContents());
         $this->assertISJson($res->getContents());
-        // var_dump($res->getContents());
     }
 
 
