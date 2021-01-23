@@ -40,4 +40,13 @@ class SearchBuilderTest extends TestCase
         $this->assertEquals($options, $sb->buildParams());
     }
 
+    /** @test */
+    function searchBuilder_should_throw_for_null_source()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new SearchParamsBuilder();
+        $sb->buildParams();
+    }
+
 }

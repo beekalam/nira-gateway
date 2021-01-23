@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 
 namespace Beekalam\NiraGateway;
+use \InvalidArgumentException;
 
 
 class SearchParamsBuilder
@@ -107,6 +108,11 @@ class SearchParamsBuilder
 
     public function buildParams(): array
     {
+        if(empty($this->source)){
+            // die('in here');
+            throw new InvalidArgumentException("Source can not be empty");
+        }
+
         return [
             'airline'     => $this->airline,
             'cbSource'    => $this->source,
