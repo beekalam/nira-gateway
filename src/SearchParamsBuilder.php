@@ -10,11 +10,20 @@ class SearchParamsBuilder
     private string $airline;
     private string $source;
     private string $target;
-    private int $day;
-    private int $month;
-    private int $adultCount;
-    private int $childCount;
-    private int $infantCount;
+    private string $day;
+    private string $month;
+    private string $adultCount;
+    private string $childCount;
+    private string $infantCount;
+
+    /**
+     * SearchParamsBuilder constructor.
+     */
+    public function __construct()
+    {
+        $this->infantCount = '0';
+        $this->childCount = '0';
+    }
 
     /**
      * @param string $airline
@@ -47,52 +56,65 @@ class SearchParamsBuilder
     }
 
     /**
-     * @param int $day
+     * @param string $day
      * @return SearchParamsBuilder
      */
-    public function setDay(int $day): SearchParamsBuilder
+    public function setDay(string $day): SearchParamsBuilder
     {
         $this->day = $day;
         return $this;
     }
 
     /**
-     * @param int $month
+     * @param string $month
      * @return SearchParamsBuilder
      */
-    public function setMonth(int $month): SearchParamsBuilder
+    public function setMonth(string $month): SearchParamsBuilder
     {
         $this->month = $month;
         return $this;
     }
 
     /**
-     * @param int $adultCount
+     * @param string $adultCount
      * @return SearchParamsBuilder
      */
-    public function setAdultCount(int $adultCount): SearchParamsBuilder
+    public function setAdultCount(string $adultCount): SearchParamsBuilder
     {
         $this->adultCount = $adultCount;
         return $this;
     }
 
     /**
-     * @param int $childCount
+     * @param string $childCount
      * @return SearchParamsBuilder
      */
-    public function setChildCount(int $childCount): SearchParamsBuilder
+    public function setChildCount(string $childCount): SearchParamsBuilder
     {
         $this->childCount = $childCount;
         return $this;
     }
 
     /**
-     * @param int $infantCount
+     * @param string $infantCount
      * @return SearchParamsBuilder
      */
-    public function setInfantCount(int $infantCount): SearchParamsBuilder
+    public function setInfantCount(string $infantCount): SearchParamsBuilder
     {
         $this->infantCount = $infantCount;
         return $this;
+    }
+
+    public function buildParams(): array
+    {
+        return [
+            'airline'     => $this->airline,
+            'cbSource'    => $this->source,
+            'cbTarget'    => $this->target,
+            'cbDay1'      => $this->day,
+            'cbMonth1'    => $this->month,
+            'cbAdultQty'  => $this->adultCount,
+            'cbInfantQty' => $this->infantCount
+        ];
     }
 }
