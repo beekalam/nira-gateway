@@ -4,6 +4,7 @@ namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\NiraGateway;
+use Beekalam\NiraGateway\SearchParamsBuilder;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -71,17 +72,17 @@ JSON;
         $ng->setMock($mock)
            ->setTesting(true);
 
-        $options = [
-            'airline'     => 'PA',
-            'cbSource'    => 'ugt',
-            'cbTarget'    => 'ttq',
-            'cbDay1'      => '3',
-            'cbMonth1'    => '06',
-            'cbAdultQty'  => '1',
-            'cbInfantQty' => '0',
-        ];
+        $sb = new SearchParamsBuilder();
+        $sb->setAirline('PA')
+           ->setSource('ugt')
+           ->setTarget('ttq')
+           ->setDay('3')
+           ->setMonth('06')
+           ->setAdultCount('1')
+           ->setInfantCount('0');
 
-        $res = $ng->search($options);
+
+        $res = $ng->search($sb);
         $this->assertISJson($res);
     }
 

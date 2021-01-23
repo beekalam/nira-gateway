@@ -22,11 +22,11 @@ class NiraGateway
         $this->pass = $pass;
     }
 
-    public function search(array $options): StreamInterface
+    public function search(SearchParamsBuilder $searchParamsBuilder): StreamInterface
     {
         $response = $this->getClient()
                          ->request('GET',
-                             $this->buildURL(Constants::AVAILABILITY_URI, $options));
+                             $this->buildURL(Constants::AVAILABILITY_URI, $searchParamsBuilder->buildParams()));
 
         return $response->getBody();
     }
@@ -39,7 +39,7 @@ class NiraGateway
         return $response->getBody();
     }
 
-    private function getClient():Client
+    private function getClient(): Client
     {
         if ($this->testing == true) {
             return $this->getTestingClient();
@@ -60,7 +60,7 @@ class NiraGateway
     /**
      * @return mixed
      */
-    public function getTesting():bool
+    public function getTesting(): bool
     {
         return $this->testing;
     }
@@ -85,12 +85,12 @@ class NiraGateway
         return $this;
     }
 
-    public function buildURL(string $baseURL, array $queryParams):string
+    public function buildURL(string $baseURL, array $queryParams): string
     {
         return Constants::AVAILABILITY_URI . '?' . $this->buildQuery($queryParams);
     }
 
-    public function buildQuery(array $queryParams):string
+    public function buildQuery(array $queryParams): string
     {
         return http_build_query(
             array_merge($queryParams, [
