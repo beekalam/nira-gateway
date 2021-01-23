@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 
 namespace Beekalam\NiraGateway;
+use \InvalidArgumentException;
 
 
 class FareParameterBuilder
@@ -65,7 +66,21 @@ class FareParameterBuilder
 
     public function buildParams()
     {
+        if(empty($this->airline)){
+            throw new InvalidArgumentException('Airline can not be empty');
+        }
 
+        if(empty($this->route)){
+            throw new InvalidArgumentException('Route can not be empty');
+        }
+
+        return [
+            'Airline'       => $this->airline,
+            'Route'         => $this->route,
+            'RBD'           => $this->rbd,
+            'DepartureDate' => $this->departureDate,
+            'FlightNo'      => $this->flightNo
+        ];
     }
 
 }
