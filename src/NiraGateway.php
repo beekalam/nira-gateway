@@ -22,7 +22,7 @@ class NiraGateway
         $this->pass = $pass;
     }
 
-    public function search(SearchParamsBuilder $searchParamsBuilder): StreamInterface
+    public function search(ParameterBuilder $searchParamsBuilder): StreamInterface
     {
         $response = $this->getClient()
                          ->request('GET',

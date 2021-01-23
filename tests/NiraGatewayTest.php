@@ -4,7 +4,7 @@ namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\NiraGateway;
-use Beekalam\NiraGateway\SearchParamsBuilder;
+use Beekalam\NiraGateway\ParameterBuilder;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -72,7 +72,7 @@ JSON;
         $ng->setMock($mock)
            ->setTesting(true);
 
-        $sb = new SearchParamsBuilder();
+        $sb = new ParameterBuilder();
         $sb->setAirline('PA')
            ->setSource('ugt')
            ->setTarget('ttq')

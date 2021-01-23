@@ -3,7 +3,7 @@
 namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\ClientBuilder;
-use Beekalam\NiraGateway\SearchParamsBuilder;
+use Beekalam\NiraGateway\ParameterBuilder;
 use PHPUnit\Framework\TestCase;
 
 class SearchBuilderTest extends TestCase
@@ -28,7 +28,7 @@ class SearchBuilderTest extends TestCase
             'cbInfantQty' => '0',
         ];
 
-        $sb = new SearchParamsBuilder();
+        $sb = new ParameterBuilder();
         $sb->setAirline('PA')
            ->setSource('ugt')
            ->setTarget('ttq')
@@ -45,7 +45,7 @@ class SearchBuilderTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $sb = new SearchParamsBuilder();
+        $sb = new ParameterBuilder();
         $sb->buildParams();
     }
 
@@ -54,7 +54,7 @@ class SearchBuilderTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $sb = new SearchParamsBuilder();
+        $sb = new ParameterBuilder();
         $sb->setAirline('PA')
            ->setSource('ugt');
         $sb->buildParams();
@@ -65,7 +65,7 @@ class SearchBuilderTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $sb = new SearchParamsBuilder();
+        $sb = new ParameterBuilder();
         $sb->setAirline('PA')
            ->setSource('ugt')
            ->setTarget('ttq');
@@ -78,8 +78,8 @@ class SearchBuilderTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $sb = new SearchParamsBuilder();
-        $sb = new SearchParamsBuilder();
+        $sb = new ParameterBuilder();
+        $sb = new ParameterBuilder();
         $sb->setAirline('PA')
            ->setSource('ugt')
            ->setTarget('ttq')

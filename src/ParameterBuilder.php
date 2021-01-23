@@ -7,7 +7,7 @@ namespace Beekalam\NiraGateway;
 use InvalidArgumentException;
 
 
-class SearchParamsBuilder
+class ParameterBuilder
 {
     private string $airline;
     private string $source;
@@ -29,9 +29,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $airline
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setAirline(string $airline): SearchParamsBuilder
+    public function setAirline(string $airline): ParameterBuilder
     {
         $this->airline = $airline;
         return $this;
@@ -39,9 +39,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $source
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setSource(string $source): SearchParamsBuilder
+    public function setSource(string $source): ParameterBuilder
     {
         $this->source = $source;
         return $this;
@@ -49,9 +49,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $target
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setTarget(string $target): SearchParamsBuilder
+    public function setTarget(string $target): ParameterBuilder
     {
         $this->target = $target;
         return $this;
@@ -59,9 +59,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $day
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setDay(string $day): SearchParamsBuilder
+    public function setDay(string $day): ParameterBuilder
     {
         $this->day = $day;
         return $this;
@@ -69,9 +69,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $month
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setMonth(string $month): SearchParamsBuilder
+    public function setMonth(string $month): ParameterBuilder
     {
         $this->month = $month;
         return $this;
@@ -79,9 +79,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $adultCount
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setAdultCount(string $adultCount): SearchParamsBuilder
+    public function setAdultCount(string $adultCount): ParameterBuilder
     {
         $this->adultCount = $adultCount;
         return $this;
@@ -89,9 +89,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $childCount
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setChildCount(string $childCount): SearchParamsBuilder
+    public function setChildCount(string $childCount): ParameterBuilder
     {
         $this->childCount = $childCount;
         return $this;
@@ -99,9 +99,9 @@ class SearchParamsBuilder
 
     /**
      * @param string $infantCount
-     * @return SearchParamsBuilder
+     * @return ParameterBuilder
      */
-    public function setInfantCount(string $infantCount): SearchParamsBuilder
+    public function setInfantCount(string $infantCount): ParameterBuilder
     {
         $this->infantCount = $infantCount;
         return $this;
