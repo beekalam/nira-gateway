@@ -40,7 +40,7 @@ class NiraGateway
 
     public function search(ParameterBuilder $searchParamsBuilder): string
     {
-        $url = $this->buildURL($this->availabilityURI, $searchParamsBuilder->buildParams());
+        $url = $this->buildAvailabilityURL($searchParamsBuilder);
 
         $response = $this->getClient()
                          ->request('GET', $url);
@@ -50,7 +50,7 @@ class NiraGateway
 
     public function getFlightFare(FareParameterBuilder $fb): string
     {
-        $url = $this->buildURL($this->fareURI, $fb->buildParams());
+        $url = $this->buildFareURL($fb);
         $response = $this->getClient()
                          ->request('GET', $url);
 
@@ -103,9 +103,19 @@ class NiraGateway
         return $this;
     }
 
-    public function buildURL(string $baseURL, array $queryParams): string
+    private function buildURL(string $baseURL, array $queryParams): string
     {
-        return $this->availabilityURI . '?' . $this->buildQuery($queryParams);
+        return $baseURL . '?' . $this->buildQuery($queryParams);
+    }
+
+    private function buildAvailabilityURL(ParameterBuilder $pb): string
+    {
+        return $this->buildURL($this->availabilityURI, $pb->buildParams());
+    }
+
+    private function buildFareURL(FareParameterBuilder $fb): string
+    {
+        return $this->buildURL($this->fareURI, $fb->buildParams());
     }
 
     public function buildQuery(array $queryParams): string
