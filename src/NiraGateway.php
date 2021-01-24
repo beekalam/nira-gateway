@@ -12,18 +12,35 @@ class NiraGateway
 
     private string $user;
     private string $pass;
+    private int $timeout;
+    private string $availabilityURI;
+    private string $fareURI;
     private bool $testing = false;
     private ?MockHandler  $mock = null;
 
-    public function __construct(string $user, string $pass)
+    public function __construct(string $user,
+                                string $pass,
+                                string $availabilityURI = '',
+                                string $fareURI = '',
+                                int $timeout = Constants::GATEWAY_TIMEOUT)
     {
         $this->user = $user;
         $this->pass = $pass;
+
+        if (empty($availabilityURI)) {
+            $this->availabilityURI = Constants::AVAILABILITY_URI;
+        }
+
+        if (empty($fareURI)) {
+            $this->fareURI = Constants::FARE_URI;
+        }
+
+        $this->timeout = $timeout;
     }
 
     public function search(ParameterBuilder $searchParamsBuilder): string
     {
-        $url = $this->buildURL(Constants::AVAILABILITY_URI, $searchParamsBuilder->buildParams());
+        $url = $this->buildURL($this->availabilityURI, $searchParamsBuilder->buildParams());
 
         $response = $this->getClient()
                          ->request('GET', $url);
@@ -33,7 +50,7 @@ class NiraGateway
 
     public function getFlightFare(FareParameterBuilder $fb): string
     {
-        $url = $this->buildURL(Constants::FARE_URI, $fb->buildParams());
+        $url = $this->buildURL($this->fareURI, $fb->buildParams());
         $response = $this->getClient()
                          ->request('GET', $url);
 
@@ -46,8 +63,8 @@ class NiraGateway
             return $this->getTestingClient();
         }
         return $client = new Client([
-            'base_uri' => Constants::AVAILABILITY_URI,
-            'timeout'  => Constants::GATEWAY_TIMEOUT
+            'base_uri' => $this->availabilityURI,
+            'timeout'  => $this->timeout
         ]);
     }
 
@@ -88,7 +105,7 @@ class NiraGateway
 
     public function buildURL(string $baseURL, array $queryParams): string
     {
-        return Constants::AVAILABILITY_URI . '?' . $this->buildQuery($queryParams);
+        return $this->availabilityURI . '?' . $this->buildQuery($queryParams);
     }
 
     public function buildQuery(array $queryParams): string
