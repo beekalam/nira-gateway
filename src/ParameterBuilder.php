@@ -136,7 +136,8 @@ class ParameterBuilder
             'cbDay1'      => $this->day,
             'cbMonth1'    => $this->month,
             'cbAdultQty'  => $this->adultCount,
-            'cbInfantQty' => $this->infantCount
+            'cbInfantQty' => $this->infantCount,
+            'cbChildQty'  => $this->childCount
         ];
     }
 }
