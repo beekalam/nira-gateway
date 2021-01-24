@@ -40,21 +40,18 @@ class NiraGateway
 
     public function search(ParameterBuilder $searchParamsBuilder): string
     {
-        $url = $this->buildAvailabilityURL($searchParamsBuilder);
-
-        $response = $this->getClient()
-                         ->request('GET', $url);
-
-        return $response->getBody()->getContents();
+        return $this->getClient()
+                    ->request('GET', $this->buildAvailabilityURL($searchParamsBuilder))
+                    ->getBody()
+                    ->getContents();
     }
 
     public function getFlightFare(FareParameterBuilder $fb): string
     {
-        $url = $this->buildFareURL($fb);
-        $response = $this->getClient()
-                         ->request('GET', $url);
-
-        return $response->getBody()->getContents();
+        return $this->getClient()
+                    ->request('GET', $this->buildFareURL($fb))
+                    ->getBody()
+                    ->getContents();
     }
 
     private function getClient(): Client
