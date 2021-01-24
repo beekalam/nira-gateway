@@ -6,7 +6,6 @@ namespace Beekalam\NiraGateway;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use Psr\Http\Message\StreamInterface;
 
 class NiraGateway
 {
@@ -22,21 +21,22 @@ class NiraGateway
         $this->pass = $pass;
     }
 
-    public function search(ParameterBuilder $searchParamsBuilder): StreamInterface
+    public function search(ParameterBuilder $searchParamsBuilder): string
     {
-        $response = $this->getClient()
-                         ->request('GET',
-                             $this->buildURL(Constants::AVAILABILITY_URI, $searchParamsBuilder->buildParams()));
+        $url = $this->buildURL(Constants::AVAILABILITY_URI, $searchParamsBuilder->buildParams());
 
-        return $response->getBody();
+        $response = $this->getClient()
+                         ->request('GET', $url);
+
+        return $response->getBody()->getContents();
     }
 
-    public function getFlightFare(array $options): StreamInterface
+    public function getFlightFare(array $options): string
     {
         $response = $this->getClient()
                          ->request('GET', $this->buildURL(Constants::FARE_URI, $options));
 
-        return $response->getBody();
+        return $response->getBody()->getContents();
     }
 
     private function getClient(): Client
@@ -92,11 +92,11 @@ class NiraGateway
 
     public function buildQuery(array $queryParams): string
     {
-        return http_build_query(
-            array_merge($queryParams, [
-                'officeUser' => $this->user,
-                'officePass' => $this->pass
-            ])
-        );
+        $params = array_merge($queryParams, [
+            'OfficeUser' => $this->user,
+            'OfficePass' => $this->pass
+        ]);
+
+        return http_build_query($params);
     }
 }
