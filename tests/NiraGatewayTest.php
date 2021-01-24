@@ -3,6 +3,7 @@
 namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\ClientBuilder;
+use Beekalam\NiraGateway\FareParameterBuilder;
 use Beekalam\NiraGateway\NiraGateway;
 use Beekalam\NiraGateway\ParameterBuilder;
 use GuzzleHttp\Handler\MockHandler;
@@ -96,16 +97,17 @@ JSON;
         $ng->setTesting(true)
            ->setMock($mock);
 
-        $options = [
-            'Airline'       => 'PA',
-            'Route'         => 'ugt',
-            'RBD'           => 'ttq',
-            'DepartureDate' => '3',
-            'FlightNo'      => '10',
-        ];
 
-        $res = $ng->search($options);
-        $this->assertISJson($res->getContents());
+        $fb = new FareParameterBuilder();
+
+        $fb->setAirline('PA')
+           ->setRoute('ugt-ttq')
+           ->setRbd('Y')
+           ->setFlightNo('10')
+           ->setDepartureDate('2020-10-11');
+
+        $res = $ng->getFlightFare($fb);
+        $this->assertISJson($res);
     }
 
 

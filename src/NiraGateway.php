@@ -31,10 +31,11 @@ class NiraGateway
         return $response->getBody()->getContents();
     }
 
-    public function getFlightFare(array $options): string
+    public function getFlightFare(FareParameterBuilder $fb): string
     {
+        $url = $this->buildURL(Constants::FARE_URI, $fb->buildParams());
         $response = $this->getClient()
-                         ->request('GET', $this->buildURL(Constants::FARE_URI, $options));
+                         ->request('GET', $url);
 
         return $response->getBody()->getContents();
     }
