@@ -115,7 +115,7 @@ class NiraGateway
         return $this->buildURL($this->fareURI, $fb->buildParams());
     }
 
-    public function buildQuery(array $queryParams): string
+    private function buildQuery(array $queryParams): string
     {
         $params = array_merge($queryParams, [
             'OfficeUser' => $this->user,
