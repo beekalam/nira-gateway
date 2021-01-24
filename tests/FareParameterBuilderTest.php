@@ -16,7 +16,7 @@ class FareParameterBuilderTest extends TestCase
 
 
     /** @test */
-    public function searchBuilder_can_generate_acceptable_array_for_fare_query_in_Niragatewayclass()
+    public function it_can_generate_acceptable_array_for_fare_query_in_Niragatewayclass()
     {
         $options = [
             'Airline'       => 'PA',
@@ -52,6 +52,45 @@ class FareParameterBuilderTest extends TestCase
 
         $sb = new FareParameterBuilder();
         $sb->setAirline('PA');
+        $sb->buildParams();
+    }
+
+    /** @test */
+    function it_should_throw_for_empty_rbd()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new FareParameterBuilder();
+        $sb->setAirline('PA')
+           ->setRoute('ugt-ttq');
+
+        $sb->buildParams();
+    }
+
+    /** @test */
+    function it_should_throw_for_empty_flight_no()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new FareParameterBuilder();
+        $sb->setAirline('PA')
+           ->setRoute('ugt-ttq')
+           ->setRbd('Y');
+
+        $sb->buildParams();
+    }
+
+    /** @test */
+    function it_should_throw_for_empty_departure_date()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $sb = new FareParameterBuilder();
+        $sb->setAirline('PA')
+           ->setRoute('ugt-ttq')
+           ->setRbd('Y')
+           ->setFlightNo('123');
+
         $sb->buildParams();
     }
 

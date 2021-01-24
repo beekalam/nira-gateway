@@ -74,6 +74,18 @@ class FareParameterBuilder
             throw new InvalidArgumentException('Route can not be empty');
         }
 
+        if(empty($this->rbd)){
+            throw new InvalidArgumentException("RBD can not be empty");
+        }
+
+        if(empty($this->flightNo)){
+            throw new InvalidArgumentException("FlightNo can not be empty");
+        }
+
+        if(empty($this->departureDate)){
+            throw new InvalidArgumentException("Departure date can not be empty");
+        }
+
         return [
             'Airline'       => $this->airline,
             'Route'         => $this->route,
