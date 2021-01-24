@@ -16,16 +16,17 @@ class ParameterBuilderTest extends TestCase
 
 
     /** @test */
-    public function searchBuilder_can_generate_acceptable_array_for_search_in_Niragatewayclass()
+    public function it_can_generate_acceptable_array_for_search_in_Niragatewayclass()
     {
         $options = [
-            'airline'     => 'PA',
-            'cbSource'    => 'ugt',
-            'cbTarget'    => 'ttq',
-            'cbDay1'      => '3',
-            'cbMonth1'    => '06',
-            'cbAdultQty'  => '1',
-            'cbInfantQty' => '0',
+            'airline'      => 'PA',
+            'cbSource'     => 'ugt',
+            'cbTarget'     => 'ttq',
+            'cbDay1'       => '3',
+            'cbMonth1'     => '06',
+            'cbAdultQty'   => '1',
+            'cbInfantQty'  => '0',
+            'cbChildQty' => '1'
         ];
 
         $sb = new ParameterBuilder();
@@ -35,13 +36,14 @@ class ParameterBuilderTest extends TestCase
            ->setDay('3')
            ->setMonth('06')
            ->setAdultCount('1')
-           ->setInfantCount('0');
+           ->setInfantCount('0')
+           ->setChildCount('1');
 
         $this->assertEquals($options, $sb->buildParams());
     }
 
     /** @test */
-    function searchBuilder_should_throw_for_null_source()
+    function it_should_throw_for_null_source()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -50,7 +52,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function searchBuilder_should_throw_for_null_target()
+    function it_should_throw_for_null_target()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -61,7 +63,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function searchBuilder_should_throw_for_empty_day()
+    function it_should_throw_for_empty_day()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -74,7 +76,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function searchBuilder_should_throw_for_null_month()
+    function it_should_throw_for_null_month()
     {
         $this->expectException(\InvalidArgumentException::class);
 
