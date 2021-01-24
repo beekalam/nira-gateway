@@ -2,7 +2,6 @@
 
 namespace Beekalam\NiraGateway\Tests;
 
-use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\FareParameterBuilder;
 use Beekalam\NiraGateway\NiraGateway;
 use Beekalam\NiraGateway\ParameterBuilder;
@@ -12,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 class NiraGatewayTest extends TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -21,6 +19,7 @@ class NiraGatewayTest extends TestCase
     private function is_json($string)
     {
         json_decode($string);
+
         return (json_last_error() == JSON_ERROR_NONE);
     }
 
@@ -60,7 +59,6 @@ JSON;
     "ChildTotalPrice": "610000"
 }
 JSON;
-
     }
 
     /** @test */
@@ -88,7 +86,7 @@ JSON;
     }
 
     /** @test */
-    function can_get_fare_results()
+    public function can_get_fare_results()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getFareResults()),
@@ -109,6 +107,4 @@ JSON;
         $res = $ng->getFlightFare($fb);
         $this->assertISJson($res);
     }
-
-
 }

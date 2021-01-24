@@ -9,7 +9,6 @@ use GuzzleHttp\HandlerStack;
 
 class NiraGateway
 {
-
     private string $user;
     private string $pass;
     private int $timeout;
@@ -18,11 +17,13 @@ class NiraGateway
     private bool $testing = false;
     private ?MockHandler  $mock = null;
 
-    public function __construct(string $user,
-                                string $pass,
-                                string $availabilityURI = '',
-                                string $fareURI = '',
-                                int $timeout = Constants::GATEWAY_TIMEOUT)
+    public function __construct(
+        string $user,
+        string $pass,
+        string $availabilityURI = '',
+        string $fareURI = '',
+        int $timeout = Constants::GATEWAY_TIMEOUT
+    )
     {
         $this->user = $user;
         $this->pass = $pass;
@@ -59,9 +60,10 @@ class NiraGateway
         if ($this->testing == true) {
             return $this->getTestingClient();
         }
+
         return $client = new Client([
             'base_uri' => $this->availabilityURI,
-            'timeout'  => $this->timeout
+            'timeout' => $this->timeout,
         ]);
     }
 
@@ -69,6 +71,7 @@ class NiraGateway
     {
         $handlerStack = HandlerStack::create($this->mock);
         $client = new Client(['handler' => $handlerStack]);
+
         return $client;
     }
 
@@ -87,6 +90,7 @@ class NiraGateway
     public function setTesting(bool $testing): NiraGateway
     {
         $this->testing = $testing;
+
         return $this;
     }
 
@@ -97,6 +101,7 @@ class NiraGateway
     public function setMock($mock): NiraGateway
     {
         $this->mock = $mock;
+
         return $this;
     }
 
@@ -119,7 +124,7 @@ class NiraGateway
     {
         $params = array_merge($queryParams, [
             'OfficeUser' => $this->user,
-            'OfficePass' => $this->pass
+            'OfficePass' => $this->pass,
         ]);
 
         return http_build_query($params);
