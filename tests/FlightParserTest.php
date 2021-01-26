@@ -45,4 +45,15 @@ class FlightParserTest extends BaseTestCase
         $expected = sprintf("%s ساعت و %s دقیقه", 1, 30);
         $this->assertEquals($expected, $flight->getFlightLengthDesc());
     }
+
+    /** @test */
+    function it_can_return_time_period_description()
+    {
+        $flight = new FlightParser($this->getFirstSearchResult());
+        $flight->setDepartureDateTime("2020-08-01 11:00:00");
+        $flight->setArrivalDateTime("2020-08-01 22:30:00");
+
+        $this->assertEquals("صبح", $flight->getDepartureTimePeriod());
+        $this->assertEquals("بعد الظهر", $flight->getArrivalTimePeriod());
+    }
 }

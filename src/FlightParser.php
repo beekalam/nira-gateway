@@ -53,6 +53,11 @@ class FlightParser
         return explode(' ', $this->getDepartureDateTime());
     }
 
+    public function getDepartureTimePeriod()
+    {
+        return $this->getTimePeriod($this->getDepartureDateTime());
+    }
+
     public function getArrivalDateTime()
     {
         return $this->arrivalDateTime;
@@ -71,6 +76,11 @@ class FlightParser
     public function getArrivalTime()
     {
         return explode(' ', $this->getArrivalDateTime());
+    }
+
+    public function getArrivalTimePeriod()
+    {
+        return $this->getTimePeriod($this->getArrivalDateTime());
     }
 
 
@@ -177,5 +187,10 @@ class FlightParser
             $ans .= sprintf("%s دقیقه", $diff->i);
         }
         return $ans;
+    }
+
+    private function getTimePeriod($dateTime)
+    {
+        return date('A', strtotime($dateTime)) == "AM" ? "صبح":"بعد الظهر";
     }
 }
