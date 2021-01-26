@@ -72,12 +72,12 @@ class FlightParser
 
     public function getArrivalDate()
     {
-        return explode(' ', $this->getArrivalDateTime());
+        return explode(' ', $this->getArrivalDateTime())[0];
     }
 
     public function getArrivalTime()
     {
-        return explode(' ', $this->getArrivalDateTime());
+        return explode(' ', $this->getArrivalDateTime())[1];
     }
 
     public function getArrivalTimePeriod()
