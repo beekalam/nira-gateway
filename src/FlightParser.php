@@ -13,6 +13,7 @@ class FlightParser
     private string $airline;
     private string $origin;
     private string $destination;
+    private string $adultTotalPrices;
     private string $flightNo;
     private string $airCraftTypeName;
     private string $classRefundStatus;
@@ -31,6 +32,7 @@ class FlightParser
         $this->setAirCraftTypeName($this->arr['AircraftTypeName']);
         $this->setClassRefundStatus($this->arr['ClassRefundStatus']);
         $this->setAirCraftTypeCode($this->arr['AircraftTypeCode']);
+        $this->setAdultTotalPrices($this->arr['AdultTotalPrices']);
     }
 
     public function getDepartureDateTime()
@@ -84,6 +86,26 @@ class FlightParser
     }
 
 
+    public function setAdultTotalPrices($adultTotalPrices)
+    {
+        $this->adultTotalPrices = $adultTotalPrices;
+    }
+
+    public function getAdultTotalPrices()
+    {
+        return $this->adultTotalPrices;
+    }
+
+    public function pricesByClass()
+    {
+        $res = [];
+        foreach (explode(' ', $this->getAdultTotalPrices()) as $price) {
+            list($k, $v) = explode(':', $price);
+            $res[$k] = $v;
+        }
+        return $res;
+    }
+
     public function getDateInterval()
     {
         $departure = date_create($this->getDepartureDateTime());
@@ -92,7 +114,6 @@ class FlightParser
         /** @var \DateInterval $diff */
         return $arrival->diff($departure);
     }
-
 
     public function getAirline()
     {
@@ -149,14 +170,10 @@ class FlightParser
         return $this->airCraftTypeCode;
     }
 
+
     public function setAirCraftTypeCode($airCraftTypeCode)
     {
         $this->airCraftTypeCode = $airCraftTypeCode;
-    }
-
-    public function getAdultTotalPrices()
-    {
-        return $this->arr['AdultTotalPrices'];
     }
 
     public function getAirCraftTypeName()
@@ -191,6 +208,6 @@ class FlightParser
 
     private function getTimePeriod($dateTime)
     {
-        return date('A', strtotime($dateTime)) == "AM" ? "صبح":"بعد الظهر";
+        return date('A', strtotime($dateTime)) == "AM" ? "صبح" : "بعد الظهر";
     }
 }

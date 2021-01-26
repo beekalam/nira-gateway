@@ -56,4 +56,19 @@ class FlightParserTest extends BaseTestCase
         $this->assertEquals("صبح", $flight->getDepartureTimePeriod());
         $this->assertEquals("بعد الظهر", $flight->getArrivalTimePeriod());
     }
+
+    /** @test */
+    function it_can_return_adult_prices()
+    {
+        $flight = new FlightParser($this->getFirstSearchResult());
+        $prices_by_class = $flight->pricesByClass();
+
+        $this->assertArrayHasKey('Z', $prices_by_class);
+        $this->assertArrayHasKey('L', $prices_by_class);
+        $this->assertArrayHasKey('G', $prices_by_class);
+
+        $this->assertEquals('1140000', $prices_by_class['Z']);
+        $this->assertEquals('1140000', $prices_by_class['L']);
+        $this->assertEquals('1352000', $prices_by_class['G']);
+    }
 }
