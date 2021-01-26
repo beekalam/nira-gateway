@@ -73,11 +73,16 @@ class FlightParser
         return explode(' ', $this->getArrivalDateTime());
     }
 
-    public function getFlightLength()
+
+    public function getDateInterval()
     {
-        $diff_min = (strtotime($this->getArrivalDateTime()) - strtotime($this->getDepartureDateTime())) / 60 / 60;
-        return $diff_min;
+        $departure = date_create($this->getDepartureDateTime());
+        $arrival = date_create($this->getArrivalDateTime());
+
+        /** @var \DateInterval $diff */
+        return $arrival->diff($departure);
     }
+
 
     public function getAirline()
     {
@@ -157,5 +162,20 @@ class FlightParser
     public function getOriginalResult()
     {
         return $this->arr;
+    }
+
+    public function getFlightLengthDesc()
+    {
+        $diff = $this->getDateInterval();
+        $ans = "";
+        if ($diff->h > 0) {
+            $ans = sprintf("%s ساعت", $diff->h);
+        }
+        if ($diff->i > 0) {
+            if ($diff->h > 0)
+                $ans .= sprintf(" و ");
+            $ans .= sprintf("%s دقیقه", $diff->i);
+        }
+        return $ans;
     }
 }
