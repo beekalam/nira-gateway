@@ -8,40 +8,69 @@ class FlightParser
 {
 
     private array $arr;
+    private string $departureDateTime;
+    private string $arrivalDateTime;
+    private string $airline;
+    private string $origin;
+    private string $destination;
+    private string $flightNo;
+    private string $airCraftTypeName;
+    private string $classRefundStatus;
+    private string $airCraftTypeCode;
+
 
     public function __construct($arr)
     {
         $this->arr = $arr;
+        $this->setDepartureDateTime($this->arr['DepartureDateTime']);
+        $this->setArrivalDateTime($this->arr['ArrivalDateTime']);
+        $this->setAirline($this->arr['Airline']);
+        $this->setOrigin($this->arr['Origin']);
+        $this->setDestination($this->arr['Destination']);
+        $this->setFlightNo($this->arr['FlightNo']);
+        $this->setAirCraftTypeName($this->arr['AircraftTypeName']);
+        $this->setClassRefundStatus($this->arr['ClassRefundStatus']);
+        $this->setAirCraftTypeCode($this->arr['AircraftTypeCode']);
     }
 
     public function getDepartureDateTime()
     {
-        return $this->arr["DepartureDateTime"];
+        return $this->departureDateTime;
+    }
+
+    public function setDepartureDateTime($departureDateTime)
+    {
+        return $this->departureDateTime = $departureDateTime;
     }
 
     public function getDepartureDate()
     {
-        return explode(' ', $this->getDepartureDateTime())[0];
+        return explode(' ', $this->getDepartureDateTime());
     }
 
     public function getDepartureTime()
     {
-        return explode(' ', $this->getDepartureDateTime())[1];
+        return explode(' ', $this->getDepartureDateTime());
     }
 
     public function getArrivalDateTime()
     {
-        return $this->arr["ArrivalDateTime"];
+        return $this->arrivalDateTime;
+    }
+
+    public function setArrivalDateTime($arrivalDateTime)
+    {
+        $this->arrivalDateTime = $arrivalDateTime;
     }
 
     public function getArrivalDate()
     {
-        return explode(' ', $this->getArrivalDateTime())[0];
+        return explode(' ', $this->getArrivalDateTime());
     }
 
     public function getArrivalTime()
     {
-        return explode(' ', $this->getArrivalDateTime())[1];
+        return explode(' ', $this->getArrivalDateTime());
     }
 
     public function getFlightLength()
@@ -52,32 +81,62 @@ class FlightParser
 
     public function getAirline()
     {
-        return $this->arr['Airline'];
+        return $this->airline;
+    }
+
+    public function setAirline($airline)
+    {
+        $this->airline = $airline;
     }
 
     public function getOrigin()
     {
-        return $this->arr['Origin'];
+        return $this->origin;
+    }
+
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
     }
 
     public function getDestination()
     {
-        return $this->arr['Destination'];
+        return $this->destination;
+    }
+
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
     }
 
     public function getFlightNo()
     {
-        return $this->arr['FlightNo'];
+        return $this->flightNo;
+    }
+
+    public function setFlightNo($flightNo)
+    {
+        $this->flightNo = $flightNo;
     }
 
     public function getClassRefundStatus()
     {
-        return $this->arr['ClassRefundStatus'];
+        return $this->classRefundStatus;
+    }
+
+    public function setClassRefundStatus($classesRefundStatus)
+    {
+        $this->classRefundStatus = $classesRefundStatus;
     }
 
     public function getAirCraftTypeCode()
     {
-        return $this->arr['ClassesStatus'];
+        return $this->airCraftTypeCode;
+    }
+
+    public function setAirCraftTypeCode($airCraftTypeCode)
+    {
+        $this->airCraftTypeCode = $airCraftTypeCode;
     }
 
     public function getAdultTotalPrices()
@@ -87,7 +146,12 @@ class FlightParser
 
     public function getAirCraftTypeName()
     {
-        return $this->arr['AircraftTypeName'];
+        return $this->airCraftTypeName;
+    }
+
+    public function setAirCraftTypeName($airCraftTypeName)
+    {
+        $this->airCraftTypeName = $airCraftTypeName;
     }
 
     public function getOriginalResult()
