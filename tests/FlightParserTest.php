@@ -3,21 +3,18 @@
 
 namespace Beekalam\NiraGateway\Tests;
 
-
 use Beekalam\NiraGateway\FlightParser;
 
 class FlightParserTest extends BaseTestCase
 {
-
     private function getFirstSearchResult()
     {
         return json_decode($this->getSearchResults(), true)['AvailableFlights'][0];
     }
 
     /** @test */
-    function it_can_parse_flight_length_correctly()
+    public function it_can_parse_flight_length_correctly()
     {
-
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setDepartureDateTime("2020-08-01 21:00:00");
         $flight->setArrivalDateTime("2020-08-01 22:00:00");
@@ -26,7 +23,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_parse_flight_departure_date()
+    public function it_can_parse_flight_departure_date()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setDepartureDateTime("2020-08-01 21:00:00");
@@ -35,7 +32,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_parse_flight_departure_time()
+    public function it_can_parse_flight_departure_time()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setDepartureDateTime("2020-08-01 21:00:00");
@@ -44,7 +41,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_parse_flight_arrival_date()
+    public function it_can_parse_flight_arrival_date()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setArrivalDateTime("2020-08-01 21:00:00");
@@ -53,7 +50,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_parse_flight_arrival_time()
+    public function it_can_parse_flight_arrival_time()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setArrivalDateTime("2020-08-01 21:00:00");
@@ -62,7 +59,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_parse_flight_length_minutes()
+    public function it_can_parse_flight_length_minutes()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setDepartureDateTime("2020-08-01 21:00:00");
@@ -72,7 +69,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_flight_length_description()
+    public function it_can_return_flight_length_description()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setDepartureDateTime("2020-08-01 21:00:00");
@@ -83,7 +80,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_time_period_description()
+    public function it_can_return_time_period_description()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $flight->setDepartureDateTime("2020-08-01 11:00:00");
@@ -94,7 +91,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_adult_prices()
+    public function it_can_return_adult_prices()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
         $prices_by_class = $flight->pricesByClass();

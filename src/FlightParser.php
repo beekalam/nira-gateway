@@ -3,10 +3,8 @@
 
 namespace Beekalam\NiraGateway;
 
-
 class FlightParser
 {
-
     private array $arr;
     private string $departureDateTime;
     private string $arrivalDateTime;
@@ -18,7 +16,6 @@ class FlightParser
     private string $airCraftTypeName;
     private string $classRefundStatus;
     private string $airCraftTypeCode;
-
 
     public function __construct($arr)
     {
@@ -85,7 +82,6 @@ class FlightParser
         return $this->getTimePeriod($this->getArrivalDateTime());
     }
 
-
     public function setAdultTotalPrices($adultTotalPrices)
     {
         $this->adultTotalPrices = $adultTotalPrices;
@@ -103,6 +99,7 @@ class FlightParser
             list($k, $v) = explode(':', $price);
             $res[$k] = $v;
         }
+
         return $res;
     }
 
@@ -170,7 +167,6 @@ class FlightParser
         return $this->airCraftTypeCode;
     }
 
-
     public function setAirCraftTypeCode($airCraftTypeCode)
     {
         $this->airCraftTypeCode = $airCraftTypeCode;
@@ -199,10 +195,12 @@ class FlightParser
             $ans = sprintf("%s ساعت", $diff->h);
         }
         if ($diff->i > 0) {
-            if ($diff->h > 0)
+            if ($diff->h > 0) {
                 $ans .= sprintf(" و ");
+            }
             $ans .= sprintf("%s دقیقه", $diff->i);
         }
+
         return $ans;
     }
 
