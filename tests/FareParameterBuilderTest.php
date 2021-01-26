@@ -2,28 +2,25 @@
 
 namespace Beekalam\NiraGateway\Tests;
 
-use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\FareParameterBuilder;
 use PHPUnit\Framework\TestCase;
 
 class FareParameterBuilderTest extends TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
     }
 
-
     /** @test */
     public function it_can_generate_acceptable_array_for_fare_query_in_Niragatewayclass()
     {
         $options = [
-            'Airline'       => 'PA',
-            'Route'         => 'ugt-ttq',
-            'RBD'           => 'Y',
+            'Airline' => 'PA',
+            'Route' => 'ugt-ttq',
+            'RBD' => 'Y',
             'DepartureDate' => '2020-10-11',
-            'FlightNo'      => '10',
+            'FlightNo' => '10',
         ];
 
         $fb = new FareParameterBuilder();
@@ -37,7 +34,7 @@ class FareParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_null_airline()
+    public function it_should_throw_for_null_airline()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -46,7 +43,7 @@ class FareParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_route()
+    public function it_should_throw_for_empty_route()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -56,7 +53,7 @@ class FareParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_rbd()
+    public function it_should_throw_for_empty_rbd()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -68,7 +65,7 @@ class FareParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flight_no()
+    public function it_should_throw_for_empty_flight_no()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -81,7 +78,7 @@ class FareParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_departure_date()
+    public function it_should_throw_for_empty_departure_date()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -93,5 +90,4 @@ class FareParameterBuilderTest extends TestCase
 
         $sb->buildParams();
     }
-
 }

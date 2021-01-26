@@ -3,7 +3,6 @@
 
 namespace Beekalam\NiraGateway;
 
-
 class Constants
 {
     public const BASE_URI = 'http://api.parsair.ir/ws1';

@@ -6,7 +6,6 @@ namespace Beekalam\NiraGateway;
 
 use InvalidArgumentException;
 
-
 class ParameterBuilder
 {
     private string $airline;
@@ -34,6 +33,7 @@ class ParameterBuilder
     public function setAirline(string $airline): ParameterBuilder
     {
         $this->airline = $airline;
+
         return $this;
     }
 
@@ -44,6 +44,7 @@ class ParameterBuilder
     public function setSource(string $source): ParameterBuilder
     {
         $this->source = $source;
+
         return $this;
     }
 
@@ -54,6 +55,7 @@ class ParameterBuilder
     public function setTarget(string $target): ParameterBuilder
     {
         $this->target = $target;
+
         return $this;
     }
 
@@ -64,6 +66,7 @@ class ParameterBuilder
     public function setDay(string $day): ParameterBuilder
     {
         $this->day = $day;
+
         return $this;
     }
 
@@ -74,6 +77,7 @@ class ParameterBuilder
     public function setMonth(string $month): ParameterBuilder
     {
         $this->month = $month;
+
         return $this;
     }
 
@@ -84,6 +88,7 @@ class ParameterBuilder
     public function setAdultCount(string $adultCount): ParameterBuilder
     {
         $this->adultCount = $adultCount;
+
         return $this;
     }
 
@@ -94,6 +99,7 @@ class ParameterBuilder
     public function setChildCount(string $childCount): ParameterBuilder
     {
         $this->childCount = $childCount;
+
         return $this;
     }
 
@@ -104,6 +110,7 @@ class ParameterBuilder
     public function setInfantCount(string $infantCount): ParameterBuilder
     {
         $this->infantCount = $infantCount;
+
         return $this;
     }
 
@@ -130,14 +137,14 @@ class ParameterBuilder
         }
 
         return [
-            'airline'     => $this->airline,
-            'cbSource'    => $this->source,
-            'cbTarget'    => $this->target,
-            'cbDay1'      => $this->day,
-            'cbMonth1'    => $this->month,
-            'cbAdultQty'  => $this->adultCount,
+            'airline' => $this->airline,
+            'cbSource' => $this->source,
+            'cbTarget' => $this->target,
+            'cbDay1' => $this->day,
+            'cbMonth1' => $this->month,
+            'cbAdultQty' => $this->adultCount,
             'cbInfantQty' => $this->infantCount,
-            'cbChildQty'  => $this->childCount
+            'cbChildQty' => $this->childCount,
         ];
     }
 }

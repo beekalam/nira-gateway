@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 
 namespace Beekalam\NiraGateway;
-use \InvalidArgumentException;
 
+use \InvalidArgumentException;
 
 class FareParameterBuilder
 {
@@ -21,6 +21,7 @@ class FareParameterBuilder
     public function setAirline(string $airline): FareParameterBuilder
     {
         $this->airline = $airline;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ class FareParameterBuilder
     public function setRoute(string $route): FareParameterBuilder
     {
         $this->route = $route;
+
         return $this;
     }
 
@@ -41,6 +43,7 @@ class FareParameterBuilder
     public function setRbd(string $rbd): FareParameterBuilder
     {
         $this->rbd = $rbd;
+
         return $this;
     }
 
@@ -51,6 +54,7 @@ class FareParameterBuilder
     public function setDepartureDate(string $departureDate): FareParameterBuilder
     {
         $this->departureDate = $departureDate;
+
         return $this;
     }
 
@@ -61,38 +65,38 @@ class FareParameterBuilder
     public function setFlightNo(string $flightNo): FareParameterBuilder
     {
         $this->flightNo = $flightNo;
+
         return $this;
     }
 
     public function buildParams()
     {
-        if(empty($this->airline)){
+        if (empty($this->airline)) {
             throw new InvalidArgumentException('Airline can not be empty');
         }
 
-        if(empty($this->route)){
+        if (empty($this->route)) {
             throw new InvalidArgumentException('Route can not be empty');
         }
 
-        if(empty($this->rbd)){
+        if (empty($this->rbd)) {
             throw new InvalidArgumentException("RBD can not be empty");
         }
 
-        if(empty($this->flightNo)){
+        if (empty($this->flightNo)) {
             throw new InvalidArgumentException("FlightNo can not be empty");
         }
 
-        if(empty($this->departureDate)){
+        if (empty($this->departureDate)) {
             throw new InvalidArgumentException("Departure date can not be empty");
         }
 
         return [
-            'Airline'       => $this->airline,
-            'Route'         => $this->route,
-            'RBD'           => $this->rbd,
+            'Airline' => $this->airline,
+            'Route' => $this->route,
+            'RBD' => $this->rbd,
             'DepartureDate' => $this->departureDate,
-            'FlightNo'      => $this->flightNo
+            'FlightNo' => $this->flightNo,
         ];
     }
-
 }

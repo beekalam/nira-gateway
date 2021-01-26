@@ -2,31 +2,28 @@
 
 namespace Beekalam\NiraGateway\Tests;
 
-use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\ParameterBuilder;
 use PHPUnit\Framework\TestCase;
 
 class ParameterBuilderTest extends TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
     }
 
-
     /** @test */
     public function it_can_generate_acceptable_array_for_search_in_Niragatewayclass()
     {
         $options = [
-            'airline'      => 'PA',
-            'cbSource'     => 'ugt',
-            'cbTarget'     => 'ttq',
-            'cbDay1'       => '3',
-            'cbMonth1'     => '06',
-            'cbAdultQty'   => '1',
-            'cbInfantQty'  => '0',
-            'cbChildQty' => '1'
+            'airline' => 'PA',
+            'cbSource' => 'ugt',
+            'cbTarget' => 'ttq',
+            'cbDay1' => '3',
+            'cbMonth1' => '06',
+            'cbAdultQty' => '1',
+            'cbInfantQty' => '0',
+            'cbChildQty' => '1',
         ];
 
         $sb = new ParameterBuilder();
@@ -43,7 +40,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_null_source()
+    public function it_should_throw_for_null_source()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -52,7 +49,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_null_target()
+    public function it_should_throw_for_null_target()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -63,7 +60,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_day()
+    public function it_should_throw_for_empty_day()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -76,7 +73,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function it_should_throw_for_null_month()
+    public function it_should_throw_for_null_month()
     {
         $this->expectException(\InvalidArgumentException::class);
 
