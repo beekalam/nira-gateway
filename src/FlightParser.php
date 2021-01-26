@@ -52,7 +52,7 @@ class FlightParser
 
     public function getDepartureTime()
     {
-        return explode(' ', $this->getDepartureDateTime());
+        return explode(' ', $this->getDepartureDateTime())[1];
     }
 
     public function getDepartureTimePeriod()

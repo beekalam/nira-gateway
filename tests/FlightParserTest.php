@@ -35,6 +35,15 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
+    function it_can_parse_flight_departure_time()
+    {
+        $flight = new FlightParser($this->getFirstSearchResult());
+        $flight->setDepartureDateTime("2020-08-01 21:00:00");
+
+        $this->assertEquals("21:00:00", $flight->getDepartureTime());
+    }
+
+    /** @test */
     function it_can_parse_flight_arrival_date()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
