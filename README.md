@@ -2,6 +2,11 @@
 
 Helper class to connect to Nira API.
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/beekalam/nira-gateway.svg?style=flat-square)](https://packagist.org/packages/beekalam/nira-gateway)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/beekalam/nira-gateway/run-tests?label=tests)](https://github.com/beekalam/nira-gateway/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/beekalam/nira-gateway.svg?style=flat-square)](https://packagist.org/packages/beekalam/nira-gateway)
+
+
 ## Installation
 
 You can install the package via composer:
