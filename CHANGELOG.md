@@ -2,6 +2,6 @@
 
 All notable changes to `nira-gateway` will be documented in this file.
 
-## 1.0.0 - 202X-XX-XX
+## 0.0.1 - 2021-01-28
 
 - initial release
