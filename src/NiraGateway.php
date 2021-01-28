@@ -23,8 +23,7 @@ class NiraGateway
         string $availabilityURI = '',
         string $fareURI = '',
         int $timeout = Constants::GATEWAY_TIMEOUT
-    )
-    {
+    ) {
         $this->user = $user;
         $this->pass = $pass;
 

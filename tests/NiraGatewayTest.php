@@ -2,7 +2,6 @@
 
 namespace Beekalam\NiraGateway\Tests;
 
-use Beekalam\NiraGateway\ClientBuilder;
 use Beekalam\NiraGateway\FareParameterBuilder;
 use Beekalam\NiraGateway\NiraGateway;
 use Beekalam\NiraGateway\ParameterBuilder;
@@ -11,7 +10,6 @@ use GuzzleHttp\Psr7\Response;
 
 class NiraGatewayTest extends BaseTestCase
 {
-
     /** @test */
     public function can_search_flights()
     {
@@ -37,7 +35,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function can_get_fare_results()
+    public function can_get_fare_results()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getFareResults()),
@@ -58,6 +56,4 @@ class NiraGatewayTest extends BaseTestCase
         $res = $ng->getFlightFare($fb);
         $this->assertISJson($res);
     }
-
-
 }

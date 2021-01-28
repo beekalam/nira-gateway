@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class BaseTestCase extends TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -16,6 +15,7 @@ class BaseTestCase extends TestCase
     private function is_json($string)
     {
         json_decode($string);
+
         return (json_last_error() == JSON_ERROR_NONE);
     }
 
@@ -55,6 +55,5 @@ JSON;
     "ChildTotalPrice": "610000"
 }
 JSON;
-
     }
 }
