@@ -10,11 +10,17 @@ use GuzzleHttp\HandlerStack;
 class NiraGateway
 {
     private string $user;
+
     private string $pass;
+
     private int $timeout;
+
     private string $availabilityURI;
+
     private string $fareURI;
+
     private bool $testing = false;
+
     private ?MockHandler  $mock = null;
 
     public function __construct(
@@ -40,18 +46,12 @@ class NiraGateway
 
     public function search(ParameterBuilder $searchParamsBuilder): string
     {
-        return $this->getClient()
-                    ->request('GET', $this->buildAvailabilityURL($searchParamsBuilder))
-                    ->getBody()
-                    ->getContents();
+        return $this->getClient()->request('GET', $this->buildAvailabilityURL($searchParamsBuilder))->getBody()->getContents();
     }
 
     public function getFlightFare(FareParameterBuilder $fb): string
     {
-        return $this->getClient()
-                    ->request('GET', $this->buildFareURL($fb))
-                    ->getBody()
-                    ->getContents();
+        return $this->getClient()->request('GET', $this->buildFareURL($fb))->getBody()->getContents();
     }
 
     private function getClient(): Client
@@ -106,7 +106,7 @@ class NiraGateway
 
     private function buildURL(string $baseURL, array $queryParams): string
     {
-        return $baseURL . '?' . $this->buildQuery($queryParams);
+        return $baseURL.'?'.$this->buildQuery($queryParams);
     }
 
     private function buildAvailabilityURL(ParameterBuilder $pb): string

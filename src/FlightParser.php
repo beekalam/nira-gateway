@@ -1,20 +1,29 @@
 <?php
 
-
 namespace Beekalam\NiraGateway;
 
 class FlightParser
 {
     private array $arr;
+
     private string $departureDateTime;
+
     private string $arrivalDateTime;
+
     private string $airline;
+
     private string $origin;
+
     private string $destination;
+
     private string $adultTotalPrices;
+
     private string $flightNo;
+
     private string $airCraftTypeName;
+
     private string $classRefundStatus;
+
     private string $airCraftTypeCode;
 
     public function __construct($arr)
@@ -96,7 +105,7 @@ class FlightParser
     {
         $res = [];
         foreach (explode(' ', $this->getAdultTotalPrices()) as $price) {
-            list($k, $v) = explode(':', $price);
+            [$k, $v] = explode(':', $price);
             $res[$k] = $v;
         }
 

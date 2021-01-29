@@ -1,17 +1,20 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Beekalam\NiraGateway;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 class FareParameterBuilder
 {
     private string $airline;
+
     private string $route;
+
     private string $rbd;
+
     private string $departureDate;
+
     private string $flightNo;
 
     /**

@@ -27,14 +27,7 @@ class ParameterBuilderTest extends TestCase
         ];
 
         $sb = new ParameterBuilder();
-        $sb->setAirline('PA')
-           ->setSource('ugt')
-           ->setTarget('ttq')
-           ->setDay('3')
-           ->setMonth('06')
-           ->setAdultCount('1')
-           ->setInfantCount('0')
-           ->setChildCount('1');
+        $sb->setAirline('PA')->setSource('ugt')->setTarget('ttq')->setDay('3')->setMonth('06')->setAdultCount('1')->setInfantCount('0')->setChildCount('1');
 
         $this->assertEquals($options, $sb->buildParams());
     }
@@ -54,8 +47,7 @@ class ParameterBuilderTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         $sb = new ParameterBuilder();
-        $sb->setAirline('PA')
-           ->setSource('ugt');
+        $sb->setAirline('PA')->setSource('ugt');
         $sb->buildParams();
     }
 
@@ -65,9 +57,7 @@ class ParameterBuilderTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         $sb = new ParameterBuilder();
-        $sb->setAirline('PA')
-           ->setSource('ugt')
-           ->setTarget('ttq');
+        $sb->setAirline('PA')->setSource('ugt')->setTarget('ttq');
 
         $sb->buildParams();
     }
@@ -79,10 +69,7 @@ class ParameterBuilderTest extends TestCase
 
         $sb = new ParameterBuilder();
         $sb = new ParameterBuilder();
-        $sb->setAirline('PA')
-           ->setSource('ugt')
-           ->setTarget('ttq')
-           ->setDay('3');
+        $sb->setAirline('PA')->setSource('ugt')->setTarget('ttq')->setDay('3');
 
         $sb->buildParams();
     }

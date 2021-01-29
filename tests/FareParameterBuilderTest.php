@@ -24,11 +24,7 @@ class FareParameterBuilderTest extends TestCase
         ];
 
         $fb = new FareParameterBuilder();
-        $fb->setAirline('PA')
-           ->setRoute('ugt-ttq')
-           ->setRbd('Y')
-           ->setFlightNo('10')
-           ->setDepartureDate('2020-10-11');
+        $fb->setAirline('PA')->setRoute('ugt-ttq')->setRbd('Y')->setFlightNo('10')->setDepartureDate('2020-10-11');
 
         $this->assertEquals($options, $fb->buildParams());
     }
@@ -58,8 +54,7 @@ class FareParameterBuilderTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         $sb = new FareParameterBuilder();
-        $sb->setAirline('PA')
-           ->setRoute('ugt-ttq');
+        $sb->setAirline('PA')->setRoute('ugt-ttq');
 
         $sb->buildParams();
     }
@@ -70,9 +65,7 @@ class FareParameterBuilderTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         $sb = new FareParameterBuilder();
-        $sb->setAirline('PA')
-           ->setRoute('ugt-ttq')
-           ->setRbd('Y');
+        $sb->setAirline('PA')->setRoute('ugt-ttq')->setRbd('Y');
 
         $sb->buildParams();
     }
@@ -83,10 +76,7 @@ class FareParameterBuilderTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         $sb = new FareParameterBuilder();
-        $sb->setAirline('PA')
-           ->setRoute('ugt-ttq')
-           ->setRbd('Y')
-           ->setFlightNo('123');
+        $sb->setAirline('PA')->setRoute('ugt-ttq')->setRbd('Y')->setFlightNo('123');
 
         $sb->buildParams();
     }

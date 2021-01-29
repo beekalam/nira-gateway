@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Beekalam\NiraGateway;
 
 use InvalidArgumentException;
@@ -9,12 +8,19 @@ use InvalidArgumentException;
 class ParameterBuilder
 {
     private string $airline;
+
     private string $source;
+
     private string $target;
+
     private string $day;
+
     private string $month;
+
     private string $adultCount;
+
     private string $childCount;
+
     private string $infantCount;
 
     /**

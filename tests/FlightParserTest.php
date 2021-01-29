@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\FlightParser;
