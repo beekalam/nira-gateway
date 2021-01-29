@@ -199,15 +199,15 @@ class FlightParser
     public function getFlightLengthDesc()
     {
         $diff = $this->getDateInterval();
-        $ans = "";
+        $ans = '';
         if ($diff->h > 0) {
-            $ans = sprintf("%s ساعت", $diff->h);
+            $ans = sprintf('%s ساعت', $diff->h);
         }
         if ($diff->i > 0) {
             if ($diff->h > 0) {
-                $ans .= sprintf(" و ");
+                $ans .= sprintf(' و ');
             }
-            $ans .= sprintf("%s دقیقه", $diff->i);
+            $ans .= sprintf('%s دقیقه', $diff->i);
         }
 
         return $ans;
@@ -215,6 +215,6 @@ class FlightParser
 
     private function getTimePeriod($dateTime)
     {
-        return date('A', strtotime($dateTime)) == "AM" ? "صبح" : "بعد الظهر";
+        return date('A', strtotime($dateTime)) == 'AM' ? 'صبح' : 'بعد الظهر';
     }
 }

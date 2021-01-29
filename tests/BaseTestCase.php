@@ -15,7 +15,7 @@ class BaseTestCase extends TestCase
     {
         json_decode($string);
 
-        return (json_last_error() == JSON_ERROR_NONE);
+        return json_last_error() == JSON_ERROR_NONE;
     }
 
     protected function assertISJson($string)
@@ -25,7 +25,7 @@ class BaseTestCase extends TestCase
 
     protected function getSearchResults()
     {
-        return <<<JSON
+        return <<<'JSON'
 {"AvailableFlights":
             [{"DepartureDateTime":"2020-08-01 21:00:00",
             "OperatingFlightNo":"1000","Airline":"PA","ArrivalDateTime":"2020-08-01 22:00:00",
