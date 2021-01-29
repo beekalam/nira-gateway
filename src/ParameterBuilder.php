@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Beekalam\NiraGateway;
@@ -123,23 +124,23 @@ class ParameterBuilder
     public function buildParams(): array
     {
         if (empty($this->source)) {
-            throw new InvalidArgumentException("Source can not be empty");
+            throw new InvalidArgumentException('Source can not be empty');
         }
 
         if (empty($this->target)) {
-            throw new InvalidArgumentException("Target can not be empty");
+            throw new InvalidArgumentException('Target can not be empty');
         }
 
         if (empty($this->target)) {
-            throw new InvalidArgumentException("Day can not be empty");
+            throw new InvalidArgumentException('Day can not be empty');
         }
 
         if (empty($this->day)) {
-            throw new InvalidArgumentException("Day can not be empty");
+            throw new InvalidArgumentException('Day can not be empty');
         }
 
         if (empty($this->month)) {
-            throw new InvalidArgumentException("Month can not be empty");
+            throw new InvalidArgumentException('Month can not be empty');
         }
 
         return [

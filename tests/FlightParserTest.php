@@ -15,8 +15,8 @@ class FlightParserTest extends BaseTestCase
     public function it_can_parse_flight_length_correctly()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setDepartureDateTime("2020-08-01 21:00:00");
-        $flight->setArrivalDateTime("2020-08-01 22:00:00");
+        $flight->setDepartureDateTime('2020-08-01 21:00:00');
+        $flight->setArrivalDateTime('2020-08-01 22:00:00');
 
         $this->assertEquals(1, $flight->getDateInterval()->h);
     }
@@ -25,44 +25,44 @@ class FlightParserTest extends BaseTestCase
     public function it_can_parse_flight_departure_date()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setDepartureDateTime("2020-08-01 21:00:00");
+        $flight->setDepartureDateTime('2020-08-01 21:00:00');
 
-        $this->assertEquals("2020-08-01", $flight->getDepartureDate());
+        $this->assertEquals('2020-08-01', $flight->getDepartureDate());
     }
 
     /** @test */
     public function it_can_parse_flight_departure_time()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setDepartureDateTime("2020-08-01 21:00:00");
+        $flight->setDepartureDateTime('2020-08-01 21:00:00');
 
-        $this->assertEquals("21:00:00", $flight->getDepartureTime());
+        $this->assertEquals('21:00:00', $flight->getDepartureTime());
     }
 
     /** @test */
     public function it_can_parse_flight_arrival_date()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setArrivalDateTime("2020-08-01 21:00:00");
+        $flight->setArrivalDateTime('2020-08-01 21:00:00');
 
-        $this->assertEquals("2020-08-01", $flight->getArrivalDate());
+        $this->assertEquals('2020-08-01', $flight->getArrivalDate());
     }
 
     /** @test */
     public function it_can_parse_flight_arrival_time()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setArrivalDateTime("2020-08-01 21:00:00");
+        $flight->setArrivalDateTime('2020-08-01 21:00:00');
 
-        $this->assertEquals("21:00:00", $flight->getArrivalTime());
+        $this->assertEquals('21:00:00', $flight->getArrivalTime());
     }
 
     /** @test */
     public function it_can_parse_flight_length_minutes()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setDepartureDateTime("2020-08-01 21:00:00");
-        $flight->setArrivalDateTime("2020-08-01 22:30:00");
+        $flight->setDepartureDateTime('2020-08-01 21:00:00');
+        $flight->setArrivalDateTime('2020-08-01 22:30:00');
 
         $this->assertEquals(30, $flight->getDateInterval()->i);
     }
@@ -71,10 +71,10 @@ class FlightParserTest extends BaseTestCase
     public function it_can_return_flight_length_description()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setDepartureDateTime("2020-08-01 21:00:00");
-        $flight->setArrivalDateTime("2020-08-01 22:30:00");
+        $flight->setDepartureDateTime('2020-08-01 21:00:00');
+        $flight->setArrivalDateTime('2020-08-01 22:30:00');
 
-        $expected = sprintf("%s ساعت و %s دقیقه", 1, 30);
+        $expected = sprintf('%s ساعت و %s دقیقه', 1, 30);
         $this->assertEquals($expected, $flight->getFlightLengthDesc());
     }
 
@@ -82,11 +82,11 @@ class FlightParserTest extends BaseTestCase
     public function it_can_return_time_period_description()
     {
         $flight = new FlightParser($this->getFirstSearchResult());
-        $flight->setDepartureDateTime("2020-08-01 11:00:00");
-        $flight->setArrivalDateTime("2020-08-01 22:30:00");
+        $flight->setDepartureDateTime('2020-08-01 11:00:00');
+        $flight->setArrivalDateTime('2020-08-01 22:30:00');
 
-        $this->assertEquals("صبح", $flight->getDepartureTimePeriod());
-        $this->assertEquals("بعد الظهر", $flight->getArrivalTimePeriod());
+        $this->assertEquals('صبح', $flight->getDepartureTimePeriod());
+        $this->assertEquals('بعد الظهر', $flight->getArrivalTimePeriod());
     }
 
     /** @test */
