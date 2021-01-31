@@ -8,21 +8,36 @@ use InvalidArgumentException;
 
 class FareParameterBuilder
 {
-    private string $airline;
+    /**
+     * @var string
+     */
+    private $airline;
 
-    private string $route;
+    /**
+     * @var string
+     */
+    private $route;
 
-    private string $rbd;
+    /**
+     * @var string
+     */
+    private $rbd;
 
-    private string $departureDate;
+    /**
+     * @var string
+     */
+    private $departureDate;
 
-    private string $flightNo;
+    /**
+     * @var string
+     */
+    private $flightNo;
 
     /**
      * @param string $airline
      * @return FareParameterBuilder
      */
-    public function setAirline(string $airline): FareParameterBuilder
+    public function setAirline($airline)
     {
         $this->airline = $airline;
 
@@ -33,7 +48,7 @@ class FareParameterBuilder
      * @param string $route
      * @return FareParameterBuilder
      */
-    public function setRoute(string $route): FareParameterBuilder
+    public function setRoute($route)
     {
         $this->route = $route;
 
@@ -44,7 +59,7 @@ class FareParameterBuilder
      * @param string $rbd
      * @return FareParameterBuilder
      */
-    public function setRbd(string $rbd): FareParameterBuilder
+    public function setRbd($rbd)
     {
         $this->rbd = $rbd;
 
@@ -55,7 +70,7 @@ class FareParameterBuilder
      * @param string $departureDate
      * @return FareParameterBuilder
      */
-    public function setDepartureDate(string $departureDate): FareParameterBuilder
+    public function setDepartureDate($departureDate)
     {
         $this->departureDate = $departureDate;
 
@@ -66,7 +81,7 @@ class FareParameterBuilder
      * @param string $flightNo
      * @return FareParameterBuilder
      */
-    public function setFlightNo(string $flightNo): FareParameterBuilder
+    public function setFlightNo($flightNo)
     {
         $this->flightNo = $flightNo;
 

@@ -8,21 +8,45 @@ use InvalidArgumentException;
 
 class ParameterBuilder
 {
-    private string $airline;
+    /**
+     * @var string
+     */
+    private $airline;
 
-    private string $source;
+    /**
+     * @var string
+     */
+    private $source;
 
-    private string $target;
+    /**
+     * @var string
+     */
+    private $target;
 
-    private string $day;
+    /**
+     * @var string
+     */
+    private $day;
 
-    private string $month;
+    /**
+     * @var string
+     */
+    private $month;
 
-    private string $adultCount;
+    /**
+     * @var string
+     */
+    private $adultCount;
 
-    private string $childCount;
+    /**
+     * @var string
+     */
+    private $childCount;
 
-    private string $infantCount;
+    /**
+     * @var string
+     */
+    private $infantCount;
 
     /**
      * SearchParamsBuilder constructor.
@@ -37,7 +61,7 @@ class ParameterBuilder
      * @param string $airline
      * @return ParameterBuilder
      */
-    public function setAirline(string $airline): ParameterBuilder
+    public function setAirline(string $airline)
     {
         $this->airline = $airline;
 
@@ -48,7 +72,7 @@ class ParameterBuilder
      * @param string $source
      * @return ParameterBuilder
      */
-    public function setSource(string $source): ParameterBuilder
+    public function setSource(string $source)
     {
         $this->source = $source;
 
@@ -59,7 +83,7 @@ class ParameterBuilder
      * @param string $target
      * @return ParameterBuilder
      */
-    public function setTarget(string $target): ParameterBuilder
+    public function setTarget(string $target)
     {
         $this->target = $target;
 
@@ -70,7 +94,7 @@ class ParameterBuilder
      * @param string $day
      * @return ParameterBuilder
      */
-    public function setDay(string $day): ParameterBuilder
+    public function setDay(string $day)
     {
         $this->day = $day;
 
@@ -81,7 +105,7 @@ class ParameterBuilder
      * @param string $month
      * @return ParameterBuilder
      */
-    public function setMonth(string $month): ParameterBuilder
+    public function setMonth(string $month)
     {
         $this->month = $month;
 
@@ -92,7 +116,7 @@ class ParameterBuilder
      * @param string $adultCount
      * @return ParameterBuilder
      */
-    public function setAdultCount(string $adultCount): ParameterBuilder
+    public function setAdultCount(string $adultCount)
     {
         $this->adultCount = $adultCount;
 
@@ -103,7 +127,7 @@ class ParameterBuilder
      * @param string $childCount
      * @return ParameterBuilder
      */
-    public function setChildCount(string $childCount): ParameterBuilder
+    public function setChildCount(string $childCount)
     {
         $this->childCount = $childCount;
 
@@ -114,7 +138,7 @@ class ParameterBuilder
      * @param string $infantCount
      * @return ParameterBuilder
      */
-    public function setInfantCount(string $infantCount): ParameterBuilder
+    public function setInfantCount(string $infantCount)
     {
         $this->infantCount = $infantCount;
 

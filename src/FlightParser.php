@@ -4,27 +4,60 @@ namespace Beekalam\NiraGateway;
 
 class FlightParser
 {
-    private array $arr;
+    /**
+     * @var array
+     */
+    private $arr;
 
-    private string $departureDateTime;
+    /**
+     * @var string
+     */
+    private $departureDateTime;
 
-    private string $arrivalDateTime;
+    /**
+     * @var string
+     */
+    private $arrivalDateTime;
 
-    private string $airline;
+    /**
+     * @var string
+     */
+    private $airline;
 
-    private string $origin;
+    /**
+     * @var string
+     */
+    private $origin;
 
-    private string $destination;
+    /**
+     * @var string
+     */
+    private $destination;
 
-    private string $adultTotalPrices;
+    /**
+     * @var
+     */
+    private $adultTotalPrices;
 
-    private string $flightNo;
+    /**
+     * @var  string
+     */
+    private $flightNo;
 
-    private string $airCraftTypeName;
+    /**
+     * @var string
+     */
+    private $airCraftTypeName;
 
-    private string $classRefundStatus;
+    /**
+     * @var string
+     */
+    private $classRefundStatus;
 
-    private string $airCraftTypeCode;
+    /**
+     * @var string
+     */
+    private $airCraftTypeCode;
 
     public function __construct($arr)
     {

@@ -5,31 +5,60 @@ declare(strict_types=1);
 namespace Beekalam\NiraGateway;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 
 class NiraGateway
 {
-    private string $user;
+    /**
+     * @var string
+     */
+    private $user;
 
-    private string $pass;
+    /**
+     * @var string
+     */
+    private $pass;
 
-    private int $timeout;
+    /**
+     * @var float|int
+     */
+    private $timeout;
 
-    private string $availabilityURI;
+    /**
+     * @var string
+     */
+    private $availabilityURI;
 
-    private string $fareURI;
+    /**
+     * @var string
+     */
+    private $fareURI;
 
-    private bool $testing = false;
+    /**
+     * @var bool
+     */
+    private $testing = false;
 
-    private ?MockHandler  $mock = null;
+    /**
+     * @var \GuzzleHttp\Handler\MockHandler|null
+     */
+    private $mock = null;
 
+    /**
+     * NiraGateway constructor.
+     *
+     * @param string $user
+     * @param string $pass
+     * @param string $availabilityURI
+     * @param string $fareURI
+     * @param float|int $timeout
+     */
     public function __construct(
-        string $user,
-        string $pass,
-        string $availabilityURI = '',
-        string $fareURI = '',
-        int $timeout = Constants::GATEWAY_TIMEOUT
+        $user,
+        $pass,
+        $availabilityURI = '',
+        $fareURI = '',
+        $timeout = Constants::GATEWAY_TIMEOUT
     ) {
         $this->user = $user;
         $this->pass = $pass;
@@ -45,17 +74,30 @@ class NiraGateway
         $this->timeout = $timeout;
     }
 
-    public function search(ParameterBuilder $searchParamsBuilder): string
+    /**
+     * @param \Beekalam\NiraGateway\ParameterBuilder $searchParamsBuilder
+     * @return string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function search($searchParamsBuilder)
     {
         return $this->getClient()->request('GET', $this->buildAvailabilityURL($searchParamsBuilder))->getBody()->getContents();
     }
 
-    public function getFlightFare(FareParameterBuilder $fb): string
+    /**
+     * @param \Beekalam\NiraGateway\FareParameterBuilder $fb
+     * @return string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getFlightFare($fb)
     {
         return $this->getClient()->request('GET', $this->buildFareURL($fb))->getBody()->getContents();
     }
 
-    private function getClient(): Client
+    /**
+     * @return \GuzzleHttp\Client
+     */
+    private function getClient()
     {
         if ($this->testing == true) {
             return $this->getTestingClient();
@@ -67,7 +109,10 @@ class NiraGateway
         ]);
     }
 
-    private function getTestingClient(): Client
+    /**
+     * @return \GuzzleHttp\Client
+     */
+    private function getTestingClient()
     {
         $handlerStack = HandlerStack::create($this->mock);
         $client = new Client(['handler' => $handlerStack]);
@@ -78,7 +123,7 @@ class NiraGateway
     /**
      * @return mixed
      */
-    public function getTesting(): bool
+    protected function getTesting()
     {
         return $this->testing;
     }
@@ -87,7 +132,7 @@ class NiraGateway
      * @param bool $testing
      * @return NiraGateway
      */
-    public function setTesting(bool $testing): NiraGateway
+    public function setTesting(bool $testing)
     {
         $this->testing = $testing;
 
@@ -98,29 +143,46 @@ class NiraGateway
      * @param null $mock
      * @return NiraGateway
      */
-    public function setMock($mock): NiraGateway
+    public function setMock($mock)
     {
         $this->mock = $mock;
 
         return $this;
     }
 
-    private function buildURL(string $baseURL, array $queryParams): string
+    /**
+     * @param string $baseURL
+     * @param array $queryParams
+     * @return string
+     */
+    private function buildURL($baseURL, $queryParams)
     {
         return $baseURL.'?'.$this->buildQuery($queryParams);
     }
 
-    private function buildAvailabilityURL(ParameterBuilder $pb): string
+    /**
+     * @param \Beekalam\NiraGateway\ParameterBuilder $pb
+     * @return string
+     */
+    private function buildAvailabilityURL($pb)
     {
         return $this->buildURL($this->availabilityURI, $pb->buildParams());
     }
 
-    private function buildFareURL(FareParameterBuilder $fb): string
+    /**
+     * @param \Beekalam\NiraGateway\FareParameterBuilder $fb
+     * @return string
+     */
+    private function buildFareURL($fb)
     {
         return $this->buildURL($this->fareURI, $fb->buildParams());
     }
 
-    private function buildQuery(array $queryParams): string
+    /**
+     * @param array $queryParams
+     * @return string
+     */
+    private function buildQuery($queryParams)
     {
         $params = array_merge($queryParams, [
             'OfficeUser' => $this->user,
