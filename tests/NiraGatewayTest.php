@@ -68,7 +68,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function can_get_fare_results()
+    public function can_get_fare_results()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getFareResults()),
