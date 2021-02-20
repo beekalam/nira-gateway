@@ -30,7 +30,7 @@ class NiraGatewayTest extends BaseTestCase
     public function can_get_fare_results()
     {
         $mock = new MockHandler([
-            new Response(200, [], $this->getFareResults()),
+            new Response(200, [], $this->getAvailabilityFareResults()),
         ]);
         $ng = new NiraGateway('user', 'pass');
         $ng->setTesting(true)->setMock($mock);

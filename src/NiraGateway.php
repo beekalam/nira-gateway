@@ -68,7 +68,7 @@ class NiraGateway
         }
 
         if (empty($fareURI)) {
-            $this->fareURI = Constants::FARE_URI;
+            $this->fareURI = Constants::AVAILABILITY_FARE_URI;
         }
 
         $this->timeout = $timeout;

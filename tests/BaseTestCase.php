@@ -36,7 +36,7 @@ class BaseTestCase extends TestCase
 JSON;
     }
 
-    protected function getFareResults()
+    protected function getAvailabilityFareResults()
     {
         return <<<'JSON'
 {
