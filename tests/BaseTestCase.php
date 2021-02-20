@@ -55,4 +55,22 @@ JSON;
 }
 JSON;
     }
+
+    protected function getFareResults()
+    {
+        return <<<'JSON'
+{
+    "InfantTotalPrice": "186000",
+    "InfantFare": "100000",
+    "ChildFare": "500000",
+    "AdultComission": "0",
+    "AdultFare": "1000000",
+    "ChildTaxes": "I6:10000.0,EN_Desc:PASSENGER SAFETY OVERSIGHT SERVICE,FA_Desc:PASSENGER SAFETY OVERSIGHT SERVICE$KU:25000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداری$HL:5000.0,EN_Desc:HELAL AHMAR TAX,FA_Desc:  احمر$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهی$","ChildTotalPrice":"610000","AdultTaxes":"I6:10000.0,EN_Desc:PASS ENGER SAFETY OVERSIGHT SERVICE,FA_Desc:PASSENGER SAFETY OVERSIGHT SERVICE$KU:50000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداری$HL:10000.0,EN_Desc:HELAL AHMAR TAX,FA_Desc: هالل عوارض احمر$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهی$",
+    "EligibilityText": "",
+    "AdultTotalPrice": "1140000",
+    "InfantTaxes": "I6:10 000.0,EN_Desc:PASSENGER SAFETY OVERSIGHT SERVICE,FA_Desc:PASSENGER SAFETY OVERSIGHT SERVICE$KU:5000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداری$HL:1000.0,EN_Desc:HELAL AHMAR TAX,FA_Desc: هالل عوارض احمر$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهی$",
+    "CRCNRules": " 12 تا صدور لحظه از 30,پرواز به مانده روز یک ظهر,P/50,بعد به و پرواز به مانده روز یک ظ12از,P/"
+}
+JSON;
+    }
 }
