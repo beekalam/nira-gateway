@@ -233,5 +233,3 @@ class NiraGateway
         return http_build_query($params);
     }
 }
-
-
