@@ -104,6 +104,13 @@ class NiraGateway
         return $this->getClient()->request('GET', $this->buildFareURL($fb))->getBody()->getContents();
     }
 
+    public function getFare(FareParameterBuilder $fb)
+    {
+        $fareURL = $this->buildURL($this->fareURI, $fb->buildParams());
+
+        return $this->getClient()->request('GET', $fareURL)->getBody()->getContents();
+    }
+
     /**
      * @return \GuzzleHttp\Client
      */

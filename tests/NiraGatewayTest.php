@@ -66,4 +66,22 @@ class NiraGatewayTest extends BaseTestCase
         $res = $ng->getAvailabilityFare($fb);
         $this->assertISJson($res);
     }
+
+    /** @test */
+    function can_get_fare_results()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], $this->getFareResults()),
+        ]);
+
+        $ng = new NiraGateway('user', 'pass');
+        $ng->setTesting(true)->setMock($mock);
+
+        $fb = new FareParameterBuilder();
+
+        $fb->setAirline('PA')->setRoute('ugt-ttq')->setRbd('Y')->setFlightNo('10')->setDepartureDate('2020-10-11');
+
+        $res = $ng->getFare($fb);
+        $this->assertISJson($res);
+    }
 }
