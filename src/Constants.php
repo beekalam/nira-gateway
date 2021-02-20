@@ -8,7 +8,9 @@ class Constants
 
     public const AVAILABILITY_URI = self::BASE_URI.'/AvailabilityJS.jsp';
 
-    public const AVAILABILITY_FARE_URI = self::BASE_URI.'/FareJS.jsp';
+    public const AVAILABILITY_FARE_URI = self::BASE_URI.'/AvailabilityFareJS.jsp';
+
+    public const FARE_URI = self::BASE_URI.'/FareJS.jsp';
 
     public const GATEWAY_TIMEOUT = 5.0;
 }

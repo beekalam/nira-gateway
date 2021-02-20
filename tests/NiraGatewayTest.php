@@ -13,12 +13,25 @@ class NiraGatewayTest extends BaseTestCase
     /** @test */
     function when_no_availability_uri_is_give_a_default_value_is_used()
     {
-        $mock = new MockHandler([
-            new Response(200, [], $this->getSearchResults()),
-        ]);
         $ng = new NiraGateway('user', 'pass');
 
         $this->assertNotEmpty($ng->getAvailabilityURI());
+    }
+
+    /** @test */
+    function when_no_availability_fare_uri_is_given_a_default_value_is_used()
+    {
+        $ng = new NiraGateway('user', 'pass');
+
+        $this->assertNotEmpty($ng->getAvailabilityFareURI());
+    }
+
+    /** @test */
+    function when_no_fare_uri_is_given_a_default_value_is_used()
+    {
+        $ng = new NiraGateway('user', 'pass');
+
+        $this->assertNotEmpty($ng->getFareURI());
     }
 
     /** @test */
