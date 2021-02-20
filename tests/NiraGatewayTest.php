@@ -11,7 +11,7 @@ use GuzzleHttp\Psr7\Response;
 class NiraGatewayTest extends BaseTestCase
 {
     /** @test */
-    function when_no_availability_uri_is_give_a_default_value_is_used()
+    public function when_no_availability_uri_is_give_a_default_value_is_used()
     {
         $ng = new NiraGateway('user', 'pass');
 
@@ -19,7 +19,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function when_no_availability_fare_uri_is_given_a_default_value_is_used()
+    public function when_no_availability_fare_uri_is_given_a_default_value_is_used()
     {
         $ng = new NiraGateway('user', 'pass');
 
@@ -27,7 +27,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function when_no_fare_uri_is_given_a_default_value_is_used()
+    public function when_no_fare_uri_is_given_a_default_value_is_used()
     {
         $ng = new NiraGateway('user', 'pass');
 
