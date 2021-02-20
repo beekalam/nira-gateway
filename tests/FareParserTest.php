@@ -24,26 +24,25 @@ class FareParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_infantTotalPrice()
+    public function it_can_return_infantTotalPrice()
     {
-
         $this->assertEquals($this->fareParser->getInfantTotalPrice(), $this->fareResults['InfantTotalPrice']);
     }
 
     /** @test */
-    function it_can_return_infantFare()
+    public function it_can_return_infantFare()
     {
         $this->assertEquals($this->fareParser->getInfantFare(), $this->fareResults['InfantFare']);
     }
 
     /** @test */
-    function it_can_return_childFare()
+    public function it_can_return_childFare()
     {
         $this->assertEquals($this->fareParser->getChildFare(), $this->fareResults['ChildFare']);
     }
 
     /** @test */
-    function it_can_return_AdultCommission()
+    public function it_can_return_AdultCommission()
     {
         $this->assertEquals($this->fareParser->getAdultCommission(), $this->fareResults['AdultComission']);
     }
