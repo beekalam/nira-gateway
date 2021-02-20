@@ -48,37 +48,37 @@ class FareParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_AdultFare()
+    public function it_can_return_AdultFare()
     {
         $this->assertEquals($this->fareParser->getAdultFare(), $this->fareResults['AdultFare']);
     }
 
     /** @test */
-    function it_can_return_child_taxes()
+    public function it_can_return_child_taxes()
     {
         $this->assertEquals($this->fareParser->getChildTaxes(), $this->fareResults['ChildTaxes']);
     }
 
     /** @test */
-    function it_can_return_eligibilityText()
+    public function it_can_return_eligibilityText()
     {
         $this->assertEquals($this->fareParser->getEligibilityText(), $this->fareResults['EligibilityText']);
     }
 
     /** @test */
-    function it_can_return_AdultTotalPrice()
+    public function it_can_return_AdultTotalPrice()
     {
         $this->assertEquals($this->fareParser->getAdultTotalPrice(), $this->fareResults['AdultTotalPrice']);
     }
 
     /** @test */
-    function it_can_return_InfantTaxes()
+    public function it_can_return_InfantTaxes()
     {
         $this->assertEquals($this->fareParser->getInfantTaxes(), $this->fareResults['InfantTaxes']);
     }
 
     /** @test */
-    function it_can_return_CRCNRules()
+    public function it_can_return_CRCNRules()
     {
         $this->assertEquals($this->fareParser->getCRCNRules(), $this->fareResults['CRCNRules']);
     }
