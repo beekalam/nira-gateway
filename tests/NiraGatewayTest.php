@@ -11,6 +11,17 @@ use GuzzleHttp\Psr7\Response;
 class NiraGatewayTest extends BaseTestCase
 {
     /** @test */
+    function when_no_availability_uri_is_give_a_default_value_is_used()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], $this->getSearchResults()),
+        ]);
+        $ng = new NiraGateway('user', 'pass');
+
+        $this->assertNotEmpty($ng->getAvailabilityURI());
+    }
+
+    /** @test */
     public function can_search_flights()
     {
         $mock = new MockHandler([
@@ -27,7 +38,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    public function can_get_fare_results()
+    public function can_get_availability_fare_results()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getAvailabilityFareResults()),
@@ -39,7 +50,7 @@ class NiraGatewayTest extends BaseTestCase
 
         $fb->setAirline('PA')->setRoute('ugt-ttq')->setRbd('Y')->setFlightNo('10')->setDepartureDate('2020-10-11');
 
-        $res = $ng->getFlightFare($fb);
+        $res = $ng->getAvailabilityFare($fb);
         $this->assertISJson($res);
     }
 }

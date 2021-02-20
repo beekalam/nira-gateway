@@ -32,6 +32,11 @@ class NiraGateway
     /**
      * @var string
      */
+    private $availabilityFareURI;
+
+    /**
+     * @var string
+     */
     private $fareURI;
 
     /**
@@ -50,13 +55,14 @@ class NiraGateway
      * @param string $user
      * @param string $pass
      * @param string $availabilityURI
-     * @param string $fareURI
+     * @param string $availabilityFareURI
      * @param float|int $timeout
      */
     public function __construct(
         $user,
         $pass,
         $availabilityURI = '',
+        $availabilityFareURI = '',
         $fareURI = '',
         $timeout = Constants::GATEWAY_TIMEOUT
     ) {
@@ -64,11 +70,11 @@ class NiraGateway
         $this->pass = $pass;
 
         if (empty($availabilityURI)) {
-            $this->availabilityURI = Constants::AVAILABILITY_URI;
+            $this->availabilityURI = Constants::AVAILABILITY_FARE_URI;
         }
 
-        if (empty($fareURI)) {
-            $this->fareURI = Constants::AVAILABILITY_FARE_URI;
+        if (empty($availabilityFareURI)) {
+            $this->availabilityFareURI = Constants::AVAILABILITY_FARE_URI;
         }
 
         $this->timeout = $timeout;
@@ -89,9 +95,9 @@ class NiraGateway
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getFlightFare($fb)
+    public function getAvailabilityFare($fb)
     {
-        return $this->getClient()->request('GET', $this->buildFareURL($fb))->getBody()->getContents();
+        return $this->getClient()->request('GET', $this->buildAvailabilityFareURL($fb))->getBody()->getContents();
     }
 
     /**
@@ -104,7 +110,7 @@ class NiraGateway
         }
 
         return $client = new Client([
-            'base_uri' => $this->availabilityURI,
+            'base_uri' => $this->availabilityFareURI,
             'timeout' => $this->timeout,
         ]);
     }
@@ -118,6 +124,14 @@ class NiraGateway
         $client = new Client(['handler' => $handlerStack]);
 
         return $client;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvailabilityURI(): string
+    {
+        return $this->availabilityURI;
     }
 
     /**
@@ -166,14 +180,14 @@ class NiraGateway
      */
     private function buildAvailabilityURL($pb)
     {
-        return $this->buildURL($this->availabilityURI, $pb->buildParams());
+        return $this->buildURL($this->availabilityFareURI, $pb->buildParams());
     }
 
     /**
      * @param \Beekalam\NiraGateway\FareParameterBuilder $fb
      * @return string
      */
-    private function buildFareURL($fb)
+    private function buildAvailabilityFareURL($fb)
     {
         return $this->buildURL($this->fareURI, $fb->buildParams());
     }
