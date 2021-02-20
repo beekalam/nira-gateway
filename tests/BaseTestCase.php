@@ -73,4 +73,11 @@ JSON;
 }
 JSON;
     }
+
+    protected function getReserveResults()
+    {
+        return <<<'JSON'
+{"AirReserve":[{"Error":"No Err","PNR":"P3RZ7"}]}
+JSON;
+    }
 }
