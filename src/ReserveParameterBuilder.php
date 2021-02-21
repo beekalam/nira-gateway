@@ -64,7 +64,7 @@ class ReserveParameterBuilder
     private $edtContact;
 
     /**
-     * number of passengers
+     * number of passengers.
      *
      * @var string
      */
@@ -72,7 +72,6 @@ class ReserveParameterBuilder
 
     public function __construct()
     {
-
     }
 
     /**

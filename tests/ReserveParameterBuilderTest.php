@@ -7,7 +7,7 @@ use Beekalam\NiraGateway\ReserveParameterBuilder;
 class ReserveParameterBuilderTest extends BaseTestCase
 {
     /** @test */
-    function it_should_throw_for_empty_airline()
+    public function it_should_throw_for_empty_airline()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -16,7 +16,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_source()
+    public function it_should_throw_for_empty_source()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -27,7 +27,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_target()
+    public function it_should_throw_for_empty_target()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -39,7 +39,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flightClass()
+    public function it_should_throw_for_empty_flightClass()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -52,7 +52,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_FlightNo()
+    public function it_should_throw_for_empty_FlightNo()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -66,7 +66,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_FlightDay()
+    public function it_should_throw_for_empty_FlightDay()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -81,7 +81,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flight_month()
+    public function it_should_throw_for_empty_flight_month()
     {
         $this->expectException(\InvalidArgumentException::class);
 
