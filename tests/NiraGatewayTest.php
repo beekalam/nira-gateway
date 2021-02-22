@@ -5,6 +5,7 @@ namespace Beekalam\NiraGateway\Tests;
 use Beekalam\NiraGateway\FareParameterBuilder;
 use Beekalam\NiraGateway\NiraGateway;
 use Beekalam\NiraGateway\ParameterBuilder;
+use Beekalam\NiraGateway\ReserveParameterBuilder;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 
@@ -82,6 +83,34 @@ class NiraGatewayTest extends BaseTestCase
         $fb->setAirline('PA')->setRoute('ugt-ttq')->setRbd('Y')->setFlightNo('10')->setDepartureDate('2020-10-11');
 
         $res = $ng->getFare($fb);
+        $this->assertISJson($res);
+    }
+
+    /** @test */
+    function can_reserve_flight()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], $this->getReserveResults()),
+        ]);
+
+        $ng = new NiraGateway('user', 'pass');
+        $ng->setTesting(true)->setMock($mock);
+
+        $rp = new ReserveParameterBuilder();
+        $rp->setAirline('PA');
+        $rp->setSource('SYZ');
+        $rp->setTarget('THR');
+        $rp->setFlightClass('A');
+        $rp->setFlightNo('123');
+        $rp->setDay('1');
+        $rp->setMonth('1');
+        $rp->setEdtName1('beekalam');
+        $rp->setEdtLast1('beekalam');
+        $rp->setEdtAge1('12');
+        $rp->setEdtID1('123');
+        $rp->setEdtContact('09359000');
+
+        $res = $ng->reserve($rp);
         $this->assertISJson($res);
     }
 }

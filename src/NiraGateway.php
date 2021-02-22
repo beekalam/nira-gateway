@@ -64,6 +64,7 @@ class NiraGateway
         $availabilityURI = '',
         $availabilityFare = '',
         $fareURI = '',
+        $reserveURI = '',
         $timeout = Constants::GATEWAY_TIMEOUT
     ) {
         $this->user = $user;
@@ -79,6 +80,10 @@ class NiraGateway
 
         if (empty($fareURI)) {
             $this->fareURI = Constants::FARE_URI;
+        }
+
+        if (empty($reserveURI)) {
+            $this->reserveURI = Constants::RESERVE_URI;
         }
 
         $this->timeout = $timeout;
@@ -109,6 +114,14 @@ class NiraGateway
         $fareURL = $this->buildURL($this->fareURI, $fb->buildParams());
 
         return $this->getClient()->request('GET', $fareURL)->getBody()->getContents();
+    }
+
+    public function reserve(ReserveParameterBuilder $rp)
+    {
+        $reserveURL = $this->buildURL($this->reserveURI, $rp->buildParams());
+        $request = $this->getClient()->request('GET', $reserveURL);
+
+        return $request->getBody()->getContents();
     }
 
     /**

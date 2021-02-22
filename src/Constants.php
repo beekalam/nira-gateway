@@ -13,4 +13,6 @@ class Constants
     public const FARE_URI = self::BASE_URI.'/FareJS.jsp';
 
     public const GATEWAY_TIMEOUT = 5.0;
+
+    const RESERVE_URI = '/ReserveJS';
 }
