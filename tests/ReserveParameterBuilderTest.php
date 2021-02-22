@@ -156,7 +156,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flight_edtlast1()
+    public function it_should_throw_for_empty_flight_edtlast1()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -176,7 +176,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flight_edtage1()
+    public function it_should_throw_for_empty_flight_edtage1()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -196,7 +196,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flight_edtID1()
+    public function it_should_throw_for_empty_flight_edtID1()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -217,7 +217,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_for_empty_flight_edtContact()
+    public function it_should_throw_for_empty_flight_edtContact()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -238,9 +238,8 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_return_correct_array_result_on_build_parameter()
+    public function it_should_return_correct_array_result_on_build_parameter()
     {
-
         $sb = new ReserveParameterBuilder();
         $sb->setAirline('PA');
         $sb->setSource('SYZ');
