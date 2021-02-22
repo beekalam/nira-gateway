@@ -186,8 +186,45 @@ class ReserveParameterBuilderTest extends BaseTestCase
         $sb->setEdtName1('beekalam');
         $sb->setEdtLast1('beekalam');
         $sb->setEdtAge1('12');
-        $sb->setEdtContact('beekalam@example.com');
+        $sb->setEdtID1('123');
+        //$sb->setEdtContact('beekalam@example.com');
 
         $sb->buildParams();
+    }
+
+    /** @test */
+    function it_should_return_correct_array_result_on_build_parameter()
+    {
+
+        $sb = new ReserveParameterBuilder();
+        $sb->setAirline('PA');
+        $sb->setSource('SYZ');
+        $sb->setTarget('THR');
+        $sb->setFlightClass('A');
+        $sb->setFlightNo('123');
+        $sb->setDay('1');
+        $sb->setMonth('1');
+        $sb->setEdtName1('beekalam');
+        $sb->setEdtLast1('beekalam');
+        $sb->setEdtAge1('12');
+        $sb->setEdtID1('123');
+        $sb->setEdtContact('09359000');
+
+        $expected_result = [
+            'AirLine' => 'PA',
+            'cbSource' => 'SYZ',
+            'cbTarget' => 'THR',
+            'FlightClass' => 'A',
+            'FlightNo' => '123',
+            'Day' => '1',
+            'Month' => '1',
+            'edtName1' => 'beekalam',
+            'edtLast1' => 'beekalam',
+            'edtAge1' => '12',
+            'editID1' => '123',
+            'edtContact' => '09359000',
+            'No' => '1'
+        ];
+        $this->assertEquals($expected_result, $sb->buildParams());
     }
 }

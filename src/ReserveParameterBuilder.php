@@ -77,11 +77,12 @@ class ReserveParameterBuilder
 
     public function __construct()
     {
+        $this->no = 1;
     }
 
     /**
      * @param string $airline
-     * @return ParameterBuilder
+     * @return \Beekalam\NiraGateway\ReserveParameterBuilder
      */
     public function setAirline(string $airline)
     {
@@ -92,7 +93,7 @@ class ReserveParameterBuilder
 
     /**
      * @param string $source
-     * @return ParameterBuilder
+     * @return \Beekalam\NiraGateway\ReserveParameterBuilder
      */
     public function setSource(string $source)
     {
@@ -103,7 +104,7 @@ class ReserveParameterBuilder
 
     /**
      * @param string $target
-     * @return ParameterBuilder
+     * @return \Beekalam\NiraGateway\ReserveParameterBuilder
      */
     public function setTarget(string $target)
     {
@@ -114,7 +115,7 @@ class ReserveParameterBuilder
 
     /**
      * @param string $day
-     * @return ParameterBuilder
+     * @return \Beekalam\NiraGateway\ReserveParameterBuilder
      */
     public function setDay(string $day)
     {
@@ -125,7 +126,7 @@ class ReserveParameterBuilder
 
     /**
      * @param string $month
-     * @return ParameterBuilder
+     * @return \Beekalam\NiraGateway\ReserveParameterBuilder
      */
     public function setMonth(string $month)
     {
@@ -235,8 +236,22 @@ class ReserveParameterBuilder
         Assert::notEmpty($this->edtLast1, 'editLast1 can not be empty');
         Assert::notEmpty($this->edtAge1, 'edtAge1 can not be empty');
         Assert::notEmpty($this->edtID1, 'edtAge1 can not be empty');
+        Assert::notEmpty($this->edtContact, 'edtContact can not be empty');
 
-
-        return [];
+        return [
+            'AirLine' => $this->airline,
+            'cbSource' => $this->source,
+            'cbTarget' => $this->target,
+            'FlightClass' => $this->flightClass,
+            'FlightNo' => $this->flightNo,
+            'Day' => $this->day,
+            'Month' => $this->month,
+            'edtName1' => $this->edtName1,
+            'edtLast1' => $this->edtLast1,
+            'edtAge1' => $this->edtAge1,
+            'editID1' => $this->edtID1,
+            'edtContact' => $this->edtContact,
+            'No' => $this->no,
+        ];
     }
 }
