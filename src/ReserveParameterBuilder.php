@@ -254,4 +254,31 @@ class ReserveParameterBuilder
             'No' => $this->no,
         ];
     }
+
+    public static function fromArray(array $reservationParams): ReserveParameterBuilder
+    {
+        $expected_keys = [
+            'AirLine' => 'setAirline',
+            'cbSource' => 'setSource',
+            'cbTarget' => 'setTarget',
+            'FlightClass' => 'setFlightClass',
+            'FlightNo' => 'setFlightNo',
+            'Day' => 'setDay',
+            'Month' => 'setMonth',
+            'edtName1' => 'setEdtName1',
+            'edtLast1' => 'setEdtLast1',
+            'edtAge1' => 'setEdtAge1',
+            'editID1' => 'setEdtID1',
+            'edtContact' => 'setEdtContact',
+        ];
+
+        $sb = new ReserveParameterBuilder();
+        foreach ($expected_keys as $k => $v) {
+            if (array_key_exists($k, $reservationParams)) {
+                $sb->{$v}($reservationParams[$k]);
+            }
+        }
+
+        return $sb;
+    }
 }

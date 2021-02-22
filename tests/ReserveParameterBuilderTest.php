@@ -271,4 +271,42 @@ class ReserveParameterBuilderTest extends BaseTestCase
         ];
         $this->assertEquals($expected_result, $sb->buildParams());
     }
+
+    /** @test */
+    function it_should_return_correct_array_result_when_building_object_from_array()
+    {
+        $sb = ReserveParameterBuilder::fromArray([
+            'AirLine' => 'PA',
+            'cbSource' => 'SYZ',
+            'cbTarget' => 'THR',
+            'FlightClass' => 'A',
+            'FlightNo' => '123',
+            'Day' => '1',
+            'Month' => '1',
+            'edtName1' => 'beekalam',
+            'edtLast1' => 'beekalam',
+            'edtAge1' => '12',
+            'editID1' => '123',
+            'edtContact' => '09359000',
+            'No' => '1',
+        ]);
+
+        $expected_result = [
+            'AirLine' => 'PA',
+            'cbSource' => 'SYZ',
+            'cbTarget' => 'THR',
+            'FlightClass' => 'A',
+            'FlightNo' => '123',
+            'Day' => '1',
+            'Month' => '1',
+            'edtName1' => 'beekalam',
+            'edtLast1' => 'beekalam',
+            'edtAge1' => '12',
+            'editID1' => '123',
+            'edtContact' => '09359000',
+            'No' => '1',
+        ];
+
+        $this->assertEquals($expected_result, $sb->buildParams());
+    }
 }
