@@ -51,6 +51,11 @@ class ReserveParameterBuilder
     /**
      * @var string
      */
+    private $edtLast1;
+
+    /**
+     * @var string
+     */
     private $edtAge1;
 
     /**
@@ -206,6 +211,17 @@ class ReserveParameterBuilder
         return $this;
     }
 
+    /**
+     * @param string $edtLast1
+     * @return ReserveParameterBuilder
+     */
+    public function setEdtLast1(string $edtLast1): ReserveParameterBuilder
+    {
+        $this->edtLast1 = $edtLast1;
+
+        return $this;
+    }
+
     public function buildParams()
     {
         Assert::notEmpty($this->airline, 'Airline can not be empty.');
@@ -215,6 +231,11 @@ class ReserveParameterBuilder
         Assert::notEmpty($this->flightNo, 'Flight Number can not be empty');
         Assert::notEmpty($this->day, 'Day can not be empty');
         Assert::notEmpty($this->month, 'Month can not be empty');
+        Assert::notEmpty($this->edtName1, 'edtName1 can not be empty');
+        Assert::notEmpty($this->edtLast1, 'editLast1 can not be empty');
+        Assert::notEmpty($this->edtAge1, 'edtAge1 can not be empty');
+        Assert::notEmpty($this->edtID1, 'edtAge1 can not be empty');
+
 
         return [];
     }
