@@ -14,12 +14,18 @@ class NiraGatewaySpecification
 
     private $reserveURI;
 
+    private $username;
+
+    private $password;
+
     /**
      * NiraGatewaySpecification constructor.
      *
      * @param $baseURL
+     * @param $username
+     * @param $password
      */
-    public function __construct($baseURL)
+    public function __construct($baseURL,$username,$password)
     {
         $this->baseURL = $baseURL;
         //todo: fix
@@ -27,6 +33,8 @@ class NiraGatewaySpecification
         $this->availabilityFareURI = "AvailabilityFareJS.jsp";
         $this->fareURI = "FareJS.jsp";
         $this->reserveURI = "ReserveJS";
+        $this->username = $username;
+        $this->password = $password;
     }
 
     /**
@@ -130,5 +138,43 @@ class NiraGatewaySpecification
     public function getReserveURL()
     {
         return $this->baseURL."/".$this->getReserveURI();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $username
+     * @return NiraGatewaySpecification
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $password
+     * @return NiraGatewaySpecification
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
     }
 }
