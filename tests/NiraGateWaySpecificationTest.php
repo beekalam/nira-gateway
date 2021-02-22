@@ -20,17 +20,15 @@ class NiraGateWaySpecificationTest extends BaseTestCase
     }
 
     /** @test */
-    function test_it_should_have_base_url_set_correctly()
+    public function test_it_should_have_base_url_set_correctly()
     {
-
         $this->assertNotEmpty($this->ngs->getBaseURL());
         $this->assertEquals($this->baseurl, $this->ngs->getBaseURL());
     }
 
     /** @test */
-    function test_endpoints_should_have_a_default_value()
+    public function test_endpoints_should_have_a_default_value()
     {
-
         $this->assertNotEmpty($this->ngs->getFareURI());
         $this->assertNotEmpty($this->ngs->getAvailabilityFareURI());
         $this->assertNotEmpty($this->ngs->getAvailabilityURI());
@@ -38,31 +36,26 @@ class NiraGateWaySpecificationTest extends BaseTestCase
     }
 
     /** @test */
-    function test_should_create_correct_availability_url()
+    public function test_should_create_correct_availability_url()
     {
-
-        $this->assertEquals($this->baseurl."/".$this->ngs->getAvailabilityURI(), $this->ngs->getAvailabilityURL());
+        $this->assertEquals($this->baseurl.'/'.$this->ngs->getAvailabilityURI(), $this->ngs->getAvailabilityURL());
     }
 
     /** @test */
-    function test_should_create_correct_availabilityfare_url()
+    public function test_should_create_correct_availabilityfare_url()
     {
-
-
-        $this->assertEquals($this->baseurl."/".$this->ngs->getAvailabilityFareURI(), $this->ngs->getAvailabilityFareURL());
+        $this->assertEquals($this->baseurl.'/'.$this->ngs->getAvailabilityFareURI(), $this->ngs->getAvailabilityFareURL());
     }
 
     /** @test */
-    function test_should_create_correct_fare_url()
+    public function test_should_create_correct_fare_url()
     {
-
-
-        $this->assertEquals($this->baseurl."/".$this->ngs->getFareURI(), $this->ngs->getFareURL());
+        $this->assertEquals($this->baseurl.'/'.$this->ngs->getFareURI(), $this->ngs->getFareURL());
     }
 
     /** @test */
-    function test_should_create_correct_reserve_url()
+    public function test_should_create_correct_reserve_url()
     {
-        $this->assertEquals($this->baseurl."/".$this->ngs->getReserveURI(), $this->ngs->getReserveURL());
+        $this->assertEquals($this->baseurl.'/'.$this->ngs->getReserveURI(), $this->ngs->getReserveURL());
     }
 }

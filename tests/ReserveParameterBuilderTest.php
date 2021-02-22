@@ -273,7 +273,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_return_correct_array_result_when_building_object_from_array()
+    public function it_should_return_correct_array_result_when_building_object_from_array()
     {
         $sb = ReserveParameterBuilder::fromArray([
             'AirLine' => 'PA',

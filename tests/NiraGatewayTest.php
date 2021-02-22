@@ -87,7 +87,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function can_reserve_flight()
+    public function can_reserve_flight()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getReserveResults()),
