@@ -4,6 +4,7 @@ namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\FareParameterBuilder;
 use Beekalam\NiraGateway\NiraGateway;
+use Beekalam\NiraGateway\NiraGatewaySpecification;
 use Beekalam\NiraGateway\ParameterBuilder;
 use Beekalam\NiraGateway\ReserveParameterBuilder;
 use GuzzleHttp\Handler\MockHandler;
@@ -11,28 +12,15 @@ use GuzzleHttp\Psr7\Response;
 
 class NiraGatewayTest extends BaseTestCase
 {
-    /** @test */
-    public function when_no_availability_uri_is_give_a_default_value_is_used()
+    /**
+     * @var \Beekalam\NiraGateway\NiraGateway
+     */
+    private $niraGatewaySpecification;
+
+    protected function setUp(): void
     {
-        $ng = new NiraGateway('user', 'pass');
-
-        $this->assertNotEmpty($ng->getAvailabilityURI());
-    }
-
-    /** @test */
-    public function when_no_availability_fare_uri_is_given_a_default_value_is_used()
-    {
-        $ng = new NiraGateway('user', 'pass');
-
-        $this->assertNotEmpty($ng->getAvailabilityFareURI());
-    }
-
-    /** @test */
-    public function when_no_fare_uri_is_given_a_default_value_is_used()
-    {
-        $ng = new NiraGateway('user', 'pass');
-
-        $this->assertNotEmpty($ng->getFareURI());
+        parent::setUp();
+        $this->niraGatewaySpecification = new NiraGatewaySpecification('http://some.domain/ws','user','pass');
     }
 
     /** @test */
@@ -41,7 +29,7 @@ class NiraGatewayTest extends BaseTestCase
         $mock = new MockHandler([
             new Response(200, [], $this->getSearchResults()),
         ]);
-        $ng = new NiraGateway('user', 'pass');
+        $ng = new NiraGateway($this->niraGatewaySpecification);
         $ng->setMock($mock)->setTesting(true);
 
         $sb = new ParameterBuilder();
@@ -57,7 +45,7 @@ class NiraGatewayTest extends BaseTestCase
         $mock = new MockHandler([
             new Response(200, [], $this->getAvailabilityFareResults()),
         ]);
-        $ng = new NiraGateway('user', 'pass');
+        $ng = new NiraGateway($this->niraGatewaySpecification);
         $ng->setTesting(true)->setMock($mock);
 
         $fb = new FareParameterBuilder();
@@ -75,7 +63,7 @@ class NiraGatewayTest extends BaseTestCase
             new Response(200, [], $this->getFareResults()),
         ]);
 
-        $ng = new NiraGateway('user', 'pass');
+        $ng = new NiraGateway($this->niraGatewaySpecification);
         $ng->setTesting(true)->setMock($mock);
 
         $fb = new FareParameterBuilder();
@@ -93,7 +81,7 @@ class NiraGatewayTest extends BaseTestCase
             new Response(200, [], $this->getReserveResults()),
         ]);
 
-        $ng = new NiraGateway('user', 'pass');
+        $ng = new NiraGateway($this->niraGatewaySpecification);
         $ng->setTesting(true)->setMock($mock);
 
         $rp = new ReserveParameterBuilder();
@@ -113,4 +101,5 @@ class NiraGatewayTest extends BaseTestCase
         $res = $ng->reserve($rp);
         $this->assertISJson($res);
     }
+
 }

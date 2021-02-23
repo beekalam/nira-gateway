@@ -18,6 +18,8 @@ class NiraGatewaySpecification
 
     private $password;
 
+    private $timeout;
+
     /**
      * NiraGatewaySpecification constructor.
      *
@@ -35,6 +37,7 @@ class NiraGatewaySpecification
         $this->reserveURI = 'ReserveJS';
         $this->username = $username;
         $this->password = $password;
+        $this->timeout = '5';
     }
 
     /**
@@ -176,5 +179,21 @@ class NiraGatewaySpecification
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * @param mixed $timeout
+     */
+    public function setTimeout($timeout): void
+    {
+        $this->timeout = $timeout;
     }
 }
