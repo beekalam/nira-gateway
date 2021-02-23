@@ -20,7 +20,7 @@ class NiraGatewayTest extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->niraGatewaySpecification = new NiraGatewaySpecification('http://some.domain/ws','user','pass');
+        $this->niraGatewaySpecification = new NiraGatewaySpecification('http://some.domain/ws', 'user', 'pass');
     }
 
     /** @test */
@@ -101,5 +101,4 @@ class NiraGatewayTest extends BaseTestCase
         $res = $ng->reserve($rp);
         $this->assertISJson($res);
     }
-
 }
