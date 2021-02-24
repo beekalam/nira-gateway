@@ -7,7 +7,7 @@ use Beekalam\NiraGateway\ReserveParser;
 class ReserveParserTest extends BaseTestCase
 {
     /** @test */
-    function it_can_tell_a_successful_reserve_result()
+    public function it_can_tell_a_successful_reserve_result()
     {
         $rr = json_decode($this->getReserveResults(), true);
         $rp = new ReserveParser($rr);
@@ -16,7 +16,7 @@ class ReserveParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_correctly_set_the_pnr()
+    public function it_should_correctly_set_the_pnr()
     {
         $rr = $this->getReserveResults($pnr = 'PAAA');
         $rr = json_decode($rr, true);
@@ -26,7 +26,7 @@ class ReserveParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_correctly_return_the_error()
+    public function it_should_correctly_return_the_error()
     {
         $rr = $this->getReserveResults($pnr = 'PAAA', $error = 'InCorrect Age1');
         $rr = json_decode($rr, true);

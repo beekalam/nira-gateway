@@ -86,7 +86,7 @@ JSON;
 JSON;
     }
 
-    protected function getReserveResults($pnr = 'P3RZ7',$error="No Err")
+    protected function getReserveResults($pnr = 'P3RZ7', $error = 'No Err')
     {
         return <<<JSON
 {"AirReserve":[{"Error":"$error","PNR":"$pnr"}]}
