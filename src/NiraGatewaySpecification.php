@@ -24,7 +24,7 @@ class NiraGatewaySpecification
 
     /**
      * baseUrl is in form <domain_name>/WS1/
-     * NRSBaseUrl is in form <domain_name>/WS2/cgi-bin/NRSWEB.cgi
+     * NRSBaseUrl is in form <domain_name>/WS2/cgi-bin/NRSWEB.cgi.
      *
      * @param $baseURL
      * @param $NRSBaseUrl
@@ -117,7 +117,7 @@ class NiraGatewaySpecification
      */
     public function getReserveURI()
     {
-        return $this->NRSBaseUrl."/".$this->reserveURI;
+        return $this->NRSBaseUrl.'/'.$this->reserveURI;
     }
 
     /**

@@ -13,7 +13,7 @@ class NiraGateWaySpecificationTest extends BaseTestCase
 
     private $baseurl = 'http://api.somedomain.com/ws';
 
-    private $NRSBaseUrl = "http://api/somedomain/WS2/cgi-bin/NRSWEB.cgi";
+    private $NRSBaseUrl = 'http://api/somedomain/WS2/cgi-bin/NRSWEB.cgi';
 
     protected function setUp(): void
     {
