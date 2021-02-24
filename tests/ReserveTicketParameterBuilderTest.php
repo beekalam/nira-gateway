@@ -17,4 +17,22 @@ class ReserveTicketParameterBuilderTest extends BaseTestCase
         ];
         $this->assertEquals($expected_results, $rt->buildParams());
     }
+
+    /** @test */
+    function it_should_throw_on_empty_airline()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        ReserveTicketParameterBuilder::fromArray([
+            'PNR' => 'pnr123',
+        ]);
+    }
+
+    /** @test */
+    function it_should_throw_on_empty_pnr()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        ReserveTicketParameterBuilder::fromArray([
+            'Airline' => 'PA',
+        ]);
+    }
 }

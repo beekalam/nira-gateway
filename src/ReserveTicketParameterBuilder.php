@@ -82,6 +82,18 @@ class ReserveTicketParameterBuilder
         return $this;
     }
 
+    public static function fromArray($inputs)
+    {
+        Assert::inArray('Airline', array_keys($inputs), 'Airline can not be empty');
+        Assert::inArray('PNR', array_keys($inputs), 'PNR can not be empty');
+        $rt = new self($inputs['Airline'], $inputs['PNR']);
+        if (isset($inputs['Complete'])) {
+            $rt->setComplete($inputs['Complete']);
+        }
+
+        return $rt;
+    }
+
     public function buildParams()
     {
         Assert::notEmpty($this->airline, 'Airline Can not be empty');
