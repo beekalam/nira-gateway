@@ -60,4 +60,10 @@ class NiraGateWaySpecificationTest extends BaseTestCase
     {
         $this->assertEquals($this->NRSBaseUrl.'/'.$this->ngs->getReserveURI(), $this->ngs->getReserveURL());
     }
+
+    /** @test */
+    function test_should_create_reserve_ticket_url()
+    {
+        $this->assertEquals($this->baseurl.'/'.$this->ngs->getReserveTicketURI(), $this->ngs->getReserveTicketURL());
+    }
 }

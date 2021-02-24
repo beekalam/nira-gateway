@@ -86,7 +86,7 @@ JSON;
 JSON;
     }
 
-    protected function getReserveResults($pnr = 'P3RZ7',$error="No Err")
+    protected function getReserveResults($pnr = 'P3RZ7', $error = "No Err")
     {
         return <<<JSON
 {"AirReserve":[{"Error":"$error","PNR":"$pnr"}]}
@@ -149,6 +149,67 @@ JSON;
         "Status":"ACTIVE",
         "Office":"NiraUser"
     }
+JSON;
+    }
+
+    protected function getReserveTicketResult()
+    {
+        return <<<JSON
+{
+    "Passengers": [
+        {
+            "Deleted": "NO",
+            "PassenferLastName": "TEAST",
+            "PassenferFirstName": "NIRA",
+            "PassenferAgeType": "{Adult}"
+        }
+    ],
+    "AdultQTY": 1,
+    "ChildTP": 1220000,
+    "TotalPrice": 2280000,
+    "Contact": "09111111111",
+    "Segments": [
+        {
+            "Deleted": "NO",
+            "AFlightNo": "PA1000",
+            "DepartureDT": "2020-09-15 20:00:00",
+            "ResStatus": "TK",
+            "FlightClass": "Z",
+            "Origin": "UGT",
+            "FlightNo": "1000",
+            "FlightStatus": "O",
+            "Destination": "TTQ"
+        },
+        {
+            "Deleted": "NO",
+            "AFlightNo": "FP1000",
+            "DepartureDT": "2020-09-15 22:00:00",
+            "ResStatus": "UN",
+            "FlightClass": "Z",
+            "Origin": "UGT",
+            "FlightNo": "1000",
+            "FlightStatus ": "D",
+            "Destination": "TTQ"
+        }
+    ],
+    "InfantTP": 372000,
+    "AdultTP": 2280000,
+    "Tickets": [
+        {
+            "ETStatus": "O",
+            "PassengerET": "TEAST/ATEST:101240822254"
+        }
+    ],
+    "DOCS": [
+        {
+            "DOC_TEAST/ATEST": "I//0890347451//////M"
+        }
+    ],
+    "ChildQTY": 0,
+    "InfantQTY": 0,
+    "Status": "ACTIVE",
+    "Office": " NiraUser"
+}
 JSON;
     }
 }
