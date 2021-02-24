@@ -7,7 +7,7 @@ use Beekalam\NiraGateway\ReserveTicketParameterBuilder;
 class ReserveTicketParameterBuilderTest extends BaseTestCase
 {
     /** @test */
-    function it_should_return_correct_paramters()
+    public function it_should_return_correct_paramters()
     {
         $rt = new ReserveTicketParameterBuilder('PA', 'pa13');
 
@@ -19,7 +19,7 @@ class ReserveTicketParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_on_empty_airline()
+    public function it_should_throw_on_empty_airline()
     {
         $this->expectException(\InvalidArgumentException::class);
         ReserveTicketParameterBuilder::fromArray([
@@ -28,7 +28,7 @@ class ReserveTicketParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_should_throw_on_empty_pnr()
+    public function it_should_throw_on_empty_pnr()
     {
         $this->expectException(\InvalidArgumentException::class);
         ReserveTicketParameterBuilder::fromArray([

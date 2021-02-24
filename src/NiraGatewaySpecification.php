@@ -226,7 +226,7 @@ class NiraGatewaySpecification
 
     public function getReserveTicketURL()
     {
-        return $this->baseURL."/".$this->reserveTicketURI;
+        return $this->baseURL.'/'.$this->reserveTicketURI;
     }
 
     /**
