@@ -7,6 +7,7 @@ use Beekalam\NiraGateway\NiraGateway;
 use Beekalam\NiraGateway\NiraGatewaySpecification;
 use Beekalam\NiraGateway\ParameterBuilder;
 use Beekalam\NiraGateway\ReserveParameterBuilder;
+use Beekalam\NiraGateway\ReserveTicketParameterBuilder;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 
@@ -99,6 +100,25 @@ class NiraGatewayTest extends BaseTestCase
         $rp->setEdtContact('09359000');
 
         $res = $ng->reserve($rp);
+        $this->assertISJson($res);
+    }
+
+    /** @test */
+    function can_get_reserve_ticket_info()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], $this->getReserveInfoResults()),
+        ]);
+
+        $ng = new NiraGateway($this->niraGatewaySpecification);
+        $ng->setTesting(true)->setMock($mock);
+
+        $res = $ng->getReserveTicketInfo(ReserveTicketParameterBuilder::fromArray([
+            'Airline' => 'PA',
+            'Complete' => 'Y',
+            'PNR' => 'PT4',
+        ]));
+
         $this->assertISJson($res);
     }
 }

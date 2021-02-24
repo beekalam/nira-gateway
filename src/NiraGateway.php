@@ -76,6 +76,14 @@ class NiraGateway
         return $request->getBody()->getContents();
     }
 
+    public function getReserveTicketInfo(ReserveTicketParameterBuilder $reserveTicketParameterBuilder)
+    {
+        $reserveInfoUrl = $this->buildURL($this->niraGatewaySpecification->getReserveTicketURL(), $reserveTicketParameterBuilder->buildParams());
+        $request = $this->getClient()->request('GET', $reserveInfoUrl);
+
+        return $request->getBody()->getContents();
+    }
+
     /**
      * @return \GuzzleHttp\Client
      */
