@@ -26,13 +26,25 @@ class BaseTestCase extends TestCase
     protected function getSearchResults()
     {
         return <<<'JSON'
-{"AvailableFlights":
-            [{"DepartureDateTime":"2020-08-01 21:00:00",
-            "OperatingFlightNo":"1000","Airline":"PA","ArrivalDateTime":"2020-08-01 22:00:00",
-            "AdultTotalPrices":"Z:1140000 L:1140000 G:1352000","OperatingAirline":"PA","Origin":"UGT",
-            "FlightNo":1000,"AircraftTypeName":"Foker 100","Destination":"TTQ",
-            "ClassRefundStatus":"Z:Refundable L:Refundable G:Refundable",
-            "ClassesStatus":"/ZA LA GC","AircraftTypeCode":"100"}]}
+        {
+            "AvailableFlights": [
+                            {
+                                "DepartureDateTime":"2020-08-01 21:00:00",
+                                "OperatingFlightNo":"1000",
+                                "Airline":"PA",
+                                "ArrivalDateTime":"2020-08-01 22:00:00",
+                                "AdultTotalPrices":"Z:1140000 L:1140000 G:1352000",
+                                "OperatingAirline":"PA",
+                                "Origin":"UGT",
+                                "FlightNo":1000,
+                                "AircraftTypeName":"Foker 100",
+                                "Destination":"TTQ",
+                                "ClassRefundStatus":"Z:Refundable L:Refundable G:Refundable",
+                                "ClassesStatus":"/ZA LA GC",
+                                "AircraftTypeCode":"100"
+                            }
+            ]
+        }
 JSON;
     }
 
@@ -78,6 +90,65 @@ JSON;
     {
         return <<<'JSON'
 {"AirReserve":[{"Error":"No Err","PNR":"P3RZ7"}]}
+JSON;
+    }
+
+    protected function getReserveInfoResults()
+    {
+        return <<<'JSON'
+{
+"Passengers":[
+    {
+        "Deleted":"NO",
+        "PassenferLastName":"TEAST",
+        "PassenferFirstName":"NIRA",
+        "PassenferAgeType":"{Adult}"}
+    ],
+    "AdultQTY":1,
+    "ChildTP":1220000,
+    "TotalPrice":2280000,
+    "Contact":"09111111111",
+    "Segments":[
+        {
+         "Deleted":"NO",
+         "AFlightNo":"PA1000","DepartureDT":"2020-09-15 20:00:00",
+         "ResStatus":"TK",
+         "FlightClass":"Z",
+         "Origin":"UGT",
+         "FlightNo":"1000",
+         "FlightStatus:"O",
+         "Destination":"TTQ"
+         },
+         {
+            "Deleted":"NO",
+            "AFlightNo":"FP1000",
+            "DepartureDT":"2020-09-15 22:00:00",
+            "ResStatus":"UN",
+            "FlightClass":"Z",
+            "Origin":"UGT",
+            "FlightNo":"1000",
+            "FlightStatus":"D",
+            "Destination":"TTQ"
+            }
+   ],
+   "InfantTP":372000,
+   "AdultTP":2280000,
+   "Tickets":[
+     {
+        "ETStatus":"O",
+        "PassengerET":"TEAST/ATEST:101240822254"
+    }
+   ],
+   "DOCS":[
+   {
+        "DOC_TEAST/ATEST":"I//089034 7451//////M"
+        }
+        ],
+        "ChildQTY":0,
+        "InfantQTY":0,
+        "Status":"ACTIVE",
+        "Office":"NiraUser"
+    }
 JSON;
     }
 }

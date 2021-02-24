@@ -13,10 +13,12 @@ class NiraGateWaySpecificationTest extends BaseTestCase
 
     private $baseurl = 'http://api.somedomain.com/ws';
 
+    private $NRSBaseUrl = "http://api/somedomain/WS2/cgi-bin/NRSWEB.cgi";
+
     protected function setUp(): void
     {
         parent::setUp();
-        $this->ngs = new NiraGatewaySpecification($this->baseurl, 'user', 'pass');
+        $this->ngs = new NiraGatewaySpecification($this->baseurl, $this->NRSBaseUrl, 'user', 'pass');
     }
 
     /** @test */

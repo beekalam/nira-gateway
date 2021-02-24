@@ -20,24 +20,29 @@ class NiraGatewaySpecification
 
     private $timeout;
 
+    private $NRSBaseUrl;
+
     /**
-     * NiraGatewaySpecification constructor.
+     * baseUrl is in form <domain_name>/WS1/
+     * NRSBaseUrl is in form <domain_name>/WS2/cgi-bin/NRSWEB.cgi
      *
      * @param $baseURL
+     * @param $NRSBaseUrl
      * @param $username
      * @param $password
      */
-    public function __construct($baseURL, $username, $password)
+    public function __construct($baseURL, $NRSBaseUrl, $username, $password)
     {
         $this->baseURL = $baseURL;
         //todo: fix
-        $this->availabilityURI = 'AvailabilityFareJS.jsp';
+        $this->availabilityURI = 'AvailabilityJS.jsp';
         $this->availabilityFareURI = 'AvailabilityFareJS.jsp';
         $this->fareURI = 'FareJS.jsp';
-        $this->reserveURI = 'ReserveJS';
+        $this->reserveURI = 'ReservJS';
         $this->username = $username;
         $this->password = $password;
         $this->timeout = '5';
+        $this->NRSBaseUrl = $NRSBaseUrl;
     }
 
     /**
@@ -112,7 +117,7 @@ class NiraGatewaySpecification
      */
     public function getReserveURI()
     {
-        return $this->reserveURI;
+        return $this->NRSBaseUrl."/".$this->reserveURI;
     }
 
     /**
@@ -195,5 +200,24 @@ class NiraGatewaySpecification
     public function setTimeout($timeout): void
     {
         $this->timeout = $timeout;
+    }
+
+    /**
+     * @param mixed $NRSBaseUrl
+     * @return NiraGatewaySpecification
+     */
+    public function setNRSBaseUrl($NRSBaseUrl)
+    {
+        $this->NRSBaseUrl = $NRSBaseUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNRSBaseUrl()
+    {
+        return $this->NRSBaseUrl;
     }
 }

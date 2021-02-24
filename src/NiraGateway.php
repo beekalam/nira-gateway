@@ -86,7 +86,7 @@ class NiraGateway
         }
 
         return $client = new Client([
-            'base_uri' => $this->niraGatewaySpecification->getAvailabilityURL(),
+            // 'base_uri' => $this->niraGatewaySpecification->getAvailabilityURL(),
             'timeout' => $this->niraGatewaySpecification->getTimeout(),
         ]);
     }
@@ -139,7 +139,8 @@ class NiraGateway
      */
     private function buildURL($baseURL, $queryParams)
     {
-        return $baseURL.'?'.$this->buildQuery($queryParams);
+        $ret =  $baseURL.'?'.$this->buildQuery($queryParams);
+        return $ret;
     }
 
     /**
