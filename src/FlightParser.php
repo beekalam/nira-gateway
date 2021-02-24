@@ -69,10 +69,10 @@ class FlightParser
         $this->setDestination($this->arr['Destination']);
         $this->setFlightNo($this->arr['FlightNo']);
 
-        $this->setAirCraftTypeName($this->arr['AircraftTypeName'] ?? "");
-        $this->setClassRefundStatus($this->arr['ClassRefundStatus'] ?? "");
-        $this->setAirCraftTypeCode($this->arr['AircraftTypeCode'] ?? "");
-        $this->setAdultTotalPrices($this->arr['AdultTotalPrices'] ?? "");
+        $this->setAirCraftTypeName($this->arr['AircraftTypeName'] ?? '');
+        $this->setClassRefundStatus($this->arr['ClassRefundStatus'] ?? '');
+        $this->setAirCraftTypeCode($this->arr['AircraftTypeCode'] ?? '');
+        $this->setAdultTotalPrices($this->arr['AdultTotalPrices'] ?? '');
     }
 
     public function getDepartureDateTime()

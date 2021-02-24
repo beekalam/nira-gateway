@@ -139,7 +139,8 @@ class NiraGateway
      */
     private function buildURL($baseURL, $queryParams)
     {
-        $ret =  $baseURL.'?'.$this->buildQuery($queryParams);
+        $ret = $baseURL.'?'.$this->buildQuery($queryParams);
+
         return $ret;
     }
 
