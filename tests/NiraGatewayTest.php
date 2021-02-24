@@ -123,7 +123,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function can_issue_ticket()
+    public function can_issue_ticket()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getETIssueResults()),
