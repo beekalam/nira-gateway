@@ -34,15 +34,15 @@ class NiraGatewaySpecification
     public function __construct($baseURL, $NRSBaseUrl, $username, $password)
     {
         $this->baseURL = $baseURL;
-        //todo: fix
+        $this->NRSBaseUrl = $NRSBaseUrl;
+        $this->username = $username;
+        $this->password = $password;
+        $this->timeout = '5';
+
         $this->availabilityURI = 'AvailabilityJS.jsp';
         $this->availabilityFareURI = 'AvailabilityFareJS.jsp';
         $this->fareURI = 'FareJS.jsp';
         $this->reserveURI = 'ReservJS';
-        $this->username = $username;
-        $this->password = $password;
-        $this->timeout = '5';
-        $this->NRSBaseUrl = $NRSBaseUrl;
     }
 
     /**
@@ -117,7 +117,7 @@ class NiraGatewaySpecification
      */
     public function getReserveURI()
     {
-        return $this->NRSBaseUrl.'/'.$this->reserveURI;
+        return $this->reserveURI;
     }
 
     /**
@@ -145,7 +145,7 @@ class NiraGatewaySpecification
 
     public function getReserveURL()
     {
-        return $this->baseURL.'/'.$this->getReserveURI();
+        return $this->NRSBaseUrl.'/'.$this->getReserveURI();
     }
 
     /**
