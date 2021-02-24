@@ -71,7 +71,7 @@ class NiraGateway
     public function reserve(ReserveParameterBuilder $rp)
     {
         $reserveURL = $this->buildURL($this->niraGatewaySpecification->getReserveURL(), $rp->buildParams());
-        $request = $this->getClient()->request('GET', $reserveURL);
+        $request = $this->getClient()->request('POST', $reserveURL);
 
         return $request->getBody()->getContents();
     }
