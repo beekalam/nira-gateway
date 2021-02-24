@@ -265,7 +265,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
             'edtName1' => 'beekalam',
             'edtLast1' => 'beekalam',
             'edtAge1' => '12',
-            'editID1' => '123',
+            'edtID1' => '123',
             'edtContact' => '09359000',
             'No' => '1',
         ];
@@ -286,7 +286,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
             'edtName1' => 'beekalam',
             'edtLast1' => 'beekalam',
             'edtAge1' => '12',
-            'editID1' => '123',
+            'edtID1' => '123',
             'edtContact' => '09359000',
             'No' => '1',
         ]);
@@ -302,7 +302,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
             'edtName1' => 'beekalam',
             'edtLast1' => 'beekalam',
             'edtAge1' => '12',
-            'editID1' => '123',
+            'edtID1' => '123',
             'edtContact' => '09359000',
             'No' => '1',
         ];

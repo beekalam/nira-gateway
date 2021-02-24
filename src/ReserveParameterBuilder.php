@@ -233,7 +233,7 @@ class ReserveParameterBuilder
         Assert::notEmpty($this->day, 'Day can not be empty');
         Assert::notEmpty($this->month, 'Month can not be empty');
         Assert::notEmpty($this->edtName1, 'edtName1 can not be empty');
-        Assert::notEmpty($this->edtLast1, 'editLast1 can not be empty');
+        Assert::notEmpty($this->edtLast1, 'edtLast1 can not be empty');
         Assert::notEmpty($this->edtAge1, 'edtAge1 can not be empty');
         Assert::notEmpty($this->edtID1, 'edtAge1 can not be empty');
         Assert::notEmpty($this->edtContact, 'edtContact can not be empty');
@@ -249,7 +249,7 @@ class ReserveParameterBuilder
             'edtName1' => $this->edtName1,
             'edtLast1' => $this->edtLast1,
             'edtAge1' => $this->edtAge1,
-            'editID1' => $this->edtID1,
+            'edtID1' => $this->edtID1,
             'edtContact' => $this->edtContact,
             'No' => $this->no,
         ];
@@ -268,7 +268,7 @@ class ReserveParameterBuilder
             'edtName1' => 'setEdtName1',
             'edtLast1' => 'setEdtLast1',
             'edtAge1' => 'setEdtAge1',
-            'editID1' => 'setEdtID1',
+            'edtID1' => 'setEdtID1',
             'edtContact' => 'setEdtContact',
         ];
 
