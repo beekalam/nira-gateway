@@ -84,6 +84,19 @@ class NiraGateway
         return $request->getBody()->getContents();
     }
 
+    public function buyTicket(string $airline, string $pnr, string $email)
+    {
+        $params = [
+            'Airline' => $airline,
+            'PNR' => $pnr,
+            'Email' => $email,
+        ];
+        $buyURL = $this->buildURL($this->niraGatewaySpecification->getEtIssueURI(), $params);
+        $request = $this->getClient()->request('GET', $buyURL);
+
+        return $request->getBody()->getContents();
+    }
+
     /**
      * @return \GuzzleHttp\Client
      */

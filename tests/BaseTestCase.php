@@ -153,4 +153,15 @@ JSON;
 }
 JSON;
     }
+
+    public function getETIssueResults()
+    {
+        return <<<'JSON'
+{
+  "AirNRSTICKETS":[
+          { "Tickets":"TEST/TEST=10124000000254"}
+ ]
+}
+JSON;
+    }
 }
