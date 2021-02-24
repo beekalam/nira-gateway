@@ -18,12 +18,12 @@ class ReserveParser
 
     public function __construct($reserveResults)
     {
-        if (strtolower($reserveResults["AirReserve"][0]["Error"]) == 'no err') {
+        if (strtolower($reserveResults['AirReserve'][0]['Error']) == 'no err') {
             $this->successfulReserve = true;
             $this->pnr = $reserveResults['AirReserve'][0]['PNR'];
         }
 
-        $this->error = $reserveResults['AirReserve'][0]["Error"];
+        $this->error = $reserveResults['AirReserve'][0]['Error'];
     }
 
     public function isSuccessful()
