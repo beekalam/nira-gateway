@@ -48,7 +48,7 @@ class NiraGatewaySpecification
         $this->fareURI = 'FareJS.jsp';
         $this->reserveURI = 'ReservJS';
         $this->reserveTicketURI = 'NRSRT.jsp';
-        $this->etIssueURI = "ETIssueJS";
+        $this->etIssueURI = 'ETIssueJS';
     }
 
     /**
@@ -250,6 +250,6 @@ class NiraGatewaySpecification
 
     public function getEtIssueURL()
     {
-        return $this->NRSBaseUrl."/".$this->getEtIssueURI();
+        return $this->NRSBaseUrl.'/'.$this->getEtIssueURI();
     }
 }
