@@ -99,6 +99,18 @@ class NiraGateway
         return str_replace("\r\n", '', $body);
     }
 
+    public function ETR($airline, $ticketno)
+    {
+        $params = [
+            'AirLine' => $airline,
+            'TicketNo' => $ticketno,
+        ];
+        $etrURL = $this->buildURL($this->niraGatewaySpecification->getEtrURL(), $params);
+        $request = $this->getClient()->request('GET', $etrURL);
+
+        return $request->getBody()->getContents();
+    }
+
     /**
      * @return \GuzzleHttp\Client
      */
@@ -111,10 +123,10 @@ class NiraGateway
         return $client = new Client([
             // 'base_uri' => $this->niraGatewaySpecification->getAvailabilityURL(),
             'timeout' => $this->niraGatewaySpecification->getTimeout(),
-            'headers' => [
-                'Content-Type' => 'application/json; charset=utf-8',
-                'Accept' => 'application/json; charset=utf-8',
-            ],
+            //'headers' => [
+            //    'Content-Type' => 'application/json; charset=utf-8',
+            //    'Accept' => 'application/json; charset=utf-8',
+            //],
         ]);
     }
 

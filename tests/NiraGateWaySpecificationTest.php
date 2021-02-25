@@ -72,4 +72,10 @@ class NiraGateWaySpecificationTest extends BaseTestCase
     {
         $this->assertEquals($this->NRSBaseUrl.'/'.$this->ngs->getEtIssueURI(), $this->ngs->getEtIssueURL());
     }
+
+    /** @test */
+    function test_should_create_etr_url()
+    {
+        $this->assertEquals($this->baseurl.'/'.$this->ngs->getEtrURI(), $this->ngs->getEtrURL());
+    }
 }

@@ -26,6 +26,8 @@ class NiraGatewaySpecification
 
     private $etIssueURI;
 
+    private $etrURI;
+
     /**
      * baseUrl is in form <domain_name>/WS1/
      * NRSBaseUrl is in form <domain_name>/WS2/cgi-bin/NRSWEB.cgi.
@@ -49,6 +51,7 @@ class NiraGatewaySpecification
         $this->reserveURI = 'ReservJS';
         $this->reserveTicketURI = 'NRSRT.jsp';
         $this->etIssueURI = 'ETIssueJS';
+        $this->etrURI;
     }
 
     /**
@@ -251,5 +254,18 @@ class NiraGatewaySpecification
     public function getEtIssueURL()
     {
         return $this->NRSBaseUrl.'/'.$this->getEtIssueURI();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtrURI()
+    {
+        return $this->etrURI;
+    }
+
+    public function getEtrURL()
+    {
+        return $this->baseURL."/".$this->etrURI;
     }
 }

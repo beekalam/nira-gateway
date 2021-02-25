@@ -164,4 +164,108 @@ JSON;
 }
 JSON;
     }
+
+    public function getETRResults()
+    {
+        return <<<'JSON'
+{
+   "PassengerFullName":"TEST/WEBSERVICE",
+   "Fare":"2000000",
+   "Comission":"100000",
+   "PAX":"AD",
+   "History":[
+      {
+         "Status":"F",
+         "CouponNo":0,
+         "Origin":"TTQ",
+         "Remark":"Coupon FlownerFlown",
+         "Office":"NSTHR001",
+         "Destination":"UGT"
+      },
+      {
+         "Status":"L",
+         "CouponNo":0,
+         "Origin":"TTQ",
+         "Remark":"DCIN ON FLIGHT NO:1001",
+         "Office":"NSTHR001",
+         "Destination":"UGT"
+      },
+      {
+         "Status":"C",
+         "CouponNo":0,
+         "Origin":"TTQ",
+         "Remark":"DCIN",
+         "Office":"NSTHR001",
+         "Destination":"UGT"
+      },
+      {
+         "Status":"R",
+         "CouponNo":0,
+         "Origin":"UGT",
+         "Remark":"",
+         "Office":"NIRA",
+         "Destination ":"TTQ"
+      },
+      {
+         "Status":"O",
+         "CouponNo":0,
+         "Origin":"TTQ",
+         "Remark":"",
+         "Office":"NIRA",
+         "Destination":"UGT"
+      },
+      {
+         "Status":"O",
+         "CouponNo":0,
+         "Origin":"UGT",
+         "Remark":"",
+         "Office":"NIRA",
+         "Destination":"TTQ"
+      }
+   ],
+   "COUPONS":[
+      {
+         "PassengerFullName":"TEST/WEBSERVICE",
+         "Fare":"1000000",
+         "Status":"REFUNDED",
+         "PassengerPAX":"AD",
+         "Departure":"2020-09-17 22:00:00",
+         "FlightClass":"Y",
+         "PNR":"PG1J1",
+         "Origin":"UGT",
+         "FlightNo":"1000",
+         "Destination":"TTQ"
+      },
+      {
+         "PassengerFullName":"TEST/WEBSERVICE",
+         "Fare":"1000000",
+         "Status":"FLOWN",
+         "PassengerPAX":"AD",
+         "Departure":"2020-09-17 22:00:00",
+         "FlightClass":"Y",
+         "PNR":"PG1J1",
+         "Origin":"TTQ",
+         "FlightNo":"1001",
+         "Destination":"UGT"
+      }
+   ],
+   "TotalPrice":"2280000",
+   "TicketNo":"8151401601943",
+   "TAXES":[
+      {
+         "TaxCode":"I6",
+         "TaxAmount":20000
+      },
+      {
+         "TaxCode":"KU",
+         "TaxAmount":120000
+      },
+      {
+         "TaxCode":"LP",
+         "TaxAmount":140000
+      }
+   ]
+}
+JSON;
+    }
 }

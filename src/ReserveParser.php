@@ -4,6 +4,8 @@ namespace Beekalam\NiraGateway;
 
 class ReserveParser
 {
+    public $data;
+
     /**
      * @var string
      */
@@ -18,6 +20,8 @@ class ReserveParser
 
     public function __construct($reserveResults)
     {
+        $this->data = $reserveResults;
+
         if (strtolower($reserveResults['AirReserve'][0]['Error']) == 'no err') {
             $this->successfulReserve = true;
             $this->pnr = $reserveResults['AirReserve'][0]['PNR'];

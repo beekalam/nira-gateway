@@ -136,4 +136,19 @@ class NiraGatewayTest extends BaseTestCase
 
         $this->assertISJson($res);
     }
+
+    /** @test */
+    function can_get_ticket_info()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], $this->getETRResults()),
+        ]);
+
+        $ng = new NiraGateway($this->niraGatewaySpecification);
+        $ng->setTesting(true)->setMock($mock);
+
+        $res = $ng->ETR('PA', '1012400000254');
+
+        $this->assertISJson($res);
+    }
 }
