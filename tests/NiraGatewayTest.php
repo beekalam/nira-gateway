@@ -132,7 +132,7 @@ class NiraGatewayTest extends BaseTestCase
         $ng = new NiraGateway($this->niraGatewaySpecification);
         $ng->setTesting(true)->setMock($mock);
 
-        $res = $ng->buyTicket('PA', 'pnr123', 'test@example.com');
+        $res = $ng->ETIssue('PA', 'pnr123', 'test@example.com');
 
         $this->assertISJson($res);
     }

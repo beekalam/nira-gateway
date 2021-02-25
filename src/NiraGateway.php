@@ -84,17 +84,19 @@ class NiraGateway
         return $request->getBody()->getContents();
     }
 
-    public function buyTicket(string $airline, string $pnr, string $email)
+    public function ETIssue(string $airline, string $pnr, string $email)
     {
         $params = [
             'Airline' => $airline,
             'PNR' => $pnr,
             'Email' => $email,
         ];
-        $buyURL = $this->buildURL($this->niraGatewaySpecification->getEtIssueURI(), $params);
+        $buyURL = $this->buildURL($this->niraGatewaySpecification->getEtIssueURL(), $params);
         $request = $this->getClient()->request('GET', $buyURL);
 
-        return $request->getBody()->getContents();
+        $body = $request->getBody()->getContents();
+
+        return str_replace("\r\n", "", $body);
     }
 
     /**
@@ -109,6 +111,10 @@ class NiraGateway
         return $client = new Client([
             // 'base_uri' => $this->niraGatewaySpecification->getAvailabilityURL(),
             'timeout' => $this->niraGatewaySpecification->getTimeout(),
+            'headers' => [
+                'Content-Type' => 'application/json; charset=utf-8',
+                'Accept' => 'application/json; charset=utf-8',
+            ],
         ]);
     }
 

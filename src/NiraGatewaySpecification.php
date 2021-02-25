@@ -41,7 +41,7 @@ class NiraGatewaySpecification
         $this->NRSBaseUrl = $NRSBaseUrl;
         $this->username = $username;
         $this->password = $password;
-        $this->timeout = '5';
+        $this->timeout = '8';
 
         $this->availabilityURI = 'AvailabilityJS.jsp';
         $this->availabilityFareURI = 'AvailabilityFareJS.jsp';
