@@ -96,7 +96,7 @@ class NiraGateway
 
         $body = $request->getBody()->getContents();
 
-        return str_replace("\r\n", "", $body);
+        return str_replace("\r\n", '', $body);
     }
 
     /**
