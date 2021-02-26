@@ -1,6 +1,6 @@
 <?php
 
-namespace Beekalam\NiraGateway\Tests;
+namespace Beekalam\NiraGateway;
 
 class ETRParser
 {
