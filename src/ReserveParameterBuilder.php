@@ -75,6 +75,8 @@ class ReserveParameterBuilder
      */
     private $no;
 
+    private $passengers;
+
     public function __construct()
     {
         $this->no = 1;
@@ -223,6 +225,17 @@ class ReserveParameterBuilder
         return $this;
     }
 
+    public function addPassenger($edtID, $edtAge, $edtLast, $edtName)
+    {
+        $this->no++;
+        $this->passengers [] = [
+            "edtID{$this->no}" => $edtID,
+            "edtAge{$this->no}" => $edtAge,
+            "edtLast{$this->no}" => $edtLast,
+            "edtName{$this->no}" => $edtName,
+        ];
+    }
+
     public function buildParams()
     {
         Assert::notEmpty($this->airline, 'Airline can not be empty.');
@@ -238,7 +251,7 @@ class ReserveParameterBuilder
         Assert::notEmpty($this->edtID1, 'edtAge1 can not be empty');
         Assert::notEmpty($this->edtContact, 'edtContact can not be empty');
 
-        return [
+        $params = [
             'AirLine' => $this->airline,
             'cbSource' => $this->source,
             'cbTarget' => $this->target,
@@ -246,13 +259,19 @@ class ReserveParameterBuilder
             'FlightNo' => $this->flightNo,
             'Day' => $this->day,
             'Month' => $this->month,
-            'edtName1' => $this->edtName1,
-            'edtLast1' => $this->edtLast1,
-            'edtAge1' => $this->edtAge1,
             'edtID1' => $this->edtID1,
+            'edtAge1' => $this->edtAge1,
+            'edtLast1' => $this->edtLast1,
+            'edtName1' => $this->edtName1,
             'edtContact' => $this->edtContact,
             'No' => $this->no,
         ];
+
+        foreach ($this->passengers as $passenger) {
+            $params = array_merge($params, $passenger);
+        }
+
+        return $params;
     }
 
     public static function fromArray(array $reservationParams): ReserveParameterBuilder

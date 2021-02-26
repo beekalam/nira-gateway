@@ -309,4 +309,35 @@ class ReserveParameterBuilderTest extends BaseTestCase
 
         $this->assertEquals($expected_result, $sb->buildParams());
     }
+
+    /** @test */
+    function can_add_passengers()
+    {
+        $sb = ReserveParameterBuilder::fromArray($expected_result = [
+            'AirLine' => 'PA',
+            'cbSource' => 'SYZ',
+            'cbTarget' => 'THR',
+            'FlightClass' => 'A',
+            'FlightNo' => '123',
+            'Day' => '1',
+            'Month' => '1',
+            'edtName1' => 'beekalam',
+            'edtLast1' => 'beekalam',
+            'edtAge1' => '12',
+            'edtID1' => '123',
+            'edtContact' => '09359000',
+            'No' => '1',
+        ]);
+        $sb->addPassenger($id = "5135959595959", $age = '12', $last = 'DOE', $name = 'junior');
+
+        $expected_result = array_merge($expected_result, [
+            'edtID2' => $id,
+            'edtAge2' => $age,
+            'edtName2' => $name,
+            'edtLast2' => $last,
+            'No' => '2',
+        ]);
+
+        $this->assertEquals($expected_result, $sb->buildParams());
+    }
 }
