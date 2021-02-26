@@ -266,7 +266,7 @@ class NiraGatewaySpecification
 
     public function getEtrURL()
     {
-        return $this->baseURL."/".$this->etrURI;
+        return $this->baseURL.'/'.$this->etrURI;
     }
 
     /**

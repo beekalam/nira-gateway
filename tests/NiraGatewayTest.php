@@ -138,7 +138,7 @@ class NiraGatewayTest extends BaseTestCase
     }
 
     /** @test */
-    function can_get_ticket_info()
+    public function can_get_ticket_info()
     {
         $mock = new MockHandler([
             new Response(200, [], $this->getETRResults()),
