@@ -311,7 +311,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function can_add_passengers()
+    public function can_add_passengers()
     {
         $sb = ReserveParameterBuilder::fromArray($expected_result = [
             'AirLine' => 'PA',
@@ -328,7 +328,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
             'edtContact' => '09359000',
             'No' => '1',
         ]);
-        $sb->addPassenger($id = "5135959595959", $age = '12', $last = 'DOE', $name = 'junior');
+        $sb->addPassenger($id = '5135959595959', $age = '12', $last = 'DOE', $name = 'junior');
 
         $expected_result = array_merge($expected_result, [
             'edtID2' => $id,

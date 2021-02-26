@@ -78,7 +78,7 @@ class NiraGateway
     {
         $header = $request->getHeader('Content-Type');
 
-        return ! empty($header) && strpos(strtolower($header[0]), "windows-1256") !== false;
+        return ! empty($header) && strpos(strtolower($header[0]), 'windows-1256') !== false;
     }
 
     public function reserve(ReserveParameterBuilder $rp)
