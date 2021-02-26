@@ -6,6 +6,8 @@ class NiraGatewaySpecification
 {
     private $baseURL;
 
+    private $NRSBaseUrl;
+
     private $availabilityURI;
 
     private $availabilityFareURI;
@@ -19,8 +21,6 @@ class NiraGatewaySpecification
     private $password;
 
     private $timeout;
-
-    private $NRSBaseUrl;
 
     private $reserveTicketURI;
 
@@ -51,7 +51,7 @@ class NiraGatewaySpecification
         $this->reserveURI = 'ReservJS';
         $this->reserveTicketURI = 'NRSRT.jsp';
         $this->etIssueURI = 'ETIssueJS';
-        $this->etrURI;
+        $this->etrURI = 'NRSETR.jsp';
     }
 
     /**
@@ -267,5 +267,29 @@ class NiraGatewaySpecification
     public function getEtrURL()
     {
         return $this->baseURL."/".$this->etrURI;
+    }
+
+    /**
+     * @param string $etrURI
+     */
+    public function setEtrURI(string $etrURI): void
+    {
+        $this->etrURI = $etrURI;
+    }
+
+    /**
+     * @param string $etIssueURI
+     */
+    public function setEtIssueURI(string $etIssueURI): void
+    {
+        $this->etIssueURI = $etIssueURI;
+    }
+
+    /**
+     * @param string $reserveTicketURI
+     */
+    public function setReserveTicketURI(string $reserveTicketURI): void
+    {
+        $this->reserveTicketURI = $reserveTicketURI;
     }
 }

@@ -18,7 +18,14 @@ class ETIssueParser
 
         if (is_array($ETIssueResults) && array_key_exists('AirNRSTICKETS', $ETIssueResults)) {
             $this->successfulETIssue = true;
-            $this->tickets = $ETIssueResults['AirNRSTICKETS'][0]['Tickets'];
+            [$name, $ticketno] = explode('=', $ETIssueResults['AirNRSTICKETS'][0]['Tickets']);
+            $this->tickets = [
+                [
+                    'name' => $name,
+                    'ticketno' => $ticketno,
+                ],
+            ];
+
             $this->message = $ETIssueResults['Message'];
         }
     }

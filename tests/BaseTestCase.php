@@ -268,4 +268,57 @@ JSON;
 }
 JSON;
     }
+
+    public function getETRResult()
+    {
+        return <<<'JSON'
+{
+   "PassengerFullName":"MANSOURI/MOHAMMAD",
+   "PAX":"AD ",
+   "TotalPrice":"1140000",
+   "TAXES":[
+      {
+         "TaxAmount":10000,
+         "TaxCode":"I6"
+      },
+      {
+         "TaxAmount":60000,
+         "TaxCode":"KU"
+      },
+      {
+         "TaxAmount":70000,
+         "TaxCode":"LP"
+      }
+   ],
+   "TicketNo":"1012400000678",
+   "Comission":"0",
+   "History":[
+      {
+         "CouponNo":0,
+         "Origin":"TTQ",
+         "Status":"O",
+         "Office":"THR055  ",
+         "Destination":"UGT",
+         "Remark":""
+      }
+   ],
+   "COUPONS":[
+      {
+         "Origin":"TTQ",
+         "Status":"OPEN FOR USE",
+         "Destination":"UGT",
+         "PassengerFullName":"MANSOURI/MOHAMMAD",
+         "FlightClass":"Y",
+         "Departure":"2021-03-21 21:00:00",
+         "PNR":"NAQ5W",
+         "FlightNo":"1001",
+         "Fare":"1000000",
+         "PassengerPAX":"AD"
+      }
+   ],
+   "Fare":"1000000"
+}
+JSON;
+
+    }
 }

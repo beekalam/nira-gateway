@@ -121,12 +121,7 @@ class NiraGateway
         }
 
         return $client = new Client([
-            // 'base_uri' => $this->niraGatewaySpecification->getAvailabilityURL(),
             'timeout' => $this->niraGatewaySpecification->getTimeout(),
-            //'headers' => [
-            //    'Content-Type' => 'application/json; charset=utf-8',
-            //    'Accept' => 'application/json; charset=utf-8',
-            //],
         ]);
     }
 
