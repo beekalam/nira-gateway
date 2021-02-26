@@ -65,7 +65,20 @@ class NiraGateway
     {
         $fareURL = $this->buildURL($this->niraGatewaySpecification->getFareURL(), $fb->buildParams());
 
-        return $this->getClient()->request('GET', $fareURL)->getBody()->getContents();
+        $response = $this->getClient()->request('GET', $fareURL);
+        $body = $response->getBody()->getContents();
+        if ($this->hasWindows1256Encoding($response)) {
+            $body = iconv('WINDOWS-1256', 'UTF-8', $body);
+        }
+
+        return $body;
+    }
+
+    private function hasWindows1256Encoding($request)
+    {
+        $header = $request->getHeader('Content-Type');
+
+        return ! empty($header) && strpos(strtolower($header[0]), "windows-1256") !== false;
     }
 
     public function reserve(ReserveParameterBuilder $rp)
@@ -122,6 +135,10 @@ class NiraGateway
 
         return $client = new Client([
             'timeout' => $this->niraGatewaySpecification->getTimeout(),
+            'headers' => [
+                'Content-Type' => 'application/json; charset=utf-8',
+                'Accept' => 'application/json; charset=utf-8',
+            ],
         ]);
     }
 

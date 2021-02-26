@@ -273,7 +273,7 @@ JSON;
     {
         return <<<'JSON'
 {
-   "PassengerFullName":"MANSOURI/MOHAMMAD",
+   "PassengerFullName":"MANSOdoeURI/John",
    "PAX":"AD ",
    "TotalPrice":"1140000",
    "TAXES":[
@@ -307,7 +307,7 @@ JSON;
          "Origin":"TTQ",
          "Status":"OPEN FOR USE",
          "Destination":"UGT",
-         "PassengerFullName":"MANSOURI/MOHAMMAD",
+         "PassengerFullName":"doe/John",
          "FlightClass":"Y",
          "Departure":"2021-03-21 21:00:00",
          "PNR":"NAQ5W",
