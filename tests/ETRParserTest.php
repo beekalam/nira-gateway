@@ -7,7 +7,7 @@ use Beekalam\NiraGateway\ETRParser;
 class ETRParserTest extends BaseTestCase
 {
     /** @test */
-    function should_correctly_set_class_properties_from_input_data()
+    public function should_correctly_set_class_properties_from_input_data()
     {
         $etrresults = json_decode($this->getETRResults(), true);
         $etrparser = new ETRParser($etrresults);
