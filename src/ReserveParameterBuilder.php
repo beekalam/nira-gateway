@@ -80,6 +80,7 @@ class ReserveParameterBuilder
     public function __construct()
     {
         $this->no = 1;
+        $this->passengers = [];
     }
 
     /**
