@@ -50,4 +50,9 @@ class ReserveParser
     {
         return $this->error;
     }
+
+    public static function fromJson($reserveResult)
+    {
+        return new self(json_decode($reserveResult, true));
+    }
 }

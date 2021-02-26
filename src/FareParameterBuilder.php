@@ -118,4 +118,16 @@ class FareParameterBuilder
             'FlightNo' => $this->flightNo,
         ];
     }
+
+    public static function fromArray($arr)
+    {
+        $fb = new self();
+        $fb->setAirline($arr['Airline']);
+        $fb->setRoute($arr['Route']);
+        $fb->setRbd($arr['RBD']);
+        $fb->setFlightNo($arr['FlightNo']);
+        $fb->setDepartureDate($arr['DepartureDate']);
+
+        return $fb;
+    }
 }

@@ -153,4 +153,9 @@ class FareParser
     {
         return $this->CRCNRules;
     }
+
+    public static function fromJson(string $requestBody)
+    {
+        return new self(json_decode($requestBody, true));
+    }
 }

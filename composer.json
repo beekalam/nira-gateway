@@ -19,7 +19,8 @@
         "php": "^7.2|^8.0",
         "guzzlehttp/guzzle": "^7.0",
         "webmozart/assert": "^1.9",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
