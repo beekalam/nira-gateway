@@ -251,4 +251,21 @@ class FlightParser
     {
         return date('A', strtotime($dateTime)) == 'AM' ? 'صبح' : 'بعد الظهر';
     }
+
+    /**
+     * @param $json
+     * @return array
+     */
+    public static function fromJson($json): array
+    {
+        $flights = [];
+        $flights_array = \json_decode($json, true);
+        if (isset($flights_array['AvailableFlights'])) {
+            foreach ($flights_array['AvailableFlights'] as $flight) {
+                $flights[] = new FlightParser($flight);
+            }
+        }
+
+        return $flights;
+    }
 }

@@ -103,4 +103,15 @@ class FlightParserTest extends BaseTestCase
         $this->assertEquals('1140000', $prices_by_class['L']);
         $this->assertEquals('1352000', $prices_by_class['G']);
     }
+
+    /** @test */
+    function can_parse_search_flight_results()
+    {
+        $flights = FlightParser::fromJson($this->getSearchResults());
+        $flights_array = json_decode($this->getSearchResults(), true);
+        $expected_origin = $flights_array['AvailableFlights'][0]['Origin'];
+
+        $this->assertEquals(1, count($flights));
+        $this->assertEquals($expected_origin, $flights[0]->getOrigin());
+    }
 }
