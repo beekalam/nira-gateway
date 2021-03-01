@@ -75,7 +75,7 @@ class ParameterBuilderTest extends TestCase
     }
 
     /** @test */
-    function can_create_parameter_builder_from_static_method()
+    public function can_create_parameter_builder_from_static_method()
     {
         $res = [
             'airline' => 'PA',
