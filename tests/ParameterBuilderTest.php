@@ -73,4 +73,22 @@ class ParameterBuilderTest extends TestCase
 
         $sb->buildParams();
     }
+
+    /** @test */
+    function can_create_parameter_builder_from_static_method()
+    {
+        $res = [
+            'airline' => 'PA',
+            'cbSource' => 'SYZ',
+            'cbTarget' => 'THR',
+            'cbDay1' => '1',
+            'cbMonth1' => '1',
+            'cbAdultQty' => '1',
+            'cbInfantQty' => '1',
+            'cbChildQty' => '2',
+        ];
+        $pb = ParameterBuilder::fromArray($res);
+
+        $this->assertEquals($res, $pb->buildParams());
+    }
 }

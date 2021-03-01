@@ -178,4 +178,26 @@ class ParameterBuilder
             'cbChildQty' => $this->childCount,
         ];
     }
+
+    public static function fromArray(array $parameters): ParameterBuilder
+    {
+        $expected_keys = [
+            'airline' => 'setAirline',
+            'cbSource' => 'setSource',
+            'cbTarget' => 'setTarget',
+            'cbDay1' => 'setDay',
+            'cbMonth1' => 'setMonth',
+            'cbAdultQty' => 'setAdultCount',
+            'cbInfantQty' => 'setInfantCount',
+            'cbChildQty' => 'setChildCount',
+        ];
+        $pb = new self();
+        foreach ($expected_keys as $k => $v) {
+            if (array_key_exists($k, $parameters)) {
+                $pb->{$v}($parameters[$k]);
+            }
+        }
+
+        return $pb;
+    }
 }
