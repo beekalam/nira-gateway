@@ -50,7 +50,7 @@ class NiraGateway
 
             return $response->getBody()->getContents();
         } catch (RequestException $e) {
-            $exception = new NiraGatewayException("Error Calling Nira API");
+            $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
             throw $exception;
         }
@@ -70,7 +70,7 @@ class NiraGateway
 
             return $response->getBody()->getContents();
         } catch (RequestException $e) {
-            $exception = new NiraGatewayException("Error Calling Nira API");
+            $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
             throw $exception;
         }
@@ -104,7 +104,7 @@ class NiraGateway
 
             return $response->getBody()->getContents();
         } catch (RequestException $e) {
-            $exception = new NiraGatewayException("Error Calling Nira API");
+            $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
             throw $exception;
         }
@@ -118,7 +118,7 @@ class NiraGateway
 
             return $response->getBody()->getContents();
         } catch (RequestException $e) {
-            $exception = new NiraGatewayException("Error Calling Nira API");
+            $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
             throw $exception;
         }
@@ -140,7 +140,7 @@ class NiraGateway
 
             return str_replace("\r\n", '', $body);
         } catch (RequestException $e) {
-            $exception = new NiraGatewayException("Error Calling Nira API");
+            $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
             throw $exception;
         }
@@ -158,7 +158,7 @@ class NiraGateway
 
             return $request->getBody()->getContents();
         } catch (RequestException $e) {
-            $exception = new NiraGatewayException("Error Calling Nira API");
+            $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
             throw $exception;
         }
