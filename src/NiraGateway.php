@@ -43,18 +43,9 @@ class NiraGateway
      */
     public function search($searchParamsBuilder)
     {
-        try {
-            $client = $this->getClient();
-            $availabilityURL = $this->buildURL($this->niraGatewaySpecification->getAvailabilityURL(), $searchParamsBuilder->buildParams());
-            $response = $client->request('GET', $availabilityURL);
+        $availabilityURL = $this->buildURL($this->niraGatewaySpecification->getAvailabilityURL(), $searchParamsBuilder->buildParams());
 
-            return $response->getBody()->getContents();
-        } catch (RequestException $e) {
-            $exception = new NiraGatewayException('Error Calling Nira API');
-            $exception->setGatewayError($e);
-
-            throw $exception;
-        }
+        return $this->makeRequest('GET', $availabilityURL);
     }
 
     /**
@@ -64,18 +55,9 @@ class NiraGateway
      */
     public function getAvailabilityFare($fb)
     {
-        try {
-            $client = $this->getClient();
-            $fareURL = $this->buildURL($this->niraGatewaySpecification->getFareURL(), $fb->buildParams());
-            $response = $client->request('GET', $fareURL);
+        $fareURL = $this->buildURL($this->niraGatewaySpecification->getFareURL(), $fb->buildParams());
 
-            return $response->getBody()->getContents();
-        } catch (RequestException $e) {
-            $exception = new NiraGatewayException('Error Calling Nira API');
-            $exception->setGatewayError($e);
-
-            throw $exception;
-        }
+        return $this->makeRequest('GET', $fareURL);
     }
 
     public function getFare(FareParameterBuilder $fb)
@@ -89,6 +71,21 @@ class NiraGateway
         }
 
         return $body;
+    }
+
+    private function makeRequest($method, $url, $message = 'Error Calling Nira API')
+    {
+        try {
+            $client = $this->getClient();
+            $response = $client->request($method, $url);
+
+            return $response->getBody()->getContents();
+        } catch (RequestException $e) {
+            $exception = new NiraGatewayException($message);
+            $exception->setGatewayError($e);
+
+            throw $exception;
+        }
     }
 
     private function hasWindows1256Encoding($request)
@@ -115,59 +112,35 @@ class NiraGateway
 
     public function getReserveTicketInfo(ReserveTicketParameterBuilder $reserveTicketParameterBuilder)
     {
-        try {
-            $reserveInfoUrl = $this->buildURL($this->niraGatewaySpecification->getReserveTicketURL(), $reserveTicketParameterBuilder->buildParams());
-            $response = $this->getClient()->request('GET', $reserveInfoUrl);
+        $reserveInfoUrl = $this->buildURL($this->niraGatewaySpecification->getReserveTicketURL(), $reserveTicketParameterBuilder->buildParams());
 
-            return $response->getBody()->getContents();
-        } catch (RequestException $e) {
-            $exception = new NiraGatewayException('Error Calling Nira API');
-            $exception->setGatewayError($e);
-
-            throw $exception;
-        }
+        return $this->makeRequest('GET', $reserveInfoUrl);
     }
 
     public function ETIssue(string $airline, string $pnr, string $email)
     {
-        try {
-            $params = [
-                'Airline' => $airline,
-                'PNR' => $pnr,
-                'Email' => $email,
-            ];
+        $params = [
+            'Airline' => $airline,
+            'PNR' => $pnr,
+            'Email' => $email,
+        ];
 
-            $buyURL = $this->buildURL($this->niraGatewaySpecification->getEtIssueURL(), $params);
-            $response = $this->getClient()->request('GET', $buyURL);
+        $buyURL = $this->buildURL($this->niraGatewaySpecification->getEtIssueURL(), $params);
 
-            $body = $response->getBody()->getContents();
+        $body = $this->makeRequest('GET', $buyURL);
 
-            return str_replace("\r\n", '', $body);
-        } catch (RequestException $e) {
-            $exception = new NiraGatewayException('Error Calling Nira API');
-            $exception->setGatewayError($e);
-
-            throw $exception;
-        }
+        return str_replace("\r\n", '', $body);
     }
 
     public function ETR($airline, $ticketno)
     {
-        try {
-            $params = [
-                'AirLine' => $airline,
-                'TicketNo' => $ticketno,
-            ];
-            $etrURL = $this->buildURL($this->niraGatewaySpecification->getEtrURL(), $params);
-            $request = $this->getClient()->request('GET', $etrURL);
+        $params = [
+            'AirLine' => $airline,
+            'TicketNo' => $ticketno,
+        ];
+        $etrURL = $this->buildURL($this->niraGatewaySpecification->getEtrURL(), $params);
 
-            return $request->getBody()->getContents();
-        } catch (RequestException $e) {
-            $exception = new NiraGatewayException('Error Calling Nira API');
-            $exception->setGatewayError($e);
-
-            throw $exception;
-        }
+        return $this->makeRequest('GET', $etrURL);
     }
 
     /**
