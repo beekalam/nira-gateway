@@ -52,6 +52,7 @@ class NiraGateway
         } catch (RequestException $e) {
             $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
+
             throw $exception;
         }
     }
@@ -72,6 +73,7 @@ class NiraGateway
         } catch (RequestException $e) {
             $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
+
             throw $exception;
         }
     }
@@ -106,6 +108,7 @@ class NiraGateway
         } catch (RequestException $e) {
             $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
+
             throw $exception;
         }
     }
@@ -120,6 +123,7 @@ class NiraGateway
         } catch (RequestException $e) {
             $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
+
             throw $exception;
         }
     }
@@ -142,6 +146,7 @@ class NiraGateway
         } catch (RequestException $e) {
             $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
+
             throw $exception;
         }
     }
@@ -160,6 +165,7 @@ class NiraGateway
         } catch (RequestException $e) {
             $exception = new NiraGatewayException('Error Calling Nira API');
             $exception->setGatewayError($e);
+
             throw $exception;
         }
     }
