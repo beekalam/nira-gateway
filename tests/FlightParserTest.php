@@ -105,7 +105,7 @@ class FlightParserTest extends BaseTestCase
     }
 
     /** @test */
-    function can_parse_search_flight_results()
+    public function can_parse_search_flight_results()
     {
         $flights = FlightParser::fromJson($this->getSearchResults());
         $flights_array = json_decode($this->getSearchResults(), true);
