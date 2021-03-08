@@ -65,7 +65,7 @@ class FareParser
         $this->infantTotalPrice = $arr['InfantTotalPrice'];
         $this->infantFare = $arr['InfantFare'];
         $this->childFare = $arr['ChildFare'];
-        $this->adultCommission = $arr['AdultComission'];
+        $this->adultCommission = $arr['AdultComission'] ?? null;
         $this->adultFare = $arr['AdultFare'];
         $this->childTaxes = $arr['ChildTaxes'];
         $this->eligibilityText = $arr['EligibilityText'];
@@ -115,7 +115,7 @@ class FareParser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getChildTaxes()
     {
@@ -123,7 +123,7 @@ class FareParser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEligibilityText()
     {
@@ -131,7 +131,7 @@ class FareParser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAdultTotalPrice()
     {
@@ -139,7 +139,7 @@ class FareParser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getInfantTaxes()
     {
@@ -147,11 +147,30 @@ class FareParser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCRCNRules()
     {
         return $this->CRCNRules;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCRNCRulesArray()
+    {
+        $res = preg_split("/,P\//", $this->getCRCNRules());
+        $ret = [];
+
+        foreach ($res as $r) {
+
+            if (strpos($r, ",") !== false) {
+                [$description, $percent] = explode(',', $r);
+                $ret[$percent] = $description;
+            }
+        }
+
+        return $ret;
     }
 
     public static function fromJson(string $requestBody)

@@ -81,7 +81,7 @@ JSON;
     "EligibilityText": "",
     "AdultTotalPrice": "1140000",
     "InfantTaxes": "I6:10 000.0,EN_Desc:PASSENGER SAFETY OVERSIGHT SERVICE,FA_Desc:PASSENGER SAFETY OVERSIGHT SERVICE$KU:5000.0,EN_Desc:MUNICIPALITI TAX,FA_Desc:شهرداری$HL:1000.0,EN_Desc:HELAL AHMAR TAX,FA_Desc: هالل عوارض احمر$LP:70000.0,EN_Desc:AIRPORT TAX,FA_Desc:فرودگاهی$",
-    "CRCNRules": " 12 تا صدور لحظه از 30,پرواز به مانده روز یک ظهر,P/50,بعد به و پرواز به مانده روز یک ظ12از,P/"
+    "CRCNRules": "از 3 ساعت مانده به پرواز,50,P/از 24 ساعت مانده به پرواز تا 3 ساعت مانده به پرواز,40,P/از لحظه صدور تا 24 ساعت مانده به پرواز,30,P/"
 }
 JSON;
     }

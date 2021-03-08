@@ -82,4 +82,19 @@ class FareParserTest extends BaseTestCase
     {
         $this->assertEquals($this->fareParser->getCRCNRules(), $this->fareResults['CRCNRules']);
     }
+
+    /** @test */
+    function it_can_return_CRNCRules_array()
+    {
+        $fareCRNCFormatted = $this->fareParser->getCRNCRulesArray();
+        //var_dump($this->fareParser->getCRNCRulesArray());
+        //var_dump(array_keys($this->fareParser->getCRNCRulesArray()));
+        $this->assertTrue(is_array($fareCRNCFormatted));
+
+        $keys = array_keys($fareCRNCFormatted);
+        //var_dump($keys);
+        $this->assertTrue(in_array('50', $keys));
+        $this->assertTrue(in_array('30', $keys));
+        $this->assertTrue(in_array('40', $keys));
+    }
 }
