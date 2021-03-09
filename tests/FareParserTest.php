@@ -72,7 +72,7 @@ class FareParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_ChildTotalPrice()
+    public function it_can_return_ChildTotalPrice()
     {
         $this->assertEquals($this->fareParser->getChildTotalPrice(), $this->fareResults['ChildTotalPrice']);
     }
@@ -118,7 +118,7 @@ class FareParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_calculate_infant_price_correctly_for_adult_child_infant()
+    public function it_can_calculate_infant_price_correctly_for_adult_child_infant()
     {
         $expected = $this->fareParser->getAdultTotalPrice() * 1 + $this->fareParser->getChildTotalPrice() * 2 + $this->fareParser->getInfantTotalPrice() * 2;
         $this->assertEquals($expected, $this->fareParser->calculatePrice(1, 2, 2));
