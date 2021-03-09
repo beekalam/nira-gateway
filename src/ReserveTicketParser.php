@@ -169,6 +169,6 @@ class ReserveTicketParser
      */
     public static function fromJson($requestBody)
     {
-        return new self(json_decode($requestBody,true));
+        return new self(json_decode($requestBody, true));
     }
 }
