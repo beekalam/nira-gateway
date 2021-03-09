@@ -12,6 +12,16 @@ class FareParser
     /**
      * @var string
      */
+    private $adultTotalPrice;
+
+    /**
+     * @var string
+     */
+    private $childTotalPrice;
+
+    /**
+     * @var string
+     */
     private $infantTotalPrice;
 
     /**
@@ -42,16 +52,6 @@ class FareParser
     /**
      * @var string
      */
-    private $eligibilityText;
-
-    /**
-     * @var string
-     */
-    private $adultTotalPrice;
-
-    /**
-     * @var string
-     */
     private $infantTaxes;
 
     /**
@@ -59,18 +59,28 @@ class FareParser
      */
     private $CRCNRules;
 
+    /**
+     * @var string
+     */
+    private $eligibilityText;
+
     public function __construct($arr)
     {
         $this->arr = $arr;
+        $this->adultTotalPrice = $arr['AdultTotalPrice'];
+        $this->childTotalPrice = $arr['ChildTotalPrice'];
         $this->infantTotalPrice = $arr['InfantTotalPrice'];
+
+        $this->adultFare = $arr['AdultFare'];
         $this->infantFare = $arr['InfantFare'];
         $this->childFare = $arr['ChildFare'];
+
         $this->adultCommission = $arr['AdultComission'] ?? null;
-        $this->adultFare = $arr['AdultFare'];
+
         $this->childTaxes = $arr['ChildTaxes'];
-        $this->eligibilityText = $arr['EligibilityText'];
-        $this->adultTotalPrice = $arr['AdultTotalPrice'];
         $this->infantTaxes = $arr['InfantTaxes'];
+
+        $this->eligibilityText = $arr['EligibilityText'];
         $this->CRCNRules = $arr['CRCNRules'];
     }
 
@@ -155,6 +165,14 @@ class FareParser
     }
 
     /**
+     * @return string
+     */
+    public function getChildTotalPrice(): string
+    {
+        return $this->childTotalPrice;
+    }
+
+    /**
      * @return array
      */
     public function getCRNCRulesArray()
@@ -176,5 +194,10 @@ class FareParser
     public static function fromJson(string $requestBody)
     {
         return new self(json_decode($requestBody, true));
+    }
+
+    public function calculatePrice($adult, $child, $infant)
+    {
+        return ($this->getAdultTotalPrice() * $adult) + ($this->getChildTotalPrice() * $child) + ($this->getInfantTotalPrice() * $infant);
     }
 }
