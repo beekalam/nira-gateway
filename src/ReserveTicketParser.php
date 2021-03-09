@@ -163,4 +163,12 @@ class ReserveTicketParser
     {
         return $this->office;
     }
+
+    /**
+     * @return ReserveTicketParser
+     */
+    public static function fromJson($requestBody)
+    {
+        return new self(json_decode($requestBody,true));
+    }
 }
