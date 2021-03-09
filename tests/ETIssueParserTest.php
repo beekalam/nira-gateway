@@ -3,7 +3,6 @@
 namespace Beekalam\NiraGateway\Tests;
 
 use Beekalam\NiraGateway\ETIssueParser;
-use Beekalam\NiraGateway\ReserveTicketParser;
 
 class ETIssueParserTest extends BaseTestCase
 {
