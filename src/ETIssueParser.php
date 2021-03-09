@@ -26,12 +26,12 @@ class ETIssueParser
              * to this:
              * doe/john=1012400000680 jane/doe=1012400000681 uncle/sam=1012400000682
              */
-            $tickets = preg_replace("@(\w*/\w*=\d*)@", "$1 ", $tickets);
-            $tickets = explode(" ", trim($tickets));
+            $tickets = preg_replace("@(\w*/\w*=\d*)@", '$1 ', $tickets);
+            $tickets = explode(' ', trim($tickets));
             foreach ($tickets as $ticket) {
                 [$name, $ticketno] = explode('=', $ticket);
                 $this->tickets[] = [
-                    'name' => str_replace("/", " ", $name),
+                    'name' => str_replace('/', ' ', $name),
                     'ticketno' => $ticketno,
                 ];
             }

@@ -238,7 +238,7 @@ class ReserveParameterBuilder
     public function addPassenger($edtID, $edtAge, $edtLast, $edtName)
     {
         $this->no++;
-        if($edtAge <= 2){
+        if ($edtAge <= 2) {
             $this->infantCount++;
         }
         if ($edtAge > 2 && $edtAge <= 12) {

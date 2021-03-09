@@ -381,14 +381,14 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_number_of_passengers_correctly()
+    public function it_can_return_number_of_passengers_correctly()
     {
         $reserve_parameter_builder = $this->data_provider(0, 1);
         $this->assertEquals(2, $reserve_parameter_builder->getNumberOfPassengers());
     }
 
     /** @test */
-    function it_can_return_number_of_adult_passengers()
+    public function it_can_return_number_of_adult_passengers()
     {
         $reserve_parameter_builder = $this->data_provider(1, 2, 2);
         $this->assertEquals(6, $reserve_parameter_builder->getNumberOfPassengers());
@@ -396,7 +396,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_number_child_passengers_correctly()
+    public function it_can_return_number_child_passengers_correctly()
     {
         $reserve_parameter_builder = $this->data_provider(0, 2);
         $this->assertEquals(3, $reserve_parameter_builder->getNumberOfPassengers());
@@ -404,7 +404,7 @@ class ReserveParameterBuilderTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_number_of_infant_passengers_correctly()
+    public function it_can_return_number_of_infant_passengers_correctly()
     {
         $reserve_parameter_builder = $this->data_provider(0, 2, 2);
         $this->assertEquals(5, $reserve_parameter_builder->getNumberOfPassengers());
