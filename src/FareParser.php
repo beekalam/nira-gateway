@@ -163,13 +163,13 @@ class FareParser
         $ret = [];
 
         foreach ($res as $r) {
-
-            if (strpos($r, ",") !== false) {
+            if (strpos($r, ',') !== false) {
                 [$description, $percent] = explode(',', $r);
                 $ret[$percent] = $description;
             }
         }
         ksort($ret);
+
         return $ret;
     }
 

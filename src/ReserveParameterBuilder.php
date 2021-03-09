@@ -318,6 +318,7 @@ class ReserveParameterBuilder
             'edtContact' => $this->edtContact,
         ];
         $ret['passengers'] = $this->passengers;
+
         return $ret;
     }
 }

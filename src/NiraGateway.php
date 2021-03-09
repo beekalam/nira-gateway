@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Beekalam\NiraGateway;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 
 class NiraGateway
@@ -86,7 +86,7 @@ class NiraGateway
             $exception->setGatewayError($e);
 
             throw $exception;
-        } catch(ConnectException $e){
+        } catch (ConnectException $e) {
             $exception = new NiraGatewayException($message);
             $exception->setGatewayError($e);
 

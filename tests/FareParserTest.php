@@ -84,7 +84,7 @@ class FareParserTest extends BaseTestCase
     }
 
     /** @test */
-    function it_can_return_CRNCRules_array()
+    public function it_can_return_CRNCRules_array()
     {
         $fareCRNCFormatted = $this->fareParser->getCRNCRulesArray();
         //var_dump($this->fareParser->getCRNCRulesArray());
