@@ -301,4 +301,23 @@ class ReserveParameterBuilder
 
         return $sb;
     }
+
+    public function __debugInfo()
+    {
+        $ret = [
+            'airline' => $this->airline,
+            'source' => $this->source,
+            'target' => $this->target,
+            'flightClass' => $this->flightClass,
+            'flightNo' => $this->flightNo,
+            'day' =>$this->day,
+            'month'=> $this->month,
+            'edtName1' => $this->edtName1,
+            'edtLast1' => $this->edtLast1,
+            'edtAge1' => $this->edtAge1,
+            'edtContact' => $this->edtContact,
+        ];
+        $ret['passengers'] = $this->passengers;
+        return $ret;
+    }
 }

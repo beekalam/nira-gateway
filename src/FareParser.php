@@ -169,7 +169,7 @@ class FareParser
                 $ret[$percent] = $description;
             }
         }
-
+        ksort($ret);
         return $ret;
     }
 
