@@ -158,9 +158,13 @@ JSON;
     {
         return <<<'JSON'
 {
-  "AirNRSTICKETS":[
-          { "Tickets":"TEST/TEST=10124000000254"}
- ]
+       "AirNRSTICKETS":[
+                       {
+                         "Tickets":
+                             "doe/john=1012400000680jane/doe=1012400000681uncle/sam=1012400000682"
+                      }
+],
+"Message": ""
 }
 JSON;
     }

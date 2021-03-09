@@ -15,16 +15,26 @@ class ETIssueParser
     public function __construct($ETIssueResults)
     {
         $this->data = $ETIssueResults;
+        $this->tickets = [];
 
         if (is_array($ETIssueResults) && array_key_exists('AirNRSTICKETS', $ETIssueResults)) {
             $this->successfulETIssue = true;
-            [$name, $ticketno] = explode('=', $ETIssueResults['AirNRSTICKETS'][0]['Tickets']);
-            $this->tickets = [
-                [
-                    'name' => $name,
+            $tickets = $ETIssueResults['AirNRSTICKETS'][0]['Tickets'];
+            /*
+             * converts this:
+             * doe/john=1012400000680jane/doe=1012400000681uncle/sam=1012400000682
+             * to this:
+             * doe/john=1012400000680 jane/doe=1012400000681 uncle/sam=1012400000682
+             */
+            $tickets = preg_replace("@(\w*/\w*=\d*)@", "$1 ", $tickets);
+            $tickets = explode(" ", trim($tickets));
+            foreach ($tickets as $ticket) {
+                [$name, $ticketno] = explode('=', $ticket);
+                $this->tickets[] = [
+                    'name' => str_replace("/", " ", $name),
                     'ticketno' => $ticketno,
-                ],
-            ];
+                ];
+            }
 
             $this->message = $ETIssueResults['Message'];
         }
@@ -44,5 +54,10 @@ class ETIssueParser
     public function isSuccessfulETIssue(): bool
     {
         return $this->successfulETIssue;
+    }
+
+    public static function fromJson($requestBody)
+    {
+        return new self(json_decode($requestBody, true));
     }
 }

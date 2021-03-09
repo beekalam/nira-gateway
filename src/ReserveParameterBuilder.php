@@ -77,9 +77,18 @@ class ReserveParameterBuilder
 
     private $passengers;
 
+    private $childCount;
+
+    private $adultCount;
+
+    private $infantCount;
+
     public function __construct()
     {
         $this->no = 1;
+        $this->adultCount = 1;
+        $this->childCount = 0;
+        $this->infantCount = 0;
         $this->passengers = [];
     }
 
@@ -229,12 +238,51 @@ class ReserveParameterBuilder
     public function addPassenger($edtID, $edtAge, $edtLast, $edtName)
     {
         $this->no++;
+        if($edtAge <= 2){
+            $this->infantCount++;
+        }
+        if ($edtAge > 2 && $edtAge <= 12) {
+            $this->childCount++;
+        }
+        if ($edtAge > 12) {
+            $this->adultCount++;
+        }
+
         $this->passengers [] = [
             "edtID{$this->no}" => $edtID,
             "edtAge{$this->no}" => $edtAge,
             "edtLast{$this->no}" => $edtLast,
             "edtName{$this->no}" => $edtName,
         ];
+    }
+
+    public function getNumberOfPassengers()
+    {
+        return $this->no;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfAdultPassengers()
+    {
+        return $this->adultCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfChildPassengers()
+    {
+        return $this->childCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfInfantPassengers()
+    {
+        return $this->infantCount;
     }
 
     public function buildParams()

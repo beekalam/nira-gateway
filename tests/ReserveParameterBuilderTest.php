@@ -340,4 +340,74 @@ class ReserveParameterBuilderTest extends BaseTestCase
 
         $this->assertEquals($expected_result, $sb->buildParams());
     }
+
+    private function data_provider($adult_count = 0, $child_count = 0, $infant_count = 0)
+    {
+        $sb = ReserveParameterBuilder::fromArray($expected_result = [
+            'AirLine' => 'PA',
+            'cbSource' => 'SYZ',
+            'cbTarget' => 'THR',
+            'FlightClass' => 'A',
+            'FlightNo' => '123',
+            'Day' => '1',
+            'Month' => '1',
+            'edtName1' => 'beekalam',
+            'edtLast1' => 'beekalam',
+            'edtAge1' => '12',
+            'edtID1' => '123',
+            'edtContact' => '09359000',
+            'No' => '1',
+        ]);
+
+        if ($adult_count > 0) {
+            foreach (range(1, $adult_count) as $i) {
+                $sb->addPassenger('5135959595959', '29', 'DOE', 'junior');
+            }
+        }
+
+        if ($child_count > 0) {
+            foreach (range(1, $child_count) as $i) {
+                $sb->addPassenger('5135959595959', '11', 'DOE', 'junior');
+            }
+        }
+
+        if ($infant_count > 0) {
+            foreach (range(1, $infant_count) as $i) {
+                $sb->addPassenger('5135959595959', '1', 'DOE', 'junior');
+            }
+        }
+
+        return $sb;
+    }
+
+    /** @test */
+    function it_can_return_number_of_passengers_correctly()
+    {
+        $reserve_parameter_builder = $this->data_provider(0, 1);
+        $this->assertEquals(2, $reserve_parameter_builder->getNumberOfPassengers());
+    }
+
+    /** @test */
+    function it_can_return_number_of_adult_passengers()
+    {
+        $reserve_parameter_builder = $this->data_provider(1, 2, 2);
+        $this->assertEquals(6, $reserve_parameter_builder->getNumberOfPassengers());
+        $this->assertEquals(2, $reserve_parameter_builder->getNumberOfAdultPassengers());
+    }
+
+    /** @test */
+    function it_can_return_number_child_passengers_correctly()
+    {
+        $reserve_parameter_builder = $this->data_provider(0, 2);
+        $this->assertEquals(3, $reserve_parameter_builder->getNumberOfPassengers());
+        $this->assertEquals(2, $reserve_parameter_builder->getNumberOfChildPassengers());
+    }
+
+    /** @test */
+    function it_can_return_number_of_infant_passengers_correctly()
+    {
+        $reserve_parameter_builder = $this->data_provider(0, 2, 2);
+        $this->assertEquals(5, $reserve_parameter_builder->getNumberOfPassengers());
+        $this->assertEquals(2, $reserve_parameter_builder->getNumberOfInfantPassengers());
+    }
 }
