@@ -18,19 +18,29 @@ composer require beekalam/nira-gateway
 
 ## Usage
 
-* Getting search results
-```php
-$ng = new NiraGateway('user', 'pass');
-$sb = new ParameterBuilder();
-    $sb->setAirline('PA')
-       ->setSource('ugt')
-       ->setTarget('ttq')
-       ->setDay('3')
-       ->setMonth('06')
-       ->setAdultCount('1')
-       ->setInfantCount('0');
+* Initializing the gateway handler.
 
-$res = $ng->search($sb);
+```php
+$ngs = new NiraGatewaySpecification("<domain>/ws1", "<domain>/ws2/cgi-bin/NRSWEB.cgi", '<username>', '<password>');
+$ng = new NiraGateway($ngs);
+```
+
+### searching
+
+```php
+$searchParameters = ParameterBuilder::fromArray([
+        'airline' => '<your_airline>',
+        'cbSource' => 'SYZ' 
+        'cbTarget' => 'THR',
+        'cbDay1' => '1',
+        'cbMonth1' => '12'
+        'cbAdultQty' => '1'
+        'cbInfantQty' => '1'
+        'cbChildQty' => '0'
+]);
+
+$responseBody = $ng->search($searchParameters);
+FlightParser::fromJson($responseBody);
 ```
 
 ## Testing
