@@ -56,6 +56,10 @@ class ETIssueParser
         return $this->successfulETIssue;
     }
 
+    /**
+     * @param string $requestBody
+     * @return \Beekalam\NiraGateway\ETIssueParser
+     */
     public static function fromJson($requestBody)
     {
         return new self(json_decode($requestBody, true));
